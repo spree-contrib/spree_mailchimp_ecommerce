@@ -1,0 +1,31 @@
+$:.push File.expand_path("lib", __dir__)
+
+# Maintain your gem's version:
+require "spree_mailchimp_ecommerce/version"
+
+# Describe your gem and declare its dependencies:
+Gem::Specification.new do |s|
+  s.name        = "spree_mailchimp_ecommerce"
+  s.version     = SpreeMailchimpEcommerce::VERSION
+  s.authors     = ["Oleg Leontev"]
+  s.email       = ["oleg.leontiev@sparksolutions.co"]
+  s.homepage    = "http://spreecommerce.org"
+  s.summary     = "Summary of SpreeMailchimpEcommerce."
+  s.description = "Description of SpreeMailchimpEcommerce."
+  s.license     = "MIT"
+
+  s.files        = `git ls-files`.split("\n")
+
+  s.require_path = 'lib'
+
+  s.add_dependency "gibbon"
+  s.add_dependency 'pg'
+  s.add_dependency "rails"
+  s.add_dependency "spree"
+  s.add_dependency "spree_extension"
+
+  s.add_development_dependency "factory_bot_rails"
+  s.add_development_dependency "pry-rails"
+  s.add_development_dependency "rspec-rails"
+  s.add_development_dependency "rubocop"
+end

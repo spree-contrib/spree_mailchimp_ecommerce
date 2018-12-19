@@ -18,11 +18,11 @@ module Spree
       private
 
       def create_mailchimp_cart
-        CreateOrderCartJob.perform_later(self)
+        ::SpreeMailchimpEcommerce::CreateOrderCartJob.perform_later(self)
       end
 
       def create_mailchimp_order
-        CreateOrderJob.perform_later(self)
+        ::SpreeMailchimpEcommerce::CreateOrderJob.perform_later(self)
       end
     end
   end

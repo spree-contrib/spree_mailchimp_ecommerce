@@ -12,8 +12,8 @@ module SpreeMailchimpEcommerce
       def json
         {
           id: Digest::MD5.hexdigest(product.id.to_s),
-          title: product.name || '',
-          description: product.description || '',
+          title: product.name || "",
+          description: product.description || "",
           variants: variants
         }.as_json
       end
@@ -27,11 +27,11 @@ module SpreeMailchimpEcommerce
       def variant(variant)
         {
           id: Digest::MD5.hexdigest("#{variant.sku}#{variant.id}"),
-          title: product.name || '',
+          title: product.name || "",
           sku: variant.sku,
           price: variant.cost_price.to_s
         }
       end
     end
-end
+  end
 end

@@ -14,8 +14,8 @@ module SpreeMailchimpEcommerce
           id: Digest::MD5.hexdigest(user.id.to_s),
           email_address: user.email,
           opt_in_status: true,
-          first_name: user.firstname || '',
-          last_name: user.lastname || '',
+          first_name: user.firstname || "",
+          last_name: user.lastname || "",
           address: address
         }.as_json
       end
@@ -26,17 +26,8 @@ module SpreeMailchimpEcommerce
         ad = user.addresses.first
         return {} unless ad
 
-        {
-          address1: ad.address1 || '',
-          address2: ad.address2 || '',
-          city: ad.city,
-          province: ad.state&.name,
-          province_code: ad.state&.abbr,
-          postal_code: ad.zipcode,
-          country: ad.country&.name,
-          country_code: ad.country&.iso
-        }
+        AddressMailchimpPresenter.new(ad).json
       end
     end
-end
+  end
 end

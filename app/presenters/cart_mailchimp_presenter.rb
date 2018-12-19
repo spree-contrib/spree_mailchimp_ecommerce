@@ -10,7 +10,7 @@ module SpreeMailchimpEcommerce
       end
 
       def json
-        return {} unless user
+        return unless user
 
         {
           id: order.number,
@@ -24,20 +24,14 @@ module SpreeMailchimpEcommerce
       private
 
       def user
-        return unless email
-
-        {
-          id: Digest::MD5.hexdigest(email),
-          email_address: email,
-          opt_in_status: true
-        }
-      end
-
-      def email
         if order.user
-          order.user.email.downcase
+          UserMailchimpPresenter.new(order.user).json
         elsif order.email
-          order.email
+          {
+            id: Digest::MD5.hexdigest(order.email),
+            email_address: order.email,
+            opt_in_status: true
+          }
         end
       end
 
@@ -48,12 +42,12 @@ module SpreeMailchimpEcommerce
       def line(line)
         {
           id: Digest::MD5.hexdigest("#{line.id}#{line.order_id}"),
-          product_id: Mailchimp::ProductMailchimpPresenter.new(line.product).json['id'],
+          product_id: ProductMailchimpPresenter.new(line.product).json["id"],
           product_variant_id: Digest::MD5.hexdigest("#{line.variant.sku}#{line.variant.id}"),
           quantity: line.quantity,
           price: line.price.to_s
         }
       end
-end
-end
+    end
+  end
 end

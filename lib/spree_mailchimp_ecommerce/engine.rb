@@ -1,11 +1,15 @@
 module SpreeMailchimpEcommerce
   class Engine < ::Rails::Engine
-    require 'spree/core'
+    require "spree/core"
     isolate_namespace Spree
-    engine_name 'spree_mailchimp_ecommerce'
+    engine_name "spree_mailchimp_ecommerce"
 
     def self.activate
-      Dir.glob(File.join(File.dirname(__FILE__), '../../app/**/*.rb')) do |c|
+      Dir.glob(File.join(File.dirname(__FILE__), "../../app/**/*_decorator*.rb")) do |c|
+        Rails.configuration.cache_classes ? require(c) : load(c)
+      end
+
+      Dir.glob(File.join(File.dirname(__FILE__), "../../app/**/*_presenter*.rb")) do |c|
         Rails.configuration.cache_classes ? require(c) : load(c)
       end
     end

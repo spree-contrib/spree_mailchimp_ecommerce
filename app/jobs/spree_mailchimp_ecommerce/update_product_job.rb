@@ -3,8 +3,8 @@ module SpreeMailchimpEcommerce
     def perform(product)
       return unless product.mailchimp_product
 
-      Gibbon::Request.ecommerce.
-        stores(ENV["MAILCHIMP_STORE_ID"]).
+      Gibbon::Request.new(api_key: ::SpreeMailchimpEcommerce.configuration.mailchimp_api_key).ecommerce.
+        stores(::SpreeMailchimpEcommerce.configuration.mailchimp_store_id).
         products(product.mailchimp_product["id"]).
         update(body: product.mailchimp_product)
     end

@@ -21,6 +21,11 @@ Or install it yourself as:
 $ gem install spree_mailchimp_ecommerce
 ```
 
+Copy initializer
+```bash
+$ bundle exec rails g spree_mailchimp_ecommerce:install
+```
+
 ## Contributing
 Contribution directions go here.
 

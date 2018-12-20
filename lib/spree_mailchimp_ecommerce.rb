@@ -9,7 +9,7 @@ module SpreeMailchimpEcommerce
 
   def self.configure
     self.configuration ||= Configuration.new
-    yeld(configuration)
+    yield(configuration)
   end
 
   class Configuration

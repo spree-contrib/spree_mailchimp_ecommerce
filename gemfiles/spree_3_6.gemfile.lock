@@ -1,12 +1,11 @@
 PATH
-  remote: .
+  remote: ..
   specs:
     spree_mailchimp_ecommerce (0.1.0)
       gibbon
       pg
       rails
-      spree_backend (>= 3.1.0, < 4.0)
-      spree_core (>= 3.1.0, < 4.0)
+      spree
       spree_extension
 
 GEM
@@ -74,12 +73,15 @@ GEM
       execjs
     awesome_nested_set (3.1.4)
       activerecord (>= 4.0.0, < 5.3)
+    bcrypt (3.1.12)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.3)
     camertron-eprun (1.1.1)
     cancancan (2.3.0)
+    canonical-rails (0.2.4)
+      rails (>= 4.1, < 5.3)
     carmen (1.0.2)
       activesupport (>= 3.0.0)
     cldr-plurals-runtime-rb (1.0.1)
@@ -94,8 +96,16 @@ GEM
       polyglot
       rails (>= 4.1)
       rainbow (>= 2.1.0)
+    devise (4.4.3)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0, < 6.0)
+      responders
+      warden (~> 1.2.3)
+    devise-encryptable (0.2.0)
+      devise (>= 2.1.0)
     diff-lcs (1.3)
-    erubi (1.7.1)
+    erubi (1.8.0)
     execjs (2.7.0)
     factory_bot (4.11.1)
       activesupport (>= 3.0.0)
@@ -115,9 +125,9 @@ GEM
       activesupport (>= 4.2.0)
     highline (1.6.21)
     htmlentities (4.3.4)
-    i18n (1.2.0)
+    i18n (1.3.0)
       concurrent-ruby (~> 1.0)
-    jaro_winkler (1.5.1)
+    jaro_winkler (1.5.1-x86_64-darwin-17)
     jquery-rails (4.3.3)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -161,6 +171,7 @@ GEM
     nio4r (2.3.1)
     nokogiri (1.9.1)
       mini_portile2 (~> 2.4.0)
+    orm_adapter (0.5.0)
     paperclip (6.0.0)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
@@ -206,6 +217,10 @@ GEM
       bundler (>= 1.3.0)
       railties (= 5.2.2)
       sprockets-rails (>= 2.0.0)
+    rails-controller-testing (1.0.4)
+      actionpack (>= 5.0.1.x)
+      actionview (>= 5.0.1.x)
+      activesupport (>= 5.0.1.x)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -263,10 +278,22 @@ GEM
       rb-inotify (~> 0.9, >= 0.9.7)
     select2-rails (3.5.9.1)
       thor (~> 0.14)
+    spree (3.6.6)
+      spree_api (= 3.6.6)
+      spree_backend (= 3.6.6)
+      spree_cmd (= 3.6.6)
+      spree_core (= 3.6.6)
+      spree_frontend (= 3.6.6)
+      spree_sample (= 3.6.6)
     spree_api (3.6.6)
       rabl (~> 0.13.1)
       spree_core (= 3.6.6)
       versioncake (~> 3.4.0)
+    spree_auth_devise (3.4.2)
+      devise (~> 4.4.0)
+      devise-encryptable (= 0.2.0)
+      spree_core (>= 3.1.0, < 4.0)
+      spree_extension
     spree_backend (3.6.6)
       bootstrap-sass (~> 3.3)
       jquery-rails (~> 4.3)
@@ -274,6 +301,8 @@ GEM
       select2-rails (= 3.5.9.1)
       spree_api (= 3.6.6)
       spree_core (= 3.6.6)
+    spree_cmd (3.6.6)
+      thor (~> 0.14)
     spree_core (3.6.6)
       activemerchant (~> 1.67)
       acts-as-taggable-on (~> 6.0)
@@ -301,6 +330,14 @@ GEM
       twitter_cldr (~> 4.3)
     spree_extension (0.0.5)
       activerecord (>= 4.2)
+    spree_frontend (3.6.6)
+      bootstrap-sass (>= 3.3.5.1, < 3.4)
+      canonical-rails (~> 0.2.3)
+      jquery-rails (~> 4.3)
+      spree_api (= 3.6.6)
+      spree_core (= 3.6.6)
+    spree_sample (3.6.6)
+      spree_core (= 3.6.6)
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -308,7 +345,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.3.13)
     state_machines (0.5.0)
     state_machines-activemodel (0.5.1)
       activemodel (>= 4.1, < 6.0)
@@ -333,6 +369,8 @@ GEM
       activesupport (>= 3.2)
       railties (>= 3.2)
       tzinfo
+    warden (1.2.8)
+      rack (>= 2.0.6)
     websocket-driver (0.7.0)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
@@ -343,11 +381,14 @@ PLATFORMS
 DEPENDENCIES
   appraisal
   factory_bot_rails
+  gibbon
   pry-rails
+  rails-controller-testing
   rspec-rails
   rubocop
+  spree (~> 3.6.1)
+  spree_auth_devise (~> 3.4.0)
   spree_mailchimp_ecommerce!
-  sqlite3
 
 BUNDLED WITH
    1.16.6

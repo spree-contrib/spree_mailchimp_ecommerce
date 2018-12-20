@@ -1,7 +1,6 @@
 module SpreeMailchimpEcommerce
   class ImportExistingJob < ApplicationJob
     def perform
-      create_store
       upload_customers
       upload_products
       upload_carts
@@ -10,19 +9,11 @@ module SpreeMailchimpEcommerce
 
     private
 
-    def create_store
-      Gibbon::Request.ecommerce.stores.create(body: {
-                                                id: ENV["MAILCHIMP_STORE_ID"],
-                                                list_id: ENV["MAILCHIMP_LIST_ID"],
-                                                name: ENV["MAILCHIMP_STORE_NAME"],
-                                                currency_code: "USD"
-                                              })
-    end
-
     def upload_customers
       Spree::User.find_each do |u|
         begin
-          Gibbon::Request.ecommerce.stores(ENV["MAILCHIMP_STORE_ID"]).customers.create(body: u.mailchimp_user)
+          Gibbon::Request.new(api_key: ::SpreeMailchimpEcommerce.configuration.mailchimp_api_key).
+            ecommerce.stores(::SpreeMailchimpEcommerce.configuration.mailchimp_store_id).customers.create(body: u.mailchimp_user)
         rescue StandardError => error
           Rails.logger.error("user: #{u.id} error: #{error.message}")
         end
@@ -33,7 +24,8 @@ module SpreeMailchimpEcommerce
       Spree::Product.includes(:variants).find_each do |p|
         begin
           pr = Mailchimp::ProductMailchimpPresenter.new(p).json
-          Gibbon::Request.ecommerce.stores(ENV["MAILCHIMP_STORE_ID"]).products.create(body: pr)
+          Gibbon::Request.new(api_key: ::SpreeMailchimpEcommerce.configuration.mailchimp_api_key).
+            ecommerce.stores(::SpreeMailchimpEcommerce.configuration.mailchimp_store_id).products.create(body: pr)
         rescue StandardError => error
           Rails.logger.error("user: #{u.id} error: #{error.message}")
         end
@@ -46,7 +38,8 @@ module SpreeMailchimpEcommerce
           ord = Mailchimp::CartMailchimpPresenter.new(o).json
           next if ord.empty?
 
-          Gibbon::Request.ecommerce.stores(ENV["MAILCHIMP_STORE_ID"]).carts.create(body: ord)
+          Gibbon::Request.new(api_key: ::SpreeMailchimpEcommerce.configuration.mailchimp_api_key).
+            ecommerce.stores(::SpreeMailchimpEcommerce.configuration.mailchimp_store_id).carts.create(body: ord)
         rescue StandardError => error
           Rails.logger.error("user: #{u.id} error: #{error.message}")
         end
@@ -59,7 +52,8 @@ module SpreeMailchimpEcommerce
           ord = Mailchimp::OrderMailchimpPresenter.new(o).json
           next if ord.empty?
 
-          Gibbon::Request.ecommerce.stores(ENV["MAILCHIMP_STORE_ID"]).orders.create(body: ord)
+          Gibbon::Request.new(api_key: ::SpreeMailchimpEcommerce.configuration.mailchimp_api_key).
+            ecommerce.stores(::SpreeMailchimpEcommerce.configuration.mailchimp_store_id).orders.create(body: ord)
         rescue StandardError => error
           Rails.logger.error("user: #{u.id} error: #{error.message}")
         end

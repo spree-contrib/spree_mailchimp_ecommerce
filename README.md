@@ -26,6 +26,14 @@ Copy initializer
 $ bundle exec rails g spree_mailchimp_ecommerce:install
 ```
 
+Setup you keys in 'config/initializers/spree_mailchimp_ecommerce.rb'
+
+Create a store on Mailchimp side
+
+```bash
+$ rake spree_mailchimp_ecommerce:create_a_store
+```
+
 ## Contributing
 Contribution directions go here.
 

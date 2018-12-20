@@ -7,7 +7,7 @@ module SpreeMailchimpEcommerce
       Gibbon::Request.ecommerce.stores(ENV["MAILCHIMP_STORE_ID"]).
         carts.create(body: order.mailchimp_cart)
     rescue Gibbon::MailChimpError => error
-      Logger.error("user: #{u.id} error: #{error.message}")
+      Rails.logger.error("user: #{u.id} error: #{error.message}")
     end
   end
 end

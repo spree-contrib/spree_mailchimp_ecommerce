@@ -24,7 +24,7 @@ module SpreeMailchimpEcommerce
         begin
           Gibbon::Request.ecommerce.stores(ENV["MAILCHIMP_STORE_ID"]).customers.create(body: u.mailchimp_user)
         rescue StandardError => error
-          Logger.error("user: #{u.id} error: #{error.message}")
+          Rails.logger.error("user: #{u.id} error: #{error.message}")
         end
       end
     end
@@ -35,7 +35,7 @@ module SpreeMailchimpEcommerce
           pr = Mailchimp::ProductMailchimpPresenter.new(p).json
           Gibbon::Request.ecommerce.stores(ENV["MAILCHIMP_STORE_ID"]).products.create(body: pr)
         rescue StandardError => error
-          Logger.error("user: #{u.id} error: #{error.message}")
+          Rails.logger.error("user: #{u.id} error: #{error.message}")
         end
       end
     end
@@ -48,7 +48,7 @@ module SpreeMailchimpEcommerce
 
           Gibbon::Request.ecommerce.stores(ENV["MAILCHIMP_STORE_ID"]).carts.create(body: ord)
         rescue StandardError => error
-          Logger.error("user: #{u.id} error: #{error.message}")
+          Rails.logger.error("user: #{u.id} error: #{error.message}")
         end
       end
     end
@@ -61,7 +61,7 @@ module SpreeMailchimpEcommerce
 
           Gibbon::Request.ecommerce.stores(ENV["MAILCHIMP_STORE_ID"]).orders.create(body: ord)
         rescue StandardError => error
-          Logger.error("user: #{u.id} error: #{error.message}")
+          Rails.logger.error("user: #{u.id} error: #{error.message}")
         end
       end
     end

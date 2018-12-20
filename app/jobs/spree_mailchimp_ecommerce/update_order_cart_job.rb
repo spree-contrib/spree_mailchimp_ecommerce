@@ -2,9 +2,10 @@ module SpreeMailchimpEcommerce
   class UpdateOrderCartJob < ApplicationJob
     def perform(order)
       return unless order.mailchimp_cart
+
       begin
-        Gibbon::Request.ecommerce.
-          stores(ENV["MAILCHIMP_STORE_ID"]).
+        Gibbon::Request.new(api_key: ::SpreeMailchimpEcommerce.configuration.mailchimp_api_key).ecommerce.
+          stores(::SpreeMailchimpEcommerce.configuration.mailchimp_store_id).
           carts(order.mailchimp_cart["id"]).
           update(body: order.mailchimp_cart)
       rescue Gibbon::MailChimpError => error

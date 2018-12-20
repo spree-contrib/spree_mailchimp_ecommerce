@@ -3,5 +3,16 @@ require "spree_extension"
 require "spree_mailchimp_ecommerce/engine"
 
 module SpreeMailchimpEcommerce
-  # Your code goes here...
+  class << self
+    attr_accessor :configuration
+  end
+
+  def self.configure
+    self.configuration ||= Configuration.new
+    yeld(configuration)
+  end
+
+  class Configuration
+    attr_accessor :mailchimp_api_key, :mailchimp_store_id, :mailchimp_list_id, :mailchimp_store_name
+  end
 end

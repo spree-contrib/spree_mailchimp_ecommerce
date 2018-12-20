@@ -4,12 +4,13 @@ module Spree
       def self.prepended(base)
         base.after_update :update_mailchimp_cart
         base.after_create :update_mailchimp_cart
+        base.after_destroy :update_mailchimp_cart
       end
 
       private
 
       def update_mailchimp_cart
-        ::SpreeMailchimpEcommerce::UpdateOrderCartJob.perform_later(self.order)
+        ::SpreeMailchimpEcommerce::UpdateOrderCartJob.perform_later(order)
       end
     end
   end

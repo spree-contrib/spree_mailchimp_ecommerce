@@ -18,14 +18,19 @@ Gem::Specification.new do |s|
 
   s.require_path = 'lib'
 
+  spree_version = '>= 3.1.0', '< 4.0'
+
   s.add_dependency "gibbon"
   s.add_dependency 'pg'
   s.add_dependency "rails"
-  s.add_dependency "spree"
+  s.add_dependency 'spree_core', spree_version
+  s.add_dependency 'spree_backend', spree_version
   s.add_dependency "spree_extension"
 
   s.add_development_dependency "factory_bot_rails"
   s.add_development_dependency "pry-rails"
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "rubocop"
+  s.add_development_dependency 'appraisal'
+  s.add_development_dependency 'sqlite3'
 end

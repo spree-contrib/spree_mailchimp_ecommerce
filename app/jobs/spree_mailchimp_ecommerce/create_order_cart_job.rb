@@ -2,7 +2,7 @@
 module SpreeMailchimpEcommerce
   class CreateOrderCartJob < ApplicationJob
     def perform(order)
-      return unless order.mailchimp_order
+      return unless order.mailchimp_cart
 
       Gibbon::Request.ecommerce.stores(ENV["MAILCHIMP_STORE_ID"]).
         carts.create(body: order.mailchimp_cart)

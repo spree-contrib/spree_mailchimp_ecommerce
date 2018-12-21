@@ -1,4 +1,6 @@
 # SpreeMailchimpEcommerce
+[![Build Status](https://travis-ci.org/spark-solutions/spree_mailchimp_ecommerce.svg?branch=master)](https://travis-ci.org/spark-solutions/spree_mailchimp_ecommerce)
+
 
 ## Installation
 1. Add this line to your application's Gemfile:

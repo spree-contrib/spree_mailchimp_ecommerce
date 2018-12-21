@@ -15,4 +15,6 @@ gem 'rails-controller-testing'
 gem 'rubocop', require: false
 gem 'rubocop-rspec', require: false
 
+gem 'pry-rails'
+
 gemspec

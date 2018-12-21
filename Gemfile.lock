@@ -176,6 +176,7 @@ GEM
     crass (1.0.4)
     css_parser (1.6.0)
       addressable
+    database_cleaner (1.7.0)
     deface (1.3.2)
       nokogiri (>= 1.6)
       polyglot
@@ -425,6 +426,7 @@ PLATFORMS
 DEPENDENCIES
   afterpay!
   appraisal
+  database_cleaner
   factory_bot_rails
   ffaker
   pry-rails

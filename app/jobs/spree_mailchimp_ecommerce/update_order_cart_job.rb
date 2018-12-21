@@ -14,5 +14,3 @@ module SpreeMailchimpEcommerce
     end
   end
 end
-
-Gibbon::Request.new(api_key: ::SpreeMailchimpEcommerce.configuration.mailchimp_api_key).ecommerce.stores(::SpreeMailchimpEcommerce.configuration.mailchimp_store_id).carts(order.mailchimp_cart["id"]).update(body: order.mailchimp_cart)

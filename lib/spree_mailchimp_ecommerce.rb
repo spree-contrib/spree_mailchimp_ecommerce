@@ -13,6 +13,6 @@ module SpreeMailchimpEcommerce
   end
 
   class Configuration
-    attr_accessor :mailchimp_api_key, :mailchimp_store_id, :mailchimp_list_id, :mailchimp_store_name
+    attr_accessor :mailchimp_api_key, :mailchimp_store_id, :mailchimp_list_id, :mailchimp_store_name, :cart_url
   end
 end

@@ -17,7 +17,8 @@ module SpreeMailchimpEcommerce
           customer: user,
           currency_code: order.currency,
           order_total: order.total.to_s,
-          lines: lines
+          lines: lines,
+          checkout_url: ::SpreeMailchimpEcommerce.configuration.cart_url
         }.as_json
       end
 

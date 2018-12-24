@@ -31,9 +31,16 @@ module SpreeMailchimpEcommerce
           {
             id: Digest::MD5.hexdigest(order.email),
             email_address: order.email,
-            opt_in_status: true
+            opt_in_status: true,
+            address: address
           }
         end
+      end
+
+      def address
+        return {} unless order.shipping_address
+
+        AddressMailchimpPresenter.new(order.shipping_address).json
       end
 
       def lines

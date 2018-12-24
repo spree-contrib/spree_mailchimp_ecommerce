@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/spree/spree.git
-  revision: 4fa0dedb1a5bbf06a0ae68e8c461a42e3e1438e5
+  revision: e971341ac983a6ef32ecb0ad558ac4695b5bea64
   branch: master
   specs:
     spree (3.7.0.beta)
@@ -390,7 +390,7 @@ GEM
       tzinfo
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    unicode-display_width (1.4.0)
+    unicode-display_width (1.4.1)
     vcr (4.0.0)
     versioncake (3.4.0)
       actionpack (>= 3.2)

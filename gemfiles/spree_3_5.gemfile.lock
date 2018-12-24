@@ -365,7 +365,7 @@ GEM
       tzinfo
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    unicode-display_width (1.4.0)
+    unicode-display_width (1.4.1)
     vcr (4.0.0)
     versioncake (3.3.0)
       actionpack (>= 3.2)

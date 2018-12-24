@@ -1,14 +1,4 @@
 GIT
-  remote: https://github.com/spark-solutions/afterpay-ruby.git
-  revision: 2aab7bd64c0960bc246c2114a09608a986b5a2ac
-  branch: master
-  specs:
-    afterpay (0.1.0)
-      faraday (~> 0.15, >= 0.15.3)
-      faraday_middleware (~> 0.12, >= 0.12.2)
-      hashie (~> 3.6, >= 3.6.0)
-
-GIT
   remote: https://github.com/spree/spree.git
   revision: 7fa3a1ca1b455a623fce86793bc775e5eff8a351
   branch: master
@@ -202,8 +192,6 @@ GEM
       railties (>= 3.0.0)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
-    faraday_middleware (0.12.2)
-      faraday (>= 0.7.4, < 1.0)
     fast_jsonapi (1.5)
       activesupport (>= 4.2)
     ffaker (2.10.0)
@@ -216,7 +204,6 @@ GEM
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     hashdiff (0.3.7)
-    hashie (3.6.0)
     highline (2.0.0)
     htmlentities (4.3.4)
     i18n (1.2.0)
@@ -424,7 +411,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  afterpay!
   appraisal
   database_cleaner
   factory_bot_rails

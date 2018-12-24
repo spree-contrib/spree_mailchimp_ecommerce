@@ -2,7 +2,7 @@ module Spree
   module SpreeMailchimpEcommerce
     module OrderDecorator
       def self.prepended(base)
-        base.after_update :create_mailchimp_cart, if: proc { changes["email"] }
+        base.before_update :create_mailchimp_cart, if: proc { changes["email"] }
         base.after_create :create_mailchimp_cart, if: proc { user.present? }
         base.state_machine.after_transition to: :complete, do: :after_create_jobs
       end

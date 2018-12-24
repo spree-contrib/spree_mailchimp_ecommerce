@@ -5,9 +5,7 @@ source "https://rubygems.org"
 gem "spree", "~> 3.5.0"
 gem "spree_auth_devise", "~> 3.4.0"
 gem "rails-controller-testing"
-gem "rubocop", require: false
 gem "rubocop-rspec", require: false
-gem "pry-rails"
 gem "gibbon"
 
 gemspec path: "../"

@@ -13,10 +13,14 @@ module SpreeMailchimpEcommerce
         {
           id: Digest::MD5.hexdigest("#{variant.sku}#{variant.id}"),
 <<<<<<< HEAD
+<<<<<<< HEAD
           title: variant.name || "",
 =======
           title: product.name || "",
 >>>>>>> rework presenters
+=======
+          title: variant.name || "",
+>>>>>>> fix
           sku: variant.sku,
           price: variant.price.to_s,
           url: "#{ENV['BASE_URL']}/#{variant.category&.permalink || 'products'}/#{variant.slug}",

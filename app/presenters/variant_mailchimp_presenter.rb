@@ -12,7 +12,7 @@ module SpreeMailchimpEcommerce
       def json
         {
           id: Digest::MD5.hexdigest("#{variant.sku}#{variant.id}"),
-          title: product.name || "",
+          title: variant.name || "",
           sku: variant.sku,
           price: variant.price.to_s,
           url: "#{ENV['BASE_URL']}/#{variant.category&.permalink || 'products'}/#{variant.slug}",

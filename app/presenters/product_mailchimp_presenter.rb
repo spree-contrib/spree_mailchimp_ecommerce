@@ -14,6 +14,9 @@ module SpreeMailchimpEcommerce
           id: Digest::MD5.hexdigest(product.id.to_s),
           title: product.name || "",
           description: product.description || "",
+          url: "#{ENV['BASE_URL']}/#{product.category&.permalink || 'products'}/#{product.slug}",
+          vendor: product.category&.name || "",
+          image_url: images.first&.attachment&.url || "",
           variants: variants
         }.as_json
       end
@@ -21,16 +24,7 @@ module SpreeMailchimpEcommerce
       private
 
       def variants
-        product.variants.map { |v| variant(v) }
-      end
-
-      def variant(variant)
-        {
-          id: Digest::MD5.hexdigest("#{variant.sku}#{variant.id}"),
-          title: product.name || "",
-          sku: variant.sku,
-          price: variant.cost_price.to_s
-        }
+        product.variants.map { |v| VariantMailchimpPresenter.new(v).json }
       end
     end
   end

@@ -1,25 +1,24 @@
 # Configure Rails Environment
-ENV['RAILS_ENV'] = 'test'
+ENV["RAILS_ENV"] = "test"
 
-require File.expand_path('../dummy/config/environment.rb', __FILE__)
+require File.expand_path("dummy/config/environment.rb", __dir__)
 
-require 'rspec/rails'
-require 'ffaker'
-require 'webmock/rspec'
+require "rspec/rails"
+require "ffaker"
+require "webmock/rspec"
 
 WebMock.allow_net_connect!
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
-Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each { |f| require f }
+Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each { |f| require f }
 
 # Requires factories and other useful helpers defined in spree_core.
-require 'spree/testing_support/authorization_helpers'
-require 'spree/testing_support/controller_requests'
-require 'spree/testing_support/factories'
-require 'spree/testing_support/url_helpers'
-require 'spree/testing_support/order_walkthrough'
-
+require "spree/testing_support/authorization_helpers"
+require "spree/testing_support/controller_requests"
+require "spree/testing_support/factories"
+require "spree/testing_support/url_helpers"
+require "spree/testing_support/order_walkthrough"
 
 RSpec.configure do |config|
   # Infer an example group's spec type from the file location.
@@ -57,6 +56,6 @@ RSpec.configure do |config|
   # to setup a test will be unavailable to the browser, which runs under a separate server instance.
   config.use_transactional_fixtures = false
 
-  config.fail_fast = ENV['FAIL_FAST'] || false
-  config.order = 'random'
+  config.fail_fast = ENV["FAIL_FAST"] || false
+  config.order = "random"
 end

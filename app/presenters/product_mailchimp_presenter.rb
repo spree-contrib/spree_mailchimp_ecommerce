@@ -16,7 +16,7 @@ module SpreeMailchimpEcommerce
           description: product.description || "",
           url: "#{ENV['BASE_URL']}/#{product.category&.permalink || 'products'}/#{product.slug}",
           vendor: product.category&.name || "",
-          image_url: images.first&.attachment&.url || "",
+          image_url: product.images.first&.attachment&.url || "",
           variants: variants
         }.as_json
       end

@@ -1,6 +1,11 @@
 # Configure Rails Environment
 ENV["RAILS_ENV"] = "test"
 
+require 'simplecov'
+require 'simplecov-console'
+SimpleCov.formatter = SimpleCov::Formatter::Console
+SimpleCov.start
+
 require File.expand_path("dummy/config/environment.rb", __dir__)
 
 require "rspec/rails"

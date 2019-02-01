@@ -5,6 +5,16 @@ language: ruby
 
 env:
   - DB=postgres
+  global:
+    - CC_TEST_REPORTER_ID=82abdd7000f5b0178c038869d1cf83e4374f3ee4129e1f214ab3ac534d4388d2
+
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
 
 gemfile:
   - gemfiles/spree_3_2.gemfile

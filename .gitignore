@@ -4,3 +4,4 @@ pkg/
 spec/dummy/**/*
 gemfiles/*.gemfile.lock
 Gemfile.lock
+coverage

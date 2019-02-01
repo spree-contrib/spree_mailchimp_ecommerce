@@ -3,23 +3,13 @@
 module SpreeMailchimpEcommerce
   module Presenters
     class OrderMailchimpPresenter
+      include OrderMethods
+
       attr_reader :order
 
       def initialize(order)
         @order = order
         raise "Order in wrong state" unless order.complete?
-      end
-
-      def json
-        return unless user
-
-        {
-          id: order.number,
-          customer: user,
-          currency_code: order.currency,
-          order_total: order.total.to_s,
-          lines: lines
-        }.as_json
       end
 
       private
@@ -41,20 +31,6 @@ module SpreeMailchimpEcommerce
         return {} unless order.shipping_address
 
         AddressMailchimpPresenter.new(order.shipping_address).json
-      end
-
-      def lines
-        order.line_items.map { |l| line(l) }
-      end
-
-      def line(line)
-        {
-          id: Digest::MD5.hexdigest("#{line.id}#{line.order_id}"),
-          product_id: ProductMailchimpPresenter.new(line.product).json["id"],
-          product_variant_id: Digest::MD5.hexdigest("#{line.variant.sku}#{line.variant.id}"),
-          quantity: line.quantity,
-          price: line.price.to_s
-        }
       end
     end
   end

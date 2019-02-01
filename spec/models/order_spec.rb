@@ -3,6 +3,15 @@ require "spec_helper"
 describe Spree::Order, type: :model do
   subject { build(:order) }
 
+  describe ".mailchimp_order" do
+    subject { create(:order_with_line_items, state: 'complete', user: create(:user_with_addresses)) }
+
+    it "returns valid schema" do
+      subject.save
+      expect(subject.mailchimp_order).to match_json_schema("order")
+    end
+  end
+
   describe "mailchimp" do
     describe "order" do
       it "schedules mailchimp notification on order complete" do

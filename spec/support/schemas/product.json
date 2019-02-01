@@ -1,0 +1,103 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "id",
+    "title",
+    "description",
+    "variants"
+  ],
+  "properties": {
+    "id": {
+      "$id": "#/properties/id",
+      "type": "string",
+      "title": "The Id Schema",
+      "default": "",
+      "examples": [
+        "137ffea9336f8b47a66439fc34e981ee"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "title": {
+      "$id": "#/properties/title",
+      "type": "string",
+      "title": "The Title Schema",
+      "default": "",
+      "examples": [
+        "DEMO Cashmere Ribbed Crewneck Sweater Red"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "description": {
+      "$id": "#/properties/description",
+      "type": "string",
+      "title": "The Description Schema",
+      "default": "",
+      "examples": [
+        "The 100% Italian cashmere knit feels luxuriously soft on the body, while the slightly boxy silhouette has a casual boyfriend feel. With a cropped hemline that hits at the hips and comfortable long sleeves that can be pushed up or worn down, this mid-weight, wide-rib sweater is a piece destined for daily wear."
+      ],
+      "pattern": "^(.*)$"
+    },
+    "variants": {
+      "$id": "#/properties/variants",
+      "type": "array",
+      "title": "The Variants Schema",
+      "items": {
+        "$id": "#/properties/variants/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "id",
+          "title",
+          "sku",
+          "price"
+        ],
+        "properties": {
+          "id": {
+            "$id": "#/properties/variants/items/properties/id",
+            "type": "string",
+            "title": "The Id Schema",
+            "default": "",
+            "examples": [
+              "b454ec3b26077337544998dce7742342"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "title": {
+            "$id": "#/properties/variants/items/properties/title",
+            "type": "string",
+            "title": "The Title Schema",
+            "default": "",
+            "examples": [
+              "DEMO Cashmere Ribbed Crewneck Sweater Red"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "sku": {
+            "$id": "#/properties/variants/items/properties/sku",
+            "type": "string",
+            "title": "The Sku Schema",
+            "default": "",
+            "examples": [
+              "demo-product-1-37"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "price": {
+            "$id": "#/properties/variants/items/properties/price",
+            "type": "string",
+            "title": "The Price Schema",
+            "default": "",
+            "examples": [
+              "295.0"
+            ],
+            "pattern": "^(.*)$"
+          }
+        }
+      }
+    }
+  }
+}

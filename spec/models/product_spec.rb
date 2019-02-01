@@ -17,4 +17,10 @@ describe Spree::Product, type: :model do
       expect(SpreeMailchimpEcommerce::UpdateProductJob).to have_been_enqueued.with(subject)
     end
   end
+
+  describe ".mailchimp_product" do
+    it "returns valid schema" do
+      expect(subject.mailchimp_product).to match_json_schema("product")
+    end
+  end
 end

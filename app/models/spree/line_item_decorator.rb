@@ -14,11 +14,11 @@ module Spree
       private
 
       def update_mailchimp_cart
-        ::SpreeMailchimpEcommerce::UpdateOrderCartJob.perform_later(order)
+        ::SpreeMailchimpEcommerce::UpdateOrderCartJob.perform_later(order_id)
       end
 
       def delete_line_item
-        ::SpreeMailchimpEcommerce::DeleteLineItemJob.perform_later(self)
+        ::SpreeMailchimpEcommerce::DeleteLineItemJob.perform_later(id)
       end
     end
   end

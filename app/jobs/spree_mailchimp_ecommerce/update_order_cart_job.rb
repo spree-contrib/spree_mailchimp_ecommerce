@@ -1,6 +1,7 @@
 module SpreeMailchimpEcommerce
   class UpdateOrderCartJob < ApplicationJob
-    def perform(order)
+    def perform(order_id)
+      order = Spree::Order.find(order_id)
       return unless order.mailchimp_cart
 
       begin

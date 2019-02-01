@@ -13,11 +13,11 @@ module Spree
       private
 
       def create_mailchimp_product
-        ::SpreeMailchimpEcommerce::CreateProductJob.perform_later(self)
+        ::SpreeMailchimpEcommerce::CreateProductJob.perform_later(id)
       end
 
       def update_mailchimp_product
-        ::SpreeMailchimpEcommerce::UpdateProductJob.perform_later(self)
+        ::SpreeMailchimpEcommerce::UpdateProductJob.perform_later(id)
       end
     end
   end

@@ -21,14 +21,14 @@ module Spree
       private
 
       def create_mailchimp_user
-        ::SpreeMailchimpEcommerce::CreateUserJob.perform_later(self)
+        ::SpreeMailchimpEcommerce::CreateUserJob.perform_later(id)
       end
 
       def update_mailchimp_user
         ignored_keys = %w[sign_in_count current_sign_in_at last_sign_in_at current_sign_in_ip updated_at]
         return true if (changes.keys - ignored_keys).empty?
 
-        ::SpreeMailchimpEcommerce::UpdateUserJob.perform_later(self)
+        ::SpreeMailchimpEcommerce::UpdateUserJob.perform_later(id)
       end
     end
   end

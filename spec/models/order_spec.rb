@@ -28,8 +28,8 @@ describe Spree::Order, type: :model do
         subject.save!
         subject.next!
 
-        expect(SpreeMailchimpEcommerce::CreateOrderJob).to have_been_enqueued.with(subject)
-        expect(SpreeMailchimpEcommerce::DeleteCartJob).to have_been_enqueued.with(subject)
+        expect(SpreeMailchimpEcommerce::CreateOrderJob).to have_been_enqueued.with(subject.id)
+        expect(SpreeMailchimpEcommerce::DeleteCartJob).to have_been_enqueued.with(subject.id)
       end
     end
 
@@ -38,7 +38,7 @@ describe Spree::Order, type: :model do
         it "shedules mailchimp notification on cart created" do
           subject.save!
 
-          expect(SpreeMailchimpEcommerce::CreateOrderCartJob).to have_been_enqueued.with(subject)
+          expect(SpreeMailchimpEcommerce::CreateOrderCartJob).to have_been_enqueued.with(subject.id)
         end
       end
 
@@ -53,7 +53,7 @@ describe Spree::Order, type: :model do
         it "shedules mailchimp notification on cart created" do
           subject.email = "new_email@test.test"
           subject.save
-          expect(SpreeMailchimpEcommerce::CreateOrderCartJob).to have_been_enqueued.with(subject)
+          expect(SpreeMailchimpEcommerce::CreateOrderCartJob).to have_been_enqueued.with(subject.id)
         end
       end
     end

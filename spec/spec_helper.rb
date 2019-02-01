@@ -6,6 +6,9 @@ require File.expand_path("dummy/config/environment.rb", __dir__)
 require "rspec/rails"
 require "ffaker"
 require "webmock/rspec"
+require "json_matchers/rspec"
+
+JsonMatchers.schema_root = "spec/support/schemas"
 
 WebMock.allow_net_connect!
 

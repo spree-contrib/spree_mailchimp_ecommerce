@@ -4,8 +4,7 @@ dist: trusty
 language: ruby
 
 env:
-  global:
-    - CC_TEST_REPORTER_ID=82abdd7000f5b0178c038869d1cf83e4374f3ee4129e1f214ab3ac534d4388d2
+  - CC_TEST_REPORTER_ID=82abdd7000f5b0178c038869d1cf83e4374f3ee4129e1f214ab3ac534d4388d2
   - DB=postgres
 
 gemfile:

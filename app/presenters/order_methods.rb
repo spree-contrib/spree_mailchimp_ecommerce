@@ -14,6 +14,6 @@ module OrderMethods
   private
 
   def lines
-    order.line_items.map { |l| l.mailchimp_line_item }
+    order.line_items.map(&:mailchimp_line_item)
   end
 end

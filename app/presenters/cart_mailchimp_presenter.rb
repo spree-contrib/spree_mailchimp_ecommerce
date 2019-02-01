@@ -12,7 +12,7 @@ module SpreeMailchimpEcommerce
       end
 
       def json
-        super.merge({ checkout_url: ::SpreeMailchimpEcommerce.configuration.cart_url })
+        super.merge(checkout_url: ::SpreeMailchimpEcommerce.configuration.cart_url)
       end
 
       private

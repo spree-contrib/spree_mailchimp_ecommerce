@@ -18,7 +18,6 @@ module SpreeMailchimpEcommerce
           price: line.price.to_s
         }
       end
-
     end
   end
 end

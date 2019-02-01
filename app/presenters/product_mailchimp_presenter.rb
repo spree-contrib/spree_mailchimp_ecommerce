@@ -24,7 +24,7 @@ module SpreeMailchimpEcommerce
       private
 
       def variants
-        product.variants.map { |v| v.mailchimp_variant }
+        product.variants.map(&:mailchimp_variant)
       end
     end
   end

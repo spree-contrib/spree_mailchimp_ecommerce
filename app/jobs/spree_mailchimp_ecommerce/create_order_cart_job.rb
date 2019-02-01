@@ -5,10 +5,7 @@ module SpreeMailchimpEcommerce
     def perform(order)
       return unless order.mailchimp_cart
 
-      Gibbon::Request.new(api_key: ::SpreeMailchimpEcommerce.configuration.mailchimp_api_key).
-        ecommerce.
-        stores(::SpreeMailchimpEcommerce.configuration.mailchimp_store_id).
-        carts.create(body: order.mailchimp_cart)
+      gibbon_store.carts.create(body: order.mailchimp_cart)
     end
   end
 end

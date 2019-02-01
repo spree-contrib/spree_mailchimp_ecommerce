@@ -7,6 +7,10 @@ module Spree
         base.after_destroy :delete_line_item
       end
 
+      def mailchimp_line_item
+        ::SpreeMailchimpEcommerce::Presenters::LineMailchimpPresenter.new(self).json
+      end
+
       private
 
       def update_mailchimp_cart

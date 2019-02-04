@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'spree_backend', spree_version
   s.add_dependency "spree_extension"
 
-  s.add_development_dependency "factory_bot_rails"
+  s.add_development_dependency "factory_bot", '<=4.11'
   s.add_development_dependency "pry-rails"
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "ffaker"

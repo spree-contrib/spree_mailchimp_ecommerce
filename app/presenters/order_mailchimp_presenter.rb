@@ -20,6 +20,8 @@ module SpreeMailchimpEcommerce
         elsif order.email
           {
             id: Digest::MD5.hexdigest(order.email),
+            first_name: order.bill_address&.firstname,
+            last_name: order.bill_address&.last_name,
             email_address: order.email,
             opt_in_status: false,
             address: address

@@ -24,7 +24,9 @@ module SpreeMailchimpEcommerce
           {
             id: Digest::MD5.hexdigest(order.email),
             email_address: order.email,
-            opt_in_status: true
+            first_name: order.bill_address&.firstname,
+            last_name: order.bill_address&.last_name,
+            opt_in_status: false
           }
         end
       end

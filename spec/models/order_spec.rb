@@ -4,19 +4,30 @@ describe Spree::Order, type: :model do
   subject { build(:order) }
 
   describe "json" do
-    subject { create(:order_with_line_items, state: "complete", user: create(:user_with_addresses)) }
+    context 'order with user' do
+      subject { create(:order_with_line_items, state: "complete", user: create(:user_with_addresses)) }
 
-    describe ".mailchimp_order" do
-      it "returns valid schema" do
-        expect(subject.mailchimp_order).to match_json_schema("order")
+      describe ".mailchimp_order" do
+        it "returns valid schema" do
+          expect(subject.mailchimp_order).to match_json_schema("order")
+        end
+      end
+
+      describe ".mailchimp_cart" do
+        it "returns valid schema" do
+          allow_any_instance_of(NilClass).to receive(:cart_url) { "test.com/cart" }
+
+          expect(subject.mailchimp_cart).to match_json_schema("cart")
+        end
       end
     end
 
-    describe ".mailchimp_cart" do
-      it "returns valid schema" do
-        allow_any_instance_of(NilClass).to receive(:cart_url) { "test.com/cart" }
-
-        expect(subject.mailchimp_cart).to match_json_schema("cart")
+    context 'order without user' do
+      subject { create(:order_with_line_items, state: "complete", user: nil, email: 'test@test.test') }
+      describe ".mailchimp_order" do
+        it "returns valid schema" do
+          expect(subject.mailchimp_order).to match_json_schema("order")
+        end
       end
     end
   end

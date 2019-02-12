@@ -22,6 +22,14 @@ module SpreeMailchimpEcommerce
 
       private
 
+      def firstname
+        user&.firstname || user&.bill_address&.firstname || "unknown firstname"
+      end
+
+      def lastname
+        user&.lastname || user&.bill_address&.lastname || "unknown lastname"
+      end
+
       def address
         ad = user.bill_address
         return {} unless ad

@@ -1,5 +1,5 @@
 module OrderMethods
-  def json
+  def order_json
     return unless user
 
     {

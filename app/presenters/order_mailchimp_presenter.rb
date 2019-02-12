@@ -12,6 +12,10 @@ module SpreeMailchimpEcommerce
         raise "Order in wrong state" unless order.complete?
       end
 
+      def json
+        order_json
+      end
+
       private
 
       def user

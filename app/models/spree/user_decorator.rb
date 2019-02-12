@@ -6,14 +6,6 @@ module Spree
         base.after_update :update_mailchimp_user
       end
 
-      def firstname
-        self[:firstname] || bill_address&.firstname || "unknown firstname"
-      end
-
-      def lastname
-        self[:lastname] || bill_address&.lastname || "unknown lastname"
-      end
-
       def mailchimp_user
         ::SpreeMailchimpEcommerce::Presenters::UserMailchimpPresenter.new(self).json
       end

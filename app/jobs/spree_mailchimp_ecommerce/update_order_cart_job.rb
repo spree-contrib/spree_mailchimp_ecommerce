@@ -4,7 +4,7 @@ module SpreeMailchimpEcommerce
       order = Spree::Order.find(order_id)
       return unless order.mailchimp_cart
 
-      gibbon_store.carts(order.mailchimp_cart["id"]).update(body: order.reload.mailchimp_cart)
+      gibbon_store.carts(order.number).update(body: order.reload.mailchimp_cart)
     end
   end
 end

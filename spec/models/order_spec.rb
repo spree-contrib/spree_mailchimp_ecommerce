@@ -4,7 +4,7 @@ describe Spree::Order, type: :model do
   subject { build(:order) }
 
   describe "json" do
-    context 'order with user' do
+    context "order with user" do
       subject { create(:order_with_line_items, state: "complete", user: create(:user_with_addresses)) }
 
       describe ".mailchimp_order" do
@@ -22,8 +22,8 @@ describe Spree::Order, type: :model do
       end
     end
 
-    context 'order without user' do
-      subject { create(:order_with_line_items, state: "complete", user: nil, email: 'test@test.test') }
+    context "order without user" do
+      subject { create(:order_with_line_items, state: "complete", user: nil, email: "test@test.test") }
       describe ".mailchimp_order" do
         it "returns valid schema" do
           expect(subject.mailchimp_order).to match_json_schema("order")

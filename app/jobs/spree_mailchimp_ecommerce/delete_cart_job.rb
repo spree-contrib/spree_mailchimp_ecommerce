@@ -5,7 +5,7 @@ module SpreeMailchimpEcommerce
     def perform(order_id)
       order = Spree::Order.find(order_id)
 
-      gibbon_store.carts(order.mailchimp_cart["id"]).delete
+      gibbon_store.carts(order.number).delete
     end
   end
 end

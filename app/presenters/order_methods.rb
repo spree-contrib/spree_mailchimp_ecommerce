@@ -1,6 +1,6 @@
 module OrderMethods
   def order_json
-    return unless user
+    return {} unless user
 
     {
       id: order.number,

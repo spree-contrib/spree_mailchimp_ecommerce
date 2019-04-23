@@ -15,7 +15,7 @@ module SpreeMailchimpEcommerce
           title: variant.name || "",
           sku: variant.sku,
           price: variant.price.to_s,
-          url: "#{ENV['BASE_URL']}/#{variant.category&.permalink || 'products'}/#{variant.slug}",
+          url: "#{ENV['BASE_URL']}/#{variant.product.category&.permalink || 'products'}/#{variant.slug}",
         }.as_json
       end
     end

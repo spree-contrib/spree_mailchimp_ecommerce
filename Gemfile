@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem "spree", github: "spree/spree", branch: "master"
+gem "spree", ">= 3.3.0"
 
 # Provides basic authentication functionality for testing parts of your engine
 gem "rails-controller-testing"

@@ -7,9 +7,11 @@ module SpreeMailchimpEcommerce
       mailchimp_user = user.mailchimp_user
       return unless mailchimp_user
 
-      gibbon_store.customers(mailchimp_user["id"]).update(body: mailchimp_user)
-    rescue Gibbon::MailChimpError => error
-      raise unless error.status_code == 404
+      begin
+        gibbon_store.customers(mailchimp_user["id"]).update(body: mailchimp_user)
+      rescue Gibbon::MailChimpError => e
+        gibbon_store.customers.create(body: mailchimp_user) if e.status_code == 404
+      end
     end
   end
 end

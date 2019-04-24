@@ -16,8 +16,8 @@ module SpreeMailchimpEcommerce
 
     def create_initializer_file
       puts "All fields are required" && return if [@api_key, @store_id, @store_name, @list_id].map(&:empty?).any?
-      # create_file "config/initializers/spree_mailchimp_ecommerce.rb", content
-      puts "Settings saved. you can review and change your settings in you initializers file"
+      create_file "config/initializers/spree_mailchimp_ecommerce.rb", content
+      puts "Settings saved. You can review and change your settings in you initializers file"
     end
 
     def create_a_store

@@ -16,20 +16,14 @@ gem 'spree_mailchimp_ecommerce', github: 'spark-solutions/spree_mailchimp_ecomme
   bundle install
   ```
 
-3. Copy initializer
-```bash
-$ bundle exec rails g spree_mailchimp_ecommerce:install
-```
+3. Install extension
+  ```bash
+  $ bundle exec rails g spree_mailchimp_ecommerce:install
+  ```
 
-4. Setup you keys in `config/initializers/spree_mailchimp_ecommerce.rb`
+4. Review your keys in `config/initializers/spree_mailchimp_ecommerce.rb`
 
-5. Create a store on Mailchimp side
-
-```bash
-$ rake spree_mailchimp_ecommerce:create_a_store
-```
-
-6. Restart your server
+5. Restart your server
 
 ## User first and last name
 
@@ -45,7 +39,7 @@ By default, Spree doesn't provide `firstname` and `lastname` methods for the Use
   end
 ```
 
-Feel free to define `firstname` and `lastname` in your `User` model decorator. 
+Feel free to define `firstname` and `lastname` in your `User` model decorator.
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

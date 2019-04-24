@@ -16,11 +16,11 @@ module SpreeMailchimpEcommerce
 
     def create_initializer_file
       puts "All fields are required" && return if [@api_key, @store_id, @store_name, @list_id].map(&:empty?).any?
-      #create_file "config/initializers/spree_mailchimp_ecommerce.rb", content
+      # create_file "config/initializers/spree_mailchimp_ecommerce.rb", content
       puts "Settings saved. you can review and change your settings in you initializers file"
     end
 
-    #def create_a_store
+    # def create_a_store
     #  Gibbon::Request.new(api_key: @api_key).
     #    ecommerce.stores.create(body: {
     #                              id: @store_id,
@@ -28,12 +28,12 @@ module SpreeMailchimpEcommerce
     #                              name: @store_name,
     #                              currency_code: "USD"
     #                            })
-    #end
+    # end
 
     def inject_a_script
-      inject_into_file 'app/views/spree/shared/_head.html.erb', after: "<%= yield :head %>\n" do
+      inject_into_file "app/views/spree/shared/_head.html.erb", after: "<%= yield :head %>\n" do
         Gibbon::Request.new(api_key: @api_key).
-          ecommerce.stores(@store_id).retrieve.body['connected_site']['site_script']['fragment'] + "\n"
+          ecommerce.stores(@store_id).retrieve.body["connected_site"]["site_script"]["fragment"] + "\n"
       end
     end
 

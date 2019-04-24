@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SpreeMailchimpEcommerce
   class UpdateProductJob < ApplicationJob
     def perform(product_id)

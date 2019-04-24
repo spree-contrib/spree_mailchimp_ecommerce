@@ -10,6 +10,10 @@ module Spree
         ::SpreeMailchimpEcommerce::Presenters::UserMailchimpPresenter.new(self).json
       end
 
+      def mailchimp_subscriber
+        ::SpreeMailchimpEcommerce::Presenters::SubscriberMailchimpPresenter.new(self).json
+      end
+
       private
 
       def create_mailchimp_user

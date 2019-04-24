@@ -20,15 +20,15 @@ module SpreeMailchimpEcommerce
       puts "Settings saved. you can review and change your settings in you initializers file"
     end
 
-    # def create_a_store
-    #  Gibbon::Request.new(api_key: @api_key).
-    #    ecommerce.stores.create(body: {
-    #                              id: @store_id,
-    #                              list_id: @list_id,
-    #                              name: @store_name,
-    #                              currency_code: "USD"
-    #                            })
-    # end
+    def create_a_store
+      Gibbon::Request.new(api_key: @api_key).
+        ecommerce.stores.create(body: {
+                                  id: @store_id,
+                                  list_id: @list_id,
+                                  name: @store_name,
+                                  currency_code: "USD"
+                                })
+    end
 
     def inject_a_script
       inject_into_file "app/views/spree/shared/_head.html.erb", after: "<%= yield :head %>\n" do

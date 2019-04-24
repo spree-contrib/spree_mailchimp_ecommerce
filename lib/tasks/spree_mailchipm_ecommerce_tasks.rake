@@ -9,4 +9,16 @@ namespace :spree_mailchimp_ecommerce do
                                 currency_code: "USD"
                               })
   end
+
+  desc 'Create 100 users and 100 orders'
+  task create_users_and_orders: :environment do
+    (1..100).each do |i|
+      user = Spree::User.new(
+                            email: "kz+script#{i}@sprks.eu",
+                            password: 'password'
+      )
+      user.save!(validate: false)
+      user.orders.new(state: 'complete').save!(validate: false)
+    end
+  end
 end

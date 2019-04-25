@@ -3,7 +3,7 @@ module Spree
     module LineItemDecorator
       def self.prepended(base)
         base.after_update :update_mailchimp_cart
-        base.after_create :update_mailchimp_cart
+        base.after_create :handle_cart
         base.after_destroy :delete_line_item
       end
 
@@ -13,8 +13,12 @@ module Spree
 
       private
 
+      def handle_cart
+        order.mailchimp_cart_created ? order.update_mailchimp_cart : order.create_mailchimp_cart
+      end
+
       def update_mailchimp_cart
-        ::SpreeMailchimpEcommerce::UpdateOrderCartJob.perform_later(order_id)
+        order.update_mailchimp_cart
       end
 
       def delete_line_item

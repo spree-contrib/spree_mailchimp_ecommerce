@@ -23,7 +23,7 @@ module SpreeMailchimpEcommerce
           UserMailchimpPresenter.new(order.user).json
         elsif order.email
           {
-            id: Digest::MD5.hexdigest(order.email),
+            id: Digest::MD5.hexdigest(order.email.downcase),
             first_name: order.bill_address&.firstname,
             last_name: order.bill_address&.last_name,
             email_address: order.email,

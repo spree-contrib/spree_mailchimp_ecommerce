@@ -3,7 +3,6 @@ module Spree
     module OrderDecorator
       def self.prepended(base)
         base.before_update :create_mailchimp_cart, if: proc { email_changed? }
-        base.after_create :create_mailchimp_cart, if: proc { user.present? }
         base.state_machine.after_transition to: :complete, do: :after_create_jobs
       end
 
@@ -15,11 +14,16 @@ module Spree
         ::SpreeMailchimpEcommerce::Presenters::OrderMailchimpPresenter.new(self).json
       end
 
-      private
+      def update_mailchimp_cart
+        ::SpreeMailchimpEcommerce::UpdateOrderCartJob.perform_later(mailchimp_cart)
+      end
 
       def create_mailchimp_cart
-        ::SpreeMailchimpEcommerce::CreateOrderCartJob.perform_later(id)
+        ::SpreeMailchimpEcommerce::CreateOrderCartJob.perform_later(mailchimp_cart)
+        update(mailchimp_cart_created: true)
       end
+
+      private
 
       def after_create_jobs
         create_mailchimp_order

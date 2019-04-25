@@ -18,6 +18,7 @@ module Spree
       private
 
       def create_mailchimp_cart
+        binding.pry
         ::SpreeMailchimpEcommerce::CreateOrderCartJob.perform_later(id)
       end
 

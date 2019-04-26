@@ -4,6 +4,7 @@ module Spree
       def self.prepended(base)
         base.after_create :create_mailchimp_product
         base.after_update :update_mailchimp_product
+        base.after_destroy :delete_mailchimp_product
       end
 
       def mailchimp_product
@@ -18,6 +19,10 @@ module Spree
 
       def update_mailchimp_product
         ::SpreeMailchimpEcommerce::UpdateProductJob.perform_later(id)
+      end
+
+      def delete_mailchimp_product
+        ::SpreeMailchimpEcommerce::DeleteProductJob.perform_later(id)
       end
     end
   end

@@ -25,8 +25,8 @@ module Spree
       end
 
       def create_mailchimp_cart
-        binding.pry
         return if mailchimp_cart_created
+
         ::SpreeMailchimpEcommerce::CreateOrderCartJob.perform_later(mailchimp_cart)
         update_column(:mailchimp_cart_created, true)
       end

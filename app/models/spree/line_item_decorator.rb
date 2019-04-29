@@ -9,6 +9,7 @@ module Spree
 
       def handle_cart
         return unless order.user
+
         order.mailchimp_cart_created ? update_mailchimp_cart : order.create_mailchimp_cart
       end
 

@@ -32,6 +32,7 @@ module SpreeMailchimpEcommerce
       def address
         ad = user.bill_address
         return {} unless ad
+
         {
           address: AddressMailchimpPresenter.new(ad).json
         }

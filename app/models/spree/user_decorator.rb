@@ -17,7 +17,7 @@ module Spree
       private
 
       def create_mailchimp_user
-        ::SpreeMailchimpEcommerce::CreateUserJob.perform_later(id)
+        ::SpreeMailchimpEcommerce::CreateUserJob.perform_later(mailchimp_user)
       end
 
       def update_mailchimp_user

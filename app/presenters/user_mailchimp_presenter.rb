@@ -16,8 +16,7 @@ module SpreeMailchimpEcommerce
           opt_in_status: false,
           first_name: firstname,
           last_name: lastname,
-          address: address
-        }.as_json
+        }.merge(address).as_json
       end
 
       private
@@ -33,8 +32,9 @@ module SpreeMailchimpEcommerce
       def address
         ad = user.bill_address
         return {} unless ad
-
-        AddressMailchimpPresenter.new(ad).json
+        {
+          address: AddressMailchimpPresenter.new(ad).json
+        }
       end
     end
   end

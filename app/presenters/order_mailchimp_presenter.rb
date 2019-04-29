@@ -13,10 +13,15 @@ module SpreeMailchimpEcommerce
       end
 
       def json
-        order_json
+        order_json.merge(campaign_id)
       end
 
       private
+
+      def campaign_id
+        return {} unless order.mailchimp_campaign_id
+        { campaign_id:  order.mailchimp_campaign_id }
+      end
 
       def user
         if order.user

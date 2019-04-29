@@ -7,15 +7,17 @@ module Spree
         base.after_destroy :delete_line_item
       end
 
+      def handle_cart
+        return unless order.user
+
+        order.mailchimp_cart_created ? update_mailchimp_cart : order.create_mailchimp_cart
+      end
+
       def mailchimp_line_item
         ::SpreeMailchimpEcommerce::Presenters::LineMailchimpPresenter.new(self).json
       end
 
       private
-
-      def handle_cart
-        order.mailchimp_cart_created ? order.update_mailchimp_cart : order.create_mailchimp_cart
-      end
 
       def update_mailchimp_cart
         order.update_mailchimp_cart

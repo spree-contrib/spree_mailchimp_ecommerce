@@ -6,6 +6,12 @@ module Spree
         base.state_machine.after_transition to: :complete, do: :after_create_jobs
       end
 
+      def associate_user!(user, override_email = true)
+        super
+        create_mailchimp_cart unless new_record? || line_items.empty?
+        true
+      end
+
       def mailchimp_cart
         ::SpreeMailchimpEcommerce::Presenters::CartMailchimpPresenter.new(self).json
       end
@@ -19,8 +25,10 @@ module Spree
       end
 
       def create_mailchimp_cart
+        return if mailchimp_cart_created
+
         ::SpreeMailchimpEcommerce::CreateOrderCartJob.perform_later(mailchimp_cart)
-        update(mailchimp_cart_created: true)
+        update_column(:mailchimp_cart_created, true)
       end
 
       private

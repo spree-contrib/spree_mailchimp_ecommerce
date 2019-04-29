@@ -20,7 +20,8 @@ module SpreeMailchimpEcommerce
 
       def campaign_id
         return {} unless order.mailchimp_campaign_id
-        { campaign_id:  order.mailchimp_campaign_id }
+
+        { campaign_id: order.mailchimp_campaign_id }
       end
 
       def user

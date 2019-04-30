@@ -9,10 +9,25 @@ module SpreeMailchimpEcommerce
 
   def self.configure
     self.configuration ||= Configuration.new
-    yield(configuration)
   end
 
   class Configuration
-    attr_accessor :mailchimp_api_key, :mailchimp_store_id, :mailchimp_list_id, :mailchimp_store_name, :cart_url
+    ATTR_LIST = [:mailchimp_api_key, :mailchimp_store_id, :mailchimp_list_id, :mailchimp_store_name, :cart_url, :active?]
+
+    ATTR_LIST.each do |a|
+      define_method a do
+        Rails.cache.fetch "settings_#{a}" do
+          setting_model.try(a)
+        end
+      end
+    end
+
+    private
+
+    def setting_model
+      ::MailchimpSetting.last
+    end
   end
+
+
 end

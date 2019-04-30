@@ -1,0 +1,48 @@
+<%= form_for [:admin, resource] do |f| %>
+  <div data-hook="">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :mailchimp_api_key, :mailchimp_api_key %>
+          <%= f.text_field :mailchimp_api_key, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :mailchimp_store_id, :mailchimp_store_id %>
+          <%= f.text_field :mailchimp_store_id, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :mailchimp_list_id, :mailchimp_list_id %>
+          <%= f.text_field :mailchimp_list_id, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :mailchimp_store_name, :mailchimp_store_name %>
+          <%= f.text_field :mailchimp_store_name, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :cart_url, :cart_url %>
+          <%= f.text_field :cart_url, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <%= f.label :active, class: 'radio-inline' do %>
+          <%= f.radio_button :active, :true %>
+          <%= Spree.t(:active) %>
+        <% end %>
+        <%= f.label :active, class: 'radio-inline' do %>
+          <%= f.radio_button :active, :false %>
+          <%= Spree.t(:inactive) %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <%= render "spree/admin/shared/#{resource.new_record? ? 'new' : 'edit'}_resource_links" %>
+<% end %>

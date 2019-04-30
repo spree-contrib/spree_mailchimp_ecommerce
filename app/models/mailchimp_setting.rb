@@ -1,0 +1,1 @@
+class MailchimpSetting < ApplicationRecord; end

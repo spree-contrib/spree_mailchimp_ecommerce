@@ -14,11 +14,11 @@ module SpreeMailchimpEcommerce
     #  @list_id = lists[answer.to_i][:id]
     #end
 
-    #def create_initializer_file
+    def create_initializer_file
     #  puts "All fields are required" && return if [@api_key, @store_id, @store_name, @list_id].map(&:empty?).any?
-    #  create_file "config/initializers/spree_mailchimp_ecommerce.rb", content
+      create_file "config/initializers/spree_mailchimp_ecommerce.rb", content
     #  puts "Settings saved. You can review and change your settings in you initializers file"
-    #end
+    end
 
     def create_migrations
       run "bundle exec rake railties:install:migrations FROM=spree_mailchimp_ecommerce"
@@ -53,7 +53,7 @@ module SpreeMailchimpEcommerce
 
     # rubocop:disable Metrics/LineLength
     def content
-      "SpreeMailchimpEcommerce.configure do |config|\n  config.mailchimp_api_key = '#{@api_key}'\n  config.mailchimp_store_id = '#{@store_id}'\n  config.mailchimp_list_id = '#{@list_id}'\n  config.mailchimp_store_name = '#{@store_name}'\n  config.cart_url = '/cart'\n end"
+      "SpreeMailchimpEcommerce.configure"
     end
     # rubocop:enable Metrics/LineLength
   end

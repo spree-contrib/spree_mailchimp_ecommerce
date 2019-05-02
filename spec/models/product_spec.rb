@@ -16,6 +16,13 @@ describe Spree::Product, type: :model do
 
       expect(SpreeMailchimpEcommerce::UpdateProductJob).to have_been_enqueued.with(subject.id)
     end
+
+    it "schedules mailchimp notification on product delete" do
+      subject.save!
+      subject.destroy
+
+      expect(SpreeMailchimpEcommerce::DeleteProductJob).to have_been_enqueued.with(subject.id)
+    end
   end
 
   describe ".mailchimp_product" do

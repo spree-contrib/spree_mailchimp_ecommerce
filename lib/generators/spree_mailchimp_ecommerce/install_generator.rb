@@ -6,7 +6,7 @@ module SpreeMailchimpEcommerce
     #  @api_key = cli.ask "Provide your mailchimp api key:"
     #  @store_id = cli.ask "\nProvide your store id:"
     #  @store_name = cli.ask "\nProvide your store name:"
-    #  lists = Gibbon::Request.new(api_key: @api_key).
+    #  lists = ::Gibbon::Request.new(api_key: @api_key).
     #          lists.retrieve.body["lists"].map { |e| { id: e["id"], name: e["name"] } }
     #  puts "You should create a list on mailchimp site to continue" && return unless lists.any?
     #  lists.each_with_index { |e, i| puts "\n#{i}) #{e[:name]}" }
@@ -34,7 +34,7 @@ module SpreeMailchimpEcommerce
     end
 
     #def create_a_store
-    #  Gibbon::Request.new(api_key: @api_key).
+    #  ::Gibbon::Request.new(api_key: @api_key).
     #    ecommerce.stores.create(body: {
     #                              id: @store_id,
     #                              list_id: @list_id,
@@ -45,7 +45,7 @@ module SpreeMailchimpEcommerce
 
     def inject_a_script
       inject_into_file "app/views/spree/shared/_head.html.erb", after: "<%= yield :head %>\n" do
-        "<%= MailchimpSetting.last.site_script.html_safe %>"
+        "<%= MailchimpSetting.last&.site_script&.html_safe %>"
       end
     end
 

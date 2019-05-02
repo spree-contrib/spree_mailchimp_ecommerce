@@ -39,11 +39,11 @@ module Spree
       end
 
       def delete_mailchimp_cart
-        ::SpreeMailchimpEcommerce::DeleteCartJob.perform_later(id)
+        ::SpreeMailchimpEcommerce::DeleteCartJob.perform_later(number)
       end
 
       def create_mailchimp_order
-        ::SpreeMailchimpEcommerce::CreateOrderJob.perform_later(id)
+        ::SpreeMailchimpEcommerce::CreateOrderJob.perform_later(mailchimp_order)
       end
     end
   end

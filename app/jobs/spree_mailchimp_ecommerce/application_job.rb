@@ -37,7 +37,7 @@ module SpreeMailchimpEcommerce
     end
 
     def gibbon_store
-      Gibbon::Request.new(api_key: mailchimp_api_key).
+      ::Gibbon::Request.new(api_key: mailchimp_api_key).
         ecommerce.stores(mailchimp_store_id)
     end
   end

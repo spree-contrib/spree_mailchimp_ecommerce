@@ -37,8 +37,8 @@ describe Spree::Order, type: :model do
         subject.save!
         subject.next!
 
-        expect(SpreeMailchimpEcommerce::CreateOrderJob).to have_been_enqueued.with(subject.mailchimp_cart)
-        expect(SpreeMailchimpEcommerce::DeleteCartJob).to have_been_enqueued.with(subject_number)
+        expect(SpreeMailchimpEcommerce::CreateOrderJob).to have_been_enqueued.with(subject.mailchimp_order)
+        expect(SpreeMailchimpEcommerce::DeleteCartJob).to have_been_enqueued.with(subject.number)
       end
     end
   end

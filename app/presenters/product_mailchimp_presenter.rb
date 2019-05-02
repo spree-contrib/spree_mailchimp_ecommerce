@@ -16,7 +16,7 @@ module SpreeMailchimpEcommerce
           description: product.description || "",
           url: "#{ENV['BASE_URL']}/#{product.category&.permalink || 'products'}/#{product.slug}",
           vendor: product.category&.name || "",
-          image_url: "", # TODO: PROPER LOGIC FOR IMAGE STORING
+          image_url: image_url,
           variants: variants
         }.as_json
       end
@@ -25,6 +25,13 @@ module SpreeMailchimpEcommerce
 
       def variants
         product.has_variants? ? product.variants.map(&:mailchimp_variant) : [product.master.mailchimp_variant]
+      end
+
+      def image_url
+        image = product.images.first
+        return '' unless image
+
+        Rails.application.routes.url_helpers.url_for(image.url(:product))
       end
     end
   end

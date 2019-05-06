@@ -29,6 +29,4 @@ module SpreeMailchimpEcommerce
       ::MailchimpSetting.last
     end
   end
-
-
 end

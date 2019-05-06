@@ -1,12 +1,13 @@
 module SpreeMailchimpEcommerce
   class ApplicationJob < ActiveJob::Base
-    around_perform do |job, block|
-      raise 'Integration inactive' unless mailchimp_active?
+    around_perform do |_job, block|
+      raise "Integration inactive" unless mailchimp_active?
       raise "Mailchimp extension not configurated" if [mailchimp_api_key,
-          mailchimp_store_id,
-          mailchimp_list_id,
-          mailchimp_store_name,
-          cart_url].map(&:empty?).any?
+                                                       mailchimp_store_id,
+                                                       mailchimp_list_id,
+                                                       mailchimp_store_name,
+                                                       cart_url].map(&:empty?).any?
+
       block.call
     end
 

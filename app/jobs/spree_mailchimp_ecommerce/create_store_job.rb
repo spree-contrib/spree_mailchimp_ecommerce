@@ -10,10 +10,5 @@ module SpreeMailchimpEcommerce
                                 })
       ::MailchimpSetting.last.update(site_script: script_line)
     end
-
-    def script_line
-      ::Gibbon::Request.new(api_key: mailchimp_api_key).
-        ecommerce.stores(mailchimp_store_id).retrieve.body["connected_site"]["site_script"]["fragment"] + "\n"
-    end
   end
 end

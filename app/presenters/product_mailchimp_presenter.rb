@@ -29,7 +29,7 @@ module SpreeMailchimpEcommerce
 
       def image_url
         image = product.images.first
-        return '' unless image
+        return "" unless image
 
         Rails.application.routes.url_helpers.url_for(image.url(:product))
       end

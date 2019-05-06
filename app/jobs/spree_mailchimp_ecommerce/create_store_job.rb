@@ -1,6 +1,6 @@
 module SpreeMailchimpEcommerce
   class CreateStoreJob < ApplicationJob
-    def perform(*args)
+    def perform(*_args)
       ::Gibbon::Request.new(api_key: mailchimp_api_key).
         ecommerce.stores.create(body: {
                                   id: mailchimp_store_id,
@@ -10,7 +10,6 @@ module SpreeMailchimpEcommerce
                                 })
       ::MailchimpSetting.last.update(site_script: script_line)
     end
-
 
     def script_line
       ::Gibbon::Request.new(api_key: mailchimp_api_key).

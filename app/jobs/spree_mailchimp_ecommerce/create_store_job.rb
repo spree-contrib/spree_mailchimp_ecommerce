@@ -9,6 +9,12 @@ module SpreeMailchimpEcommerce
                                   currency_code: "USD"
                                 })
       ::MailchimpSetting.last.update(site_script: script_line)
+
+      ::Spree::Product.find_in_batches do |batch|
+        batch.pluck(:id).each do |id|
+          ::SpreeMailchimpEcommerce::CreateProductJob.perform_later(id)
+        end
+      end
     end
   end
 end

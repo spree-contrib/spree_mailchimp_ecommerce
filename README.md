@@ -28,7 +28,7 @@ gem 'spree_mailchimp_ecommerce', github: 'spark-solutions/spree_mailchimp_ecomme
 
 ## User first and last name
 
-By default, Spree doesn't provide `firstname` and `lastname` methods for the User model. However, MailChimp requires this fields. `SpreeMailchimpEcommerce` define these methods in presenter as
+By default, Spree doesn't provide `firstname` and `lastname` methods for the User model. However, MailChimp requires these fields. `SpreeMailchimpEcommerce` define these methods in presenter as
 
 ```ruby
   def firstname
@@ -41,6 +41,10 @@ By default, Spree doesn't provide `firstname` and `lastname` methods for the Use
 ```
 
 Feel free to define `firstname` and `lastname` in your `User` model decorator.
+
+## Connecting the store to mailchimp (post-installation)
+
+1. TBD
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

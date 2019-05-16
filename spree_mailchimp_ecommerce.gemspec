@@ -40,4 +40,9 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'json_matchers'
   s.add_development_dependency 'simplecov'
   s.add_development_dependency 'simplecov-console'
+  s.add_development_dependency 'puma'
+  s.add_development_dependency 'capybara'
+  s.add_development_dependency 'capybara-screenshot'
+  s.add_development_dependency 'selenium-webdriver'
+  s.add_development_dependency 'chromedriver-helper'
 end

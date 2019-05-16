@@ -8,7 +8,7 @@ module Spree
 
       def setup_store
         ::SpreeMailchimpEcommerce::CreateStoreJob.perform_later
-        redirect_to edit_admin_mailchimp_setting_path(model_class.last.id), notice: "Your store going to be setup shotrly"
+        redirect_to edit_admin_mailchimp_setting_path(model_class.last.id), notice: "Your store is going to be setup shortly."
       end
 
       def model_class

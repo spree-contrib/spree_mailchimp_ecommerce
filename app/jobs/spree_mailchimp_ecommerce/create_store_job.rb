@@ -6,10 +6,9 @@ module SpreeMailchimpEcommerce
                                   id: mailchimp_store_id,
                                   list_id: mailchimp_list_id,
                                   name: mailchimp_store_name,
-                                  currency_code: "USD"
+                                  currency_code: "USD",
+                                  domain: ENV['BASE_URL']
                                 })
-      ::MailchimpSetting.last.update(site_script: script_line)
-
       ::Spree::Product.find_in_batches do |batch|
         batch.pluck(:id).each do |id|
           ::SpreeMailchimpEcommerce::CreateProductJob.perform_later(id)

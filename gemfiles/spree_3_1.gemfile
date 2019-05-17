@@ -2,11 +2,11 @@
 
 source "https://rubygems.org"
 
-gem "spree", "~> 3.1.0"
+gem "spree", "~> 3.0.7"
 gem "gibbon"
 gem "highline"
 gem "rails-controller-testing"
 gem "rubocop-rspec", require: false
-gem "spree_auth_devise", "~> 3.3"
+gem "spree_auth_devise", "~> 3.0.5"
 
 gemspec path: "../"

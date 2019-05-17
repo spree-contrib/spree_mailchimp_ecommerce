@@ -7,6 +7,7 @@ env:
   - DB=postgres CC_TEST_REPORTER_ID=82abdd7000f5b0178c038869d1cf83e4374f3ee4129e1f214ab3ac534d4388d2
 
 gemfile:
+  - gemfiles/spree_3_1.gemfile
   - gemfiles/spree_3_3.gemfile
   - gemfiles/spree_3_5.gemfile
   - gemfiles/spree_3_6.gemfile

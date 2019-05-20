@@ -9,12 +9,16 @@ describe Spree::Image, type: :model do
 
   describe 'mailchimp' do
     it 'schedules mailchimp notification on image create' do
-      if Rails.application.config.use_paperclip
-        spree_image.attachment = image_file
+      if Spree.version >= '3.6.0'
+        if Rails.application.config.use_paperclip
+          spree_image.attachment = image_file
+        else
+          spree_image.attachment.attach(io: image_file, filename: 'thinking-cat.jpg', content_type: 'image/jpeg')
+        end
       else
-        spree_image.attachment.attach(io: image_file, filename: 'thinking-cat.jpg', content_type: 'image/jpeg')
+        spree_image.attachment = image_file
       end
-
+      
       spree_image.save!
 
       expect(SpreeMailchimpEcommerce::UpdateProductJob)

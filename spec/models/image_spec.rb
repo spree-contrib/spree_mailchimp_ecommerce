@@ -9,7 +9,12 @@ describe Spree::Image, type: :model do
 
   describe 'mailchimp' do
     it 'schedules mailchimp notification on image create' do
-      spree_image.attachment.attach(io: image_file, filename: 'thinking-cat.jpg', content_type: 'image/jpeg')
+      if Rails.application.config.use_paperclip
+        spree_image.attachment = image_file
+      else
+        spree_image.attachment.attach(io: image_file, filename: 'thinking-cat.jpg', content_type: 'image/jpeg')
+      end
+
       spree_image.save!
 
       expect(SpreeMailchimpEcommerce::UpdateProductJob)
@@ -18,7 +23,12 @@ describe Spree::Image, type: :model do
     end
 
     it 'schedules mailchimp notification on image update' do
-      spree_image.attachment.attach(io: image_file, filename: 'thinking-cat.jpg', content_type: 'image/jpeg')
+      if Rails.application.config.use_paperclip
+        spree_image.attachment = image_file
+      else
+        spree_image.attachment.attach(io: image_file, filename: 'thinking-cat.jpg', content_type: 'image/jpeg')
+      end
+
       spree_image.save!
       spree_image.update!(attachment_file_name: 'new-image.jpg')
 
@@ -29,7 +39,12 @@ describe Spree::Image, type: :model do
     end
 
     it 'schedules mailchimp notification on image delete' do
-      spree_image.attachment.attach(io: image_file, filename: 'thinking-cat.jpg', content_type: 'image/jpeg')
+      if Rails.application.config.use_paperclip
+        spree_image.attachment = image_file
+      else
+        spree_image.attachment.attach(io: image_file, filename: 'thinking-cat.jpg', content_type: 'image/jpeg')
+      end
+
       spree_image.save!
       spree_image.destroy
 

@@ -23,10 +23,14 @@ describe Spree::Image, type: :model do
     end
 
     it 'schedules mailchimp notification on image update' do
-      if Rails.application.config.use_paperclip
-        spree_image.attachment = image_file
+      if Spree.version >= '3.6.0'
+        if Rails.application.config.use_paperclip
+          spree_image.attachment = image_file
+        else
+          spree_image.attachment.attach(io: image_file, filename: 'thinking-cat.jpg', content_type: 'image/jpeg')
+        end
       else
-        spree_image.attachment.attach(io: image_file, filename: 'thinking-cat.jpg', content_type: 'image/jpeg')
+        spree_image.attachment = image_file
       end
 
       spree_image.save!
@@ -39,10 +43,14 @@ describe Spree::Image, type: :model do
     end
 
     it 'schedules mailchimp notification on image delete' do
-      if Rails.application.config.use_paperclip
-        spree_image.attachment = image_file
+      if Spree.version >= '3.6.0'
+        if Rails.application.config.use_paperclip
+          spree_image.attachment = image_file
+        else
+          spree_image.attachment.attach(io: image_file, filename: 'thinking-cat.jpg', content_type: 'image/jpeg')
+        end
       else
-        spree_image.attachment.attach(io: image_file, filename: 'thinking-cat.jpg', content_type: 'image/jpeg')
+        spree_image.attachment = image_file
       end
 
       spree_image.save!

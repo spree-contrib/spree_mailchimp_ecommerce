@@ -7,18 +7,7 @@ feature 'Abandoned Cart', js: true do
   let!(:variant)         { create(:variant, product: product) }
   let!(:state)           { create(:state, name: 'New York', abbr: 'NY', country: country_us) }
   let!(:shipping_method) { create(:shipping_method) }
-  let!(:country_us) do
-    create(
-      :country,
-      id: 232,
-      iso_name: 'UNITED STATES',
-      iso: 'US',
-      iso3: 'USA',
-      name: 'United States',
-      numcode: 840,
-      states_required: true
-    )
-  end
+  let!(:country_us)      { create(:country, :country_us) }
 
   before { variant.stock_items.first.update(count_on_hand: 10) }
 

@@ -27,6 +27,7 @@ require "spree/testing_support/controller_requests"
 require "spree/testing_support/factories"
 require "spree/testing_support/url_helpers"
 require "spree/testing_support/order_walkthrough"
+require 'selenium-webdriver'
 
 RSpec.configure do |config|
   # Infer an example group's spec type from the file location.

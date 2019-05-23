@@ -18,7 +18,7 @@ feature 'Complete Order Spec', js: true do
 
   after { Timecop.return }
 
-  scenario 'For a signed up user' do
+  scenario 'Deletes cart and creates Mailchimp Order' do
     add_product_to_cart
     expect(current_path).to eq('/checkout/registration')
 

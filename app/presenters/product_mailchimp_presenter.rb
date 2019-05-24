@@ -28,10 +28,7 @@ module SpreeMailchimpEcommerce
       end
 
       def image_url
-        image = product.images.first
-        return "" unless image
-
-        Rails.application.routes.url_helpers.rails_blob_url(image.attachment)
+        product.images.first&.attachment&.url
       end
     end
   end

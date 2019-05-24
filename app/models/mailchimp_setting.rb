@@ -1,1 +1,1 @@
-class MailchimpSetting < ApplicationRecord; end
+class MailchimpSetting < ActiveRecord::Base; end

@@ -9,10 +9,8 @@ module SpreeMailchimpEcommerce
                                   currency_code: "USD",
                                   domain: ENV['BASE_URL']
                                 })
-      ::Spree::Product.find_in_batches do |batch|
-        batch.pluck(:id).each do |id|
-          ::SpreeMailchimpEcommerce::CreateProductJob.perform_later(id)
-        end
+      ::Spree::Product.pluck(:id).each do |id|
+        ::SpreeMailchimpEcommerce::CreateProductJob.perform_later(id)
       end
     end
   end

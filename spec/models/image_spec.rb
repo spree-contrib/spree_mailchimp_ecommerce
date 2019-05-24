@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Spree::Image, type: :model do
+xdescribe Spree::Image, type: :model do
   let!(:product) { create(:product, name: 'spree_product') }
   let!(:variant) { create(:variant, product: product) }
   let(:spree_image) { Spree::Image.new(viewable_id: variant.id) }
@@ -18,7 +18,7 @@ describe Spree::Image, type: :model do
       else
         spree_image.attachment = image_file
       end
-      
+
       spree_image.save!
 
       expect(SpreeMailchimpEcommerce::UpdateProductJob)

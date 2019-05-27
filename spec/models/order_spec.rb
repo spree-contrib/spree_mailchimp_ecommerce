@@ -1,8 +1,8 @@
 require "spec_helper"
 
 describe Spree::Order, type: :model do
+  subject { build(:order) }
   before { allow_any_instance_of(SpreeMailchimpEcommerce::Configuration).to receive(:cart_url) { "test.com/cart" } }
-
   describe "json" do
     context "order with user" do
       let (:user) { create(:user_with_addresses) }

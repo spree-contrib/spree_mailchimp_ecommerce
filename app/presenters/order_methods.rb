@@ -5,8 +5,8 @@ module OrderMethods
     {
       id: order.number,
       customer: user,
-      currency_code: order.currency,
-      order_total: order.total.to_s,
+      currency_code: order.currency || "",
+      order_total: order.total.to_s || 0,
       lines: lines
     }.as_json
   end

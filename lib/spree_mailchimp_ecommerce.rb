@@ -5,11 +5,9 @@ require "gibbon"
 
 module SpreeMailchimpEcommerce
   class << self
-    attr_accessor :configuration
-  end
-
-  def self.configure
-    self.configuration = Configuration.new
+    def configuration
+      Configuration.new
+    end
   end
 
   class Configuration
@@ -17,9 +15,7 @@ module SpreeMailchimpEcommerce
 
     ATTR_LIST.each do |a|
       define_method a do
-        Rails.cache.fetch "settings_#{a}" do
-          setting_model.try(a)
-        end
+        setting_model.try(a)
       end
     end
 

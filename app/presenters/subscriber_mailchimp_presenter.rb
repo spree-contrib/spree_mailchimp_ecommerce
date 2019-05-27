@@ -11,7 +11,7 @@ module SpreeMailchimpEcommerce
 
       def json
         {
-          email_address: user.email,
+          email_address: user.email || "",
           status: "subscribed"
         }.as_json
       end

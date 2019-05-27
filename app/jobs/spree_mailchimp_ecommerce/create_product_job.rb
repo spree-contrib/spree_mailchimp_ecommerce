@@ -3,14 +3,12 @@
 module SpreeMailchimpEcommerce
   class CreateProductJob < ApplicationJob
     def perform(product_id)
-      begin
-        product = ::Spree::Product.find(product_id)
-        return unless product.mailchimp_product
+      product = ::Spree::Product.find(product_id)
+      return unless product.mailchimp_product
 
-        gibbon_store.products.create(body: product.mailchimp_product)
-      rescue Gibbon::MailChimpError => e
-        puts "ERROR FOR PRODUCT #{product_id}"
-      end
+      gibbon_store.products.create(body: product.mailchimp_product)
+    rescue Gibbon::MailChimpError => e
+      puts "ERROR FOR PRODUCT #{product_id}"
     end
   end
 end

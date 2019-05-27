@@ -2,11 +2,11 @@
 
 source "https://rubygems.org"
 
-gem "spree", branch: "master", git: "https://github.com/spree/spree.git"
 gem "gibbon"
 gem "highline"
 gem "rails-controller-testing"
 gem "rubocop-rspec", require: false
+gem "spree", branch: "master", git: "https://github.com/spree/spree.git"
 gem "spree_auth_devise", branch: "master", git: "https://github.com/spree/spree_auth_devise.git"
 
 gemspec path: "../"

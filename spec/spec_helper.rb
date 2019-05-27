@@ -68,5 +68,5 @@ RSpec.configure do |config|
   config.fail_fast = ENV["FAIL_FAST"] || false
   config.order = "random"
 
-  Rails.application.routes.default_url_options[:host] = 'test.com'
+  Rails.application.routes.default_url_options[:host] = "test.com"
 end

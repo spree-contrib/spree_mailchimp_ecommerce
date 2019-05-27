@@ -14,7 +14,7 @@ module Spree
       end
 
       def find_product
-        Spree::Variant.find(viewable_id).product.id
+        Spree::Variant.unscoped.find(viewable_id).product_id
       end
     end
   end

@@ -14,8 +14,8 @@ module SpreeMailchimpEcommerce
           id: Digest::MD5.hexdigest("#{variant.sku}#{variant.id}"),
           title: variant.name || "",
           sku: variant.sku || "",
-          price: variant.price.to_s || 0,
-          url: "#{ENV['BASE_URL']}/#{variant.product.category&.permalink || 'products'}/#{variant.slug}" || "",
+          price: variant.price.to_s || "0",
+          url: "#{Rails.application.routes.url_helpers.spree_url}/#{variant.product.category&.permalink || 'products'}/#{variant.slug}" || "",
         }.as_json
       end
     end

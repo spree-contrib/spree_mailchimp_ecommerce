@@ -7,8 +7,8 @@ module SpreeMailchimpEcommerce
       return unless product.mailchimp_product
 
       gibbon_store.products.create(body: product.mailchimp_product)
-    rescue Gibbon::MailChimpError
-      puts "ERROR FOR PRODUCT #{product_id}"
+    rescue Gibbon::MailChimpError => e
+      Rails.logger.warn "Cannot created product##{product_id}. #{e}"
     end
   end
 end

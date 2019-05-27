@@ -4,8 +4,8 @@ xdescribe Spree::Image, type: :model do
   let!(:product) { create(:product, name: "spree_product") }
   let!(:variant) { create(:variant, product: product) }
   let(:spree_image) { Spree::Image.new(viewable_id: variant.id) }
-  let(:image_file) { File.open(Spree::Core::Engine.root.join('spec', 'fixtures', 'thinking-cat.jpg') }
-  let(:text_file) { File.open(Spree::Core::Engine.root.join('spec', 'fixtures', "text-file.txt") }
+  let(:image_file) { File.open(Spree::Core::Engine.root.join("spec", "fixtures", "thinking-cat.jpg")) }
+  let(:text_file) { File.open(Spree::Core::Engine.root.join("spec", "fixtures", "text-file.txt")) }
 
   describe "mailchimp" do
     it "schedules mailchimp notification on image create" do

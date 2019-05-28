@@ -42,10 +42,5 @@ By default, Spree doesn't provide `firstname` and `lastname` methods for the Use
 
 Feel free to define `firstname` and `lastname` in your `User` model decorator.
 
-
-## Important
-
-Make sure, you have `BASE_URL` value in your ENV settings. It should point to you host
-
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

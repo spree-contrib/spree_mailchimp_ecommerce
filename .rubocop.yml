@@ -34,6 +34,8 @@ MethodLength:
 BlockLength:
   CountComments: false
   Max: 50
+  Exclude:
+    - '**/spec/**/*'
 
 Metrics/AbcSize:
  Max: 45

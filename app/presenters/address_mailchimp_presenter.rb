@@ -13,12 +13,12 @@ module SpreeMailchimpEcommerce
         {
           address1: address.address1 || "",
           address2: address.address2 || "",
-          city: address.city,
-          province: address.state&.name,
-          province_code: address.state&.abbr,
-          postal_code: address.zipcode,
-          country: address.country&.name,
-          country_code: address.country&.iso
+          city: address.city || "",
+          province: address.state&.name || "",
+          province_code: address.state&.abbr || "",
+          postal_code: address.zipcode || "",
+          country: address.country&.name || "",
+          country_code: address.country&.iso || ""
         }.as_json
       end
     end

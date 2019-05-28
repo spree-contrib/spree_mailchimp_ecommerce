@@ -1,7 +1,7 @@
-require 'capybara/rspec'
-require 'capybara-screenshot'
-require 'capybara-screenshot/rspec'
-require 'capybara/rails'
+require "capybara/rspec"
+require "capybara-screenshot"
+require "capybara-screenshot/rspec"
+require "capybara/rails"
 
 RSpec.configure do
   Capybara.register_driver :chrome do |app|

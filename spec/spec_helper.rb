@@ -27,7 +27,7 @@ require "spree/testing_support/controller_requests"
 require "spree/testing_support/factories"
 require "spree/testing_support/url_helpers"
 require "spree/testing_support/order_walkthrough"
-require 'selenium-webdriver'
+require "selenium-webdriver"
 
 RSpec.configure do |config|
   # Infer an example group's spec type from the file location.
@@ -67,4 +67,6 @@ RSpec.configure do |config|
 
   config.fail_fast = ENV["FAIL_FAST"] || false
   config.order = "random"
+
+  Rails.application.routes.default_url_options[:host] = "test.com"
 end

@@ -1,7 +1,10 @@
 require 'spec_helper'
 
 feature 'Abandoned Cart', js: true do
-  SpreeMailchimpEcommerce.configuration
+  before do
+    allow_any_instance_of(SpreeMailchimpEcommerce::Configuration).to receive(:mailchimp_store_id) { 1 }
+    SpreeMailchimpEcommerce.configuration
+  end
 
   let!(:product)         { create(:product, name: 'spree_product') }
   let!(:variant)         { create(:variant, product: product) }

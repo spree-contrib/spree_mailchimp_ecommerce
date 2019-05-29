@@ -5,7 +5,7 @@ feature 'Complete Order Spec', js: true do
 
   let!(:product)         { create(:product, name: 'spree_product') }
   let!(:variant)         { create(:variant, product: product) }
-  let!(:state)           { create(:state, name: 'New York', abbr: 'NY', country: country_us) }
+  let!(:state)           { create(:state, id: 2, name: 'New York', abbr: 'NY', country: country_us) }
   let!(:shipping_method) { create(:shipping_method) }
   let!(:credit_card)     { create(:credit_card, year: '2020') }
   let!(:country_us)      { create(:country, :country_us) }
@@ -63,8 +63,12 @@ feature 'Complete Order Spec', js: true do
     fill_in 'order_bill_address_attributes_city', with: 'New York'
     fill_in 'order_bill_address_attributes_zipcode', with: '10036'
     fill_in 'order_bill_address_attributes_phone', with: '123456789'
-    select 'United States of America', from: 'order_bill_address_attributes_country_id'
-    select 'New York', from: 'order_bill_address_attributes_state_id'
+    within '#order_bill_address_attributes_country_id' do
+      find("option[value='232']").click
+    end
+    within '#order_bill_address_attributes_state_id' do
+      find("option[value='2']").click
+    end
     click_on 'Save and Continue'
   end
 

@@ -11,6 +11,11 @@ module Spree
         redirect_to edit_admin_mailchimp_setting_path(model_class.last.id), notice: "Your store is going to be setup shortly."
       end
 
+      def bulk_update_products
+        ::SpreeMailchimpEcommerce::BulkUpdateProducts.perform
+        redirect_to edit_admin_mailchimp_setting_path(model_class.last.id), notice: 'products updated'
+      end
+
       def model_class
         @model_class ||= ::MailchimpSetting
       end

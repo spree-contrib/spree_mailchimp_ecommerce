@@ -14,6 +14,5 @@ gem "pry"
 gem "rails-controller-testing"
 gem "rubocop-rspec", require: false
 gem "spree_auth_devise", github: "spree/spree_auth_devise", branch: "master"
-gem 'timecop'
 
 gemspec

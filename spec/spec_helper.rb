@@ -12,6 +12,7 @@ require "rspec/rails"
 require "ffaker"
 require "webmock/rspec"
 require "json_matchers/rspec"
+require "timecop"
 
 JsonMatchers.schema_root = "spec/support/schemas"
 

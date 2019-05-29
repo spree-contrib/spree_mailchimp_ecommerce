@@ -63,6 +63,7 @@ feature 'Complete Order Spec', js: true do
     fill_in 'order_bill_address_attributes_city', with: 'New York'
     fill_in 'order_bill_address_attributes_zipcode', with: '10036'
     fill_in 'order_bill_address_attributes_phone', with: '123456789'
+    select 'United States of America', from: 'order_bill_address_attributes_country_id'
     select 'New York', from: 'order_bill_address_attributes_state_id'
     click_on 'Save and Continue'
   end

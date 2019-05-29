@@ -14,8 +14,8 @@ gemfile:
 
 addons:
   apt:
-    - google-chrome-stable
-    - chromium-chromedriver
+    packages:
+      - chromium-chromedriver
 
 before_script:
   - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver

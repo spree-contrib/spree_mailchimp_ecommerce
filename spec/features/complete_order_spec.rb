@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature 'Complete Order Spec', js: true do
-  SpreeMailchimpEcommerce.configure
+  SpreeMailchimpEcommerce.configuration
 
   let!(:product)         { create(:product, name: 'spree_product') }
   let!(:variant)         { create(:variant, product: product) }

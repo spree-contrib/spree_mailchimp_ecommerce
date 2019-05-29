@@ -1,10 +1,7 @@
 require 'spec_helper'
 
 feature 'Complete Order Spec', js: true do
-  before do
-    allow_any_instance_of(SpreeMailchimpEcommerce::Configuration).to receive(:mailchimp_store_id) { 1 }
-    SpreeMailchimpEcommerce.configuration
-  end
+  SpreeMailchimpEcommerce.configure
 
   let!(:product)         { create(:product, name: 'spree_product') }
   let!(:variant)         { create(:variant, product: product) }

@@ -1,4 +1,4 @@
-class GemSettings < ActiveRecord::Migration[5.2]
+class GemSettings < ActiveRecord::Migration
   def change
     create_table :mailchimp_settings do |t|
       t.string :mailchimp_api_key

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-feature 'Abandoned Cart', js: true do
-  SpreeMailchimpEcommerce.configure
+feature 'Abandoned Cart', :js do
+  before { SpreeMailchimpEcommerce.configure }
 
   let!(:product)         { create(:product, name: 'spree_product') }
   let!(:variant)         { create(:variant, product: product) }

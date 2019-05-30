@@ -13,15 +13,12 @@ gemfile:
   - gemfiles/spree_master.gemfile
 
 addons:
-  chrome: stable
+  apt:
+    packages:
+      - chromium-chromedriver
 
 before_script:
-  - wget -N https://chromedriver.storage.googleapis.com/2.35/chromedriver_linux64.zip -P ~/
-  - unzip ~/chromedriver_linux64.zip -d ~/
-  - rm ~/chromedriver_linux64.zip
-  - sudo mv -f ~/chromedriver /usr/local/share/
-  - sudo chmod +x /usr/local/share/chromedriver
-  - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+  - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build

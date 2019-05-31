@@ -14,7 +14,7 @@ module SpreeMailchimpEcommerce
         mailchimp_list_id,
         mailchimp_store_name,
         cart_url
-      ].map(&:empty?).none? && mailchimp_active?
+      ].map(&:nil?).none? && mailchimp_active?
     end
 
     def mailchimp_active?

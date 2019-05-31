@@ -15,7 +15,7 @@ module SpreeMailchimpEcommerce
           title: variant.name || "",
           sku: variant.sku || variant.id,
           price: (variant.price || 0).to_s,
-          url: "#{Rails.application.routes.url_helpers.spree_url}/#{variant.product.category&.permalink || 'products'}/#{variant.slug}" || "",
+          url: "#{::Rails.application.routes.url_helpers.spree_url}/#{variant.product.category&.permalink || 'products'}/#{variant.slug}" || "",
         }.as_json
       end
     end

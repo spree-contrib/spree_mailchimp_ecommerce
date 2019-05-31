@@ -5,7 +5,7 @@ module OrderMethods
     {
       id: order.number,
       customer: user,
-      currency_code: order.currency || order.store&.default_currency || Spree::Config[:currency],
+      currency_code: order.currency || order.store&.default_currency || ::Spree::Config[:currency],
       order_total: (order.total || 0).to_s,
       lines: lines
     }.as_json

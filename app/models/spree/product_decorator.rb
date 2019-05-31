@@ -11,6 +11,10 @@ module Spree
         ::SpreeMailchimpEcommerce::Presenters::ProductMailchimpPresenter.new(self).json
       end
 
+      def mailchimp_image_url
+        images.first&.attachment&.url
+      end
+
       private
 
       def create_mailchimp_product

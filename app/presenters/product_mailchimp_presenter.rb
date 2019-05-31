@@ -28,7 +28,7 @@ module SpreeMailchimpEcommerce
       end
 
       def image_url
-        product.images.first&.attachment&.url || ""
+        product.mailchimp_image_url
       end
     end
   end

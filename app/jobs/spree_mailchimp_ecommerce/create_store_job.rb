@@ -13,6 +13,14 @@ module SpreeMailchimpEcommerce
       ::Spree::Product.ids.each do |id|
         ::SpreeMailchimpEcommerce::CreateProductJob.perform_later(id)
       end
+
+      ::Spree::User.find_each do |user|
+        ::SpreeMailchimpEcommerce::CreateUserJob.perform_later(user)
+      end
+
+      ::Spree::Order.complete.find_each do |order|
+        ::SpreeMailchimpEcommerce::CreateOrderJob.perform_later(order)
+      end
     end
   end
 end

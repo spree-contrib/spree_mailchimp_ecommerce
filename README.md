@@ -24,7 +24,11 @@ gem 'spree_mailchimp_ecommerce', github: 'spark-solutions/spree_mailchimp_ecomme
 
 4. Restart your server
 
-5. Setup you mailchimp credentials on `admin/mailchimp_settings` and than click 'Setup your store' button
+
+5. Deployment
+
+
+6. Setup you mailchimp credentials on `admin/mailchimp_settings` and than click 'Setup your store' button
 
 ## User first and last name
 

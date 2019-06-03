@@ -2,6 +2,8 @@ module SpreeMailchimpEcommerce
   module ApplicationControllerDecorator
     def self.prepended(base)
       base.before_action :set_campaign_id
+
+      base.helper SpreeMailchimpEcommerce::Engine.helpers
     end
 
     private

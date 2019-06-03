@@ -12,7 +12,7 @@ module Spree
       end
 
       def mailchimp_image_url
-        images.first&.attachment&.url
+        images.first&.attachment&.url || ""
       end
 
       private

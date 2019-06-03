@@ -1,4 +1,4 @@
-module Spree::SpreeMailchimpEcommerce
+module SpreeMailchimpEcommerce
   class MailchimpHelper
     def mailchimp_snippet
       set_snippet&.html_safe

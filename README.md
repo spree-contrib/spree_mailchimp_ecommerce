@@ -3,8 +3,6 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/4f78be32523b539f2788/maintainability)](https://codeclimate.com/github/spark-solutions/spree_mailchimp_ecommerce/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/4f78be32523b539f2788/test_coverage)](https://codeclimate.com/github/spark-solutions/spree_mailchimp_ecommerce/test_coverage)
 
-##THE GEM UNDER DEVELOPMENT. DO NOT USE IT ON PRODUCTION
-
 ## Installation
 1. Add this line to your application's Gemfile:
 

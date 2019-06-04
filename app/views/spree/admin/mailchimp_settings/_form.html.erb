@@ -31,16 +31,6 @@
           <%= f.text_field :cart_url, class: 'form-control' %>
         </div>
       </div>
-      <div class="col-md-6">
-        <%= f.label :active, class: 'radio-inline' do %>
-          <%= f.radio_button :active, :true %>
-          <%= Spree.t(:active) %>
-        <% end %>
-        <%= f.label :active, class: 'radio-inline' do %>
-          <%= f.radio_button :active, :false %>
-          <%= Spree.t(:inactive) %>
-        <% end %>
-      </div>
     </div>
   </div>
 

@@ -14,8 +14,8 @@ module SpreeMailchimpEcommerce
         ::SpreeMailchimpEcommerce::CreateProductJob.perform_later(id)
       end
 
-      ::Spree::User.find_each do |user|
-        ::SpreeMailchimpEcommerce::CreateUserJob.perform_later(user)
+      ::Spree::User.where.not(email: nil).find_each do |user|
+        ::SpreeMailchimpEcommerce::CreateUserJob.perform_later(user.mailchimp_user)
       end
 
       ::Spree::Order.complete.find_each do |order|

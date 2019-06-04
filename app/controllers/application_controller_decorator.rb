@@ -13,7 +13,7 @@ module SpreeMailchimpEcommerce
 
       cookies[:mailchimp_campaign_id] = {
           value: params["mc_cid"],
-          domain: ::Rails.application.routes.url_helpers.spree_url
+          domain: :all
       }
     end
 

@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 feature 'Complete Order Spec', :js do
-  before { SpreeMailchimpEcommerce.configure }
-
   let!(:product)         { create(:product, name: 'spree_product') }
   let!(:variant)         { create(:variant, product: product) }
   let!(:state)           { create(:state, id: 2, name: 'New York', abbr: 'NY', country: country_us) }
@@ -14,6 +12,7 @@ feature 'Complete Order Spec', :js do
   before do
     variant.stock_items.first.update(count_on_hand: 10)
     Timecop.freeze(Time.local(2019, 5, 21))
+    allow(SpreeMailchimpEcommerce).to receive(:configuration).and_return(SpreeMailchimpEcommerce::Configuration.new)
   end
 
   after { Timecop.return }

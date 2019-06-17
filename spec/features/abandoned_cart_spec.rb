@@ -1,15 +1,16 @@
 require 'spec_helper'
 
 feature 'Abandoned Cart', :js do
-  before { SpreeMailchimpEcommerce.configure }
-
   let!(:product)         { create(:product, name: 'spree_product') }
   let!(:variant)         { create(:variant, product: product) }
   let!(:state)           { create(:state, id: 2, name: 'New York', abbr: 'NY', country: country_us) }
   let!(:shipping_method) { create(:shipping_method) }
   let!(:country_us)      { create(:country, :country_us) }
 
-  before { variant.stock_items.first.update(count_on_hand: 10) }
+  before do
+    variant.stock_items.first.update(count_on_hand: 10)
+    allow(SpreeMailchimpEcommerce).to receive(:configuration).and_return(SpreeMailchimpEcommerce::Configuration.new)
+  end
 
   scenario 'For a guest user' do
     add_product_to_cart

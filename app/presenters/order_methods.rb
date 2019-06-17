@@ -4,6 +4,7 @@ module OrderMethods
 
     {
       id: order.number,
+      processed_at_foreign: order.completed_at.strftime("%Y%m%dT%H%M%S"),
       customer: user,
       currency_code: order.currency || order.store&.default_currency || ::Spree::Config[:currency],
       order_total: (order.total || 0).to_s,

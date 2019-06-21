@@ -77,6 +77,9 @@ feature 'Complete Order Spec', :js do
     fill_in 'card_code', with: '123'
     find('#card_expiry').send_keys 12
     find('#card_expiry').send_keys 20
+    until find('#card_number').value == '4111 1111 1111 1111'
+      find('#card_number').send_keys 1111111111111111
+    end
     click_on 'Save and Continue'
   end
 end

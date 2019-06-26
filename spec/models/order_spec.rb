@@ -7,7 +7,8 @@ describe Spree::Order, type: :model do
     context "order with user" do
       let (:user) { create(:user_with_addresses) }
       describe ".mailchimp_order" do
-        subject { create(:order_with_line_items, state: "complete", completed_at: Time.current, user: user) }
+        let(:shipment) { create(:shipment) }
+        subject { create(:order_with_line_items, state: "complete", completed_at: Time.current, user: user, shipments: [shipment]) }
         it "returns valid schema" do
           expect(subject.mailchimp_order).to match_json_schema("order")
         end
@@ -22,7 +23,8 @@ describe Spree::Order, type: :model do
     end
 
     context "order without user" do
-      subject { create(:order_with_line_items, state: "complete", completed_at: Time.current, user: nil, email: "test@test.test") }
+      let(:shipment) { create(:shipment) }
+      subject { create(:order_with_line_items, state: "complete", completed_at: Time.current, user: nil, email: "test@test.test", shipments: [shipment]) }
       describe ".mailchimp_order" do
         it "returns valid schema" do
           expect(subject.mailchimp_order).to match_json_schema("order")
@@ -44,3 +46,4 @@ describe Spree::Order, type: :model do
     end
   end
 end
+

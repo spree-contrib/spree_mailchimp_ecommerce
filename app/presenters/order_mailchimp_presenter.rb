@@ -9,11 +9,11 @@ module SpreeMailchimpEcommerce
 
       def initialize(order)
         @order = order
-        raise "Order in wrong state" unless order.complete?
+        raise "Order in wrong state" unless order.completed?
       end
 
       def json
-        order_json.merge(campaign_id)
+        order_json.merge(campaign_id).merge(processed_at)
       end
 
       private
@@ -21,7 +21,7 @@ module SpreeMailchimpEcommerce
       def campaign_id
         return {} unless order.mailchimp_campaign_id
 
-        { campaign_id: order.mailchimp_campaign_id }
+        { campaign_id: order.mailchimp_campaign_id }.as_json
       end
 
       def user
@@ -43,6 +43,10 @@ module SpreeMailchimpEcommerce
         return {} unless order.shipping_address
 
         AddressMailchimpPresenter.new(order.shipping_address).json
+      end
+
+      def processed_at
+        { processed_at_foreign: order.completed_at.strftime("%Y%m%dT%H%M%S") }.as_json
       end
     end
   end

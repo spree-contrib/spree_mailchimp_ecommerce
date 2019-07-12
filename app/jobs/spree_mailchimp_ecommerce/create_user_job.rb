@@ -7,7 +7,7 @@ module SpreeMailchimpEcommerce
       gibbon_store.customers.create(body: mailchimp_user)
 
       rescue Gibbon::MailChimpError => e
-        Rails.logger.warn "[MAILCHIMP] Customer Already Exists. #{e}"
+        Rails.logger.warn "[MAILCHIMP] Failed to create mailchimp user. #{e}"
     end
 
   end

@@ -11,7 +11,7 @@ module Spree
       end
 
       def mailchimp_subscriber
-          ::SpreeMailchimpEcommerce::Presenters::SubscriberMailchimpPresenter.new(self).json
+        ::SpreeMailchimpEcommerce::Presenters::SubscriberMailchimpPresenter.new(self).json
       end
 
       private

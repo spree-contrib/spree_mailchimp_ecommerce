@@ -1,16 +1,22 @@
 module Spree
   module SpreeMailchimpEcommerce
     module LineItemDecorator
+
       def self.prepended(base)
-        base.after_update :update_mailchimp_cart
-        base.after_create :handle_cart
-        base.after_destroy :delete_line_item
+        base.after_save :handle_cart
+        base.after_destroy do |item|
+          delete_line_item(item.order.number, item.id, item.order_id)
+        end
       end
 
       def handle_cart
         return unless order.user
 
-        order.mailchimp_cart_created ? update_mailchimp_cart : order.create_mailchimp_cart
+        if order.checkout_allowed?
+          order.mailchimp_cart_created ? order.update_mailchimp_cart : order.create_mailchimp_cart
+        else
+          order.delete_mailchimp_cart
+        end
       end
 
       def mailchimp_line_item
@@ -19,13 +25,19 @@ module Spree
 
       private
 
-      def update_mailchimp_cart
-        order.update_mailchimp_cart
+      def delete_line_item(order_number, deleted_line_item_id, deletedline_item_order_id)
+        return unless order.user
+        
+        if order.checkout_allowed?
+          associated_order = order_number
+          line_id = Digest::MD5.hexdigest("#{deleted_line_item_id}#{deletedline_item_order_id}")
+
+          ::SpreeMailchimpEcommerce::DeleteLineItemJob.perform_later(associated_order, line_id)
+        else
+          order.delete_mailchimp_cart
+        end
       end
 
-      def delete_line_item
-        ::SpreeMailchimpEcommerce::DeleteLineItemJob.perform_later(id)
-      end
     end
   end
 end

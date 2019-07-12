@@ -8,7 +8,8 @@ module Spree
 
       def associate_user!(user, override_email = true)
         super
-        create_mailchimp_cart unless new_record? || line_items.empty?
+
+        create_mailchimp_cart unless new_record? || !checkout_allowed?
         true
       end
 
@@ -20,10 +21,6 @@ module Spree
         ::SpreeMailchimpEcommerce::Presenters::OrderMailchimpPresenter.new(self).json
       end
 
-      def update_mailchimp_cart
-        ::SpreeMailchimpEcommerce::UpdateOrderCartJob.perform_later(mailchimp_cart)
-      end
-
       def create_mailchimp_cart
         return if mailchimp_cart_created
 
@@ -31,15 +28,22 @@ module Spree
         update_column(:mailchimp_cart_created, true)
       end
 
+      def update_mailchimp_cart
+        ::SpreeMailchimpEcommerce::UpdateOrderCartJob.perform_later(mailchimp_cart)
+      end
+
+      def delete_mailchimp_cart
+        return unless mailchimp_cart_created
+
+        ::SpreeMailchimpEcommerce::DeleteCartJob.perform_later(number)
+        update_column(:mailchimp_cart_created, nil)
+      end
+
       private
 
       def after_create_jobs
         create_mailchimp_order
         delete_mailchimp_cart
-      end
-
-      def delete_mailchimp_cart
-        ::SpreeMailchimpEcommerce::DeleteCartJob.perform_later(number)
       end
 
       def create_mailchimp_order

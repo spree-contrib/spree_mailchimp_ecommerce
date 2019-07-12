@@ -1,7 +1,9 @@
-  module MailchimpHelper
+module MailchimpHelper
+
     def mailchimp_snippet
       set_snippet&.html_safe
     end
+
 
     private
 
@@ -17,4 +19,5 @@
     def mailchimp_store_id
       ::SpreeMailchimpEcommerce.configuration.mailchimp_store_id
     end
-  end
+
+end

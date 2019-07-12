@@ -10,3 +10,4 @@ module SpreeMailchimpEcommerce
     end
   end
 end
+ 

@@ -1,6 +1,7 @@
 module Spree
   module SpreeMailchimpEcommerce
     module ProductDecorator
+
       def self.prepended(base)
         base.after_create :create_mailchimp_product
         base.after_update :update_mailchimp_product
@@ -12,7 +13,8 @@ module Spree
       end
 
       def mailchimp_image_url
-        images.first&.attachment&.url || ""
+  # Works For ActiveStorage
+        images.first&.attachment
       end
 
       private

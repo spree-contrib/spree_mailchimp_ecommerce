@@ -1,6 +1,7 @@
 module Spree
   module SpreeMailchimpEcommerce
     module ImageDecorator
+
       def self.prepended(base)
         base.after_create :update_mailchimp_product
         base.after_update :update_mailchimp_product

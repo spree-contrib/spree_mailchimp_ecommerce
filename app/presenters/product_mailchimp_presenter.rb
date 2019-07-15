@@ -28,8 +28,9 @@ module SpreeMailchimpEcommerce
       end
 
       def image_url
-  # Works For ActiveStorage
-        Rails.application.routes.url_helpers.url_for(product.mailchimp_image_url)
+  
+        product.mailchimp_image_url
+        # Works For ActiveStorage -> Rails.application.routes.url_helpers.url_for(product.mailchimp_image_url)
       end
     end
   end

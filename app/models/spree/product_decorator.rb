@@ -13,8 +13,8 @@ module Spree
       end
 
       def mailchimp_image_url
-  # Works For ActiveStorage
-        images.first&.attachment
+        images.first&.attachment&.url || ""
+        # Works For ActiveStorage -> images.first&.attachment
       end
 
       private

@@ -12,10 +12,14 @@ module Spree
       end
 
       def mailchimp_image_url
-        images.first&.attachment&.url || ""
+        images.first&.attachment&.send(image_method)
       end
 
       private
+
+      def image_method
+        Gem.loaded_specs["rails"].version >= Gem::Version.new('5.0.0') ? :service_url : :url
+      end
 
       def create_mailchimp_product
         ::SpreeMailchimpEcommerce::CreateProductJob.perform_later(id)

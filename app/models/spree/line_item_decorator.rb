@@ -27,7 +27,7 @@ module Spree
 
       def delete_line_item(order_number, deleted_line_item_id, deletedline_item_order_id)
         return unless order.user
-        
+
         if order.checkout_allowed?
           associated_order = order_number
           line_id = Digest::MD5.hexdigest("#{deleted_line_item_id}#{deletedline_item_order_id}")

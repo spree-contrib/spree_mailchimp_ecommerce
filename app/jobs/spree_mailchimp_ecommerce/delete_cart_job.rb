@@ -7,7 +7,7 @@ module SpreeMailchimpEcommerce
 
     rescue Gibbon::MailChimpError => e
       Rails.logger.warn "[MAILCHIMP] Failed to delete mailchimp cart #{e}"
-
     end
+    
   end
 end

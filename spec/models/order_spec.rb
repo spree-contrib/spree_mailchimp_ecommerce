@@ -35,7 +35,7 @@ describe Spree::Order, type: :model do
 
   describe "mailchimp" do
     describe "order" do
-      subject { build(:order) }
+      subject { build(:order, mailchimp_cart_created: true) }
       it "schedules mailchimp notification on order complete" do
         subject.state = "payment"
         subject.save!
@@ -46,4 +46,3 @@ describe Spree::Order, type: :model do
     end
   end
 end
-

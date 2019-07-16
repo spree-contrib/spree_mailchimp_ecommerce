@@ -9,6 +9,12 @@ module Spree
         end
       end
 
+      def mailchimp_line_item
+        ::SpreeMailchimpEcommerce::Presenters::LineMailchimpPresenter.new(self).json
+      end
+
+      private
+
       def handle_cart
         return unless order.user
 
@@ -19,14 +25,8 @@ module Spree
         end
       end
 
-      def mailchimp_line_item
-        ::SpreeMailchimpEcommerce::Presenters::LineMailchimpPresenter.new(self).json
-      end
-
-      private
-
       def delete_line_item(order_number, deleted_line_item_id, deletedline_item_order_id)
-        return unless order.user
+        return unless order.user || !order.mailchimp_cart_created
 
         if order.checkout_allowed?
           associated_order = order_number

@@ -43,7 +43,7 @@ describe Spree::Order, type: :model do
     end
 
     it "schedules mailchimp Order Confirmation notification on not paid order complete" do
-      Spree::Config[:auto_capture] = false
+      create(:payment, order: subject, state: "failed")
       subject.next
       expect(SpreeMailchimpEcommerce::CreateOrderJob).to have_been_enqueued.with(subject.mailchimp_order)
       expect(SpreeMailchimpEcommerce::DeleteCartJob).to have_been_enqueued.with(subject.number)

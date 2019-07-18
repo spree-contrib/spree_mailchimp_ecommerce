@@ -26,7 +26,7 @@ module Spree
       end
 
       def delete_line_item(order_number, deleted_line_item_id, deletedline_item_order_id)
-        return unless order.user || !order.mailchimp_cart_created
+        return unless order.user && order.mailchimp_cart_created
 
         if order.checkout_allowed?
           associated_order = order_number

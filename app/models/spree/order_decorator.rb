@@ -68,19 +68,20 @@ module Spree
       end
 
       def new_order_notification
-        @notification = ::SpreeMailchimpEcommerce::Presenters::OrderNotificationPresenter.new(self).invoice_or_order_confirmation
+        state = payment_state == "paid" ? "paid" : "pending"
+        @notification = { financial_status: state }.as_json
       end
 
       def order_canceled_notification
-        @notification = ::SpreeMailchimpEcommerce::Presenters::OrderNotificationPresenter.new(self).cancellation_confirmation
+        @notification = { financial_status: "cancelled" }.as_json
       end
 
       def order_shipped_notification
-        @notification = ::SpreeMailchimpEcommerce::Presenters::OrderNotificationPresenter.new(self).shipping_confirmation
+        @notification = { fulfillment_status: shipment_state }.as_json
       end
 
       def order_refunded_notification
-        @notification = ::SpreeMailchimpEcommerce::Presenters::OrderNotificationPresenter.new(self).refund_confirmation
+        @notification = { financial_status: "refunded" }.as_json
       end
     end
   end

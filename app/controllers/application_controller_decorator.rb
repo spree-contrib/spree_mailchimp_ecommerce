@@ -10,10 +10,8 @@ module SpreeMailchimpEcommerce
 
     def set_campaign_id
       return if params["mc_cid"].nil?
-
       cookies[:mailchimp_campaign_id] = {
-          value: params["mc_cid"],
-          domain: :all
+          value: params["mc_cid"]
       }
     end
 

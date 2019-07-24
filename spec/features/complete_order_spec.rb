@@ -72,7 +72,6 @@ feature 'Complete Order Spec', :js do
   end
 
   def fill_in_credit_card_details
-    fill_in 'name_on_card_1', with: 'John Doe'
     fill_in 'card_number', with: '4111111111111111'
     fill_in 'card_code', with: '123'
     find('#card_expiry').send_keys 12

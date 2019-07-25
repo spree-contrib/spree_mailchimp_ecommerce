@@ -6,7 +6,7 @@
     private
 
     def set_snippet
-      return unless ::SpreeMailchimpEcommerce.configuration.active?
+      return unless mailchimp_store_id && ::SpreeMailchimpEcommerce.configuration.mailchimp_api_key
 
       Rails.cache.fetch "mailchimp_settings_#{mailchimp_store_id}" do
         ::Gibbon::Request.new(api_key: ::SpreeMailchimpEcommerce.configuration.mailchimp_api_key).

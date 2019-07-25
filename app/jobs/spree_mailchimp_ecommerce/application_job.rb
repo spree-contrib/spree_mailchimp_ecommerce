@@ -14,11 +14,7 @@ module SpreeMailchimpEcommerce
         mailchimp_list_id,
         mailchimp_store_name,
         cart_url
-      ].map(&:nil?).none? && mailchimp_active?
-    end
-
-    def mailchimp_active?
-      ::SpreeMailchimpEcommerce.configuration.active?
+      ].map(&:nil?).none?
     end
 
     def mailchimp_api_key

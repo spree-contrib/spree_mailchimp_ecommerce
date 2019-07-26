@@ -16,7 +16,7 @@ module SpreeMailchimpEcommerce
 
     def inject_a_script
       inject_into_file "app/views/spree/shared/_head.html.erb", after: "<%= yield :head %>\n" do
-        "<%= MailchimpHelper.mailchimp_snippet %>"
+        "<% require 'mailchimp_helper' %><%= MailchimpHelper.mailchimp_snippet %>"
       end
     end
   end

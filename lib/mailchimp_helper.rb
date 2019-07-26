@@ -1,7 +1,7 @@
 module MailchimpHelper
   class << self
     def mailchimp_snippet
-      @mailchimp_snippet = set_snippet&.html_safe
+      set_snippet&.html_safe
     end
 
     private

@@ -21,7 +21,7 @@ describe Spree::Product, type: :model do
       subject.save!
       subject.destroy
 
-      expect(SpreeMailchimpEcommerce::DeleteProductJob).to have_been_enqueued.with(subject.id)
+      expect(SpreeMailchimpEcommerce::DeleteProductJob).to have_been_enqueued.with(subject)
     end
   end
 

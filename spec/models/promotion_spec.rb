@@ -1,0 +1,33 @@
+require "spec_helper"
+
+describe Spree::Promotion, type: :model do
+  subject { create(:promotion) }
+
+  describe "mailchimp" do
+    it "schedules mailchimp notification on promotion create" do
+      expect(SpreeMailchimpEcommerce::CreatePromoRuleJob).to have_been_enqueued.with(subject)
+      expect(SpreeMailchimpEcommerce::CreatePromoCodeJob).to have_been_enqueued.with(subject)
+    end
+
+    it "schedules mailchimp notification on promotion update" do
+      subject.update!(name: "new promotion")
+
+      expect(SpreeMailchimpEcommerce::UpdatePromoRuleJob).to have_been_enqueued.with(subject)
+      expect(SpreeMailchimpEcommerce::UpdatePromoCodeJob).to have_been_enqueued.with(subject)
+    end
+
+    it "schedules mailchimp notification on product delete" do
+      subject.destroy!
+
+      expect(SpreeMailchimpEcommerce::DeletePromoCodeJob).to have_been_enqueued.with(subject)
+      expect(SpreeMailchimpEcommerce::DeletePromoRuleJob).to have_been_enqueued.with(subject)
+    end
+  end
+
+  describe ".mailchimp_promotion" do
+    it "returns valid schema" do
+      expect(subject.mailchimp_promo_code).to match_json_schema("promo_code")
+      expect(subject.mailchimp_promo_rule).to match_json_schema("promo_rule")
+    end
+  end
+end

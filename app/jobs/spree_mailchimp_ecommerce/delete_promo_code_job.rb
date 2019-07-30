@@ -2,9 +2,9 @@
 
 module SpreeMailchimpEcommerce
   class DeletePromoCodeJob < ApplicationJob
-    def perform(promotion)
-      gibbon_store.promo_rules(promotion.mailchimp_promo_rule["id"]).
-        promo_codes(promotion.mailchimp_promo_code["id"]).delete
+    def perform(mailchimp_promo_rule, mailchimp_promo_code)
+      gibbon_store.promo_rules(mailchimp_promo_rule["id"]).
+        promo_codes(mailchimp_promo_code["id"]).delete
     end
   end
 end

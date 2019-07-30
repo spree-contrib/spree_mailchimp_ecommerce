@@ -19,8 +19,8 @@ describe Spree::Promotion, type: :model do
     it "schedules mailchimp notification on product delete" do
       subject.destroy!
 
-      expect(SpreeMailchimpEcommerce::DeletePromoCodeJob).to have_been_enqueued.with(subject)
-      expect(SpreeMailchimpEcommerce::DeletePromoRuleJob).to have_been_enqueued.with(subject)
+      expect(SpreeMailchimpEcommerce::DeletePromoCodeJob).to have_been_enqueued.with(subject.mailchimp_promo_rule, subject.mailchimp_promo_code)
+      expect(SpreeMailchimpEcommerce::DeletePromoRuleJob).to have_been_enqueued.with(subject.mailchimp_promo_rule)
     end
   end
 

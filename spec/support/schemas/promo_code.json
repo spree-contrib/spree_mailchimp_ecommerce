@@ -1,0 +1,76 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "id",
+    "code",
+    "redemption_url",
+    "usage_count",
+    "created_at_foreign",
+    "updated_at_foreign"
+  ],
+  "properties": {
+    "id": {
+      "$id": "#/properties/id",
+      "type": "string",
+      "title": "The Id Schema",
+      "default": "",
+      "examples": [
+        "aab3238922bcc25a6f606eb525ffdc56"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "code": {
+      "$id": "#/properties/code",
+      "type": "string",
+      "title": "The Code Schema",
+      "default": "",
+      "examples": [
+        "promo"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "redemption_url": {
+      "$id": "#/properties/redemption_url",
+      "type": "string",
+      "title": "The Redemption_url Schema",
+      "default": "",
+      "examples": [
+        "http://localhost:3000/products/ruby-on-rails-ringer-t-shirt"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "usage_count": {
+      "$id": "#/properties/usage_count",
+      "type": "integer",
+      "title": "The Usage_count Schema",
+      "default": 0,
+      "examples": [
+        0
+      ]
+    },
+    "created_at_foreign": {
+      "$id": "#/properties/created_at_foreign",
+      "type": "string",
+      "title": "The Created_at_foreign Schema",
+      "default": "",
+      "examples": [
+        "20190729T100112"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "updated_at_foreign": {
+      "$id": "#/properties/updated_at_foreign",
+      "type": "string",
+      "title": "The Updated_at_foreign Schema",
+      "default": "",
+      "examples": [
+        "20190730T095704"
+      ],
+      "pattern": "^(.*)$"
+    }
+  }
+}

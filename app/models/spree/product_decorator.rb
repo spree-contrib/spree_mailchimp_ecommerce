@@ -35,7 +35,7 @@ module Spree
       end
 
       def delete_mailchimp_product
-        ::SpreeMailchimpEcommerce::DeleteProductJob.perform_later(id)
+        ::SpreeMailchimpEcommerce::DeleteProductJob.perform_later(self)
       end
     end
   end

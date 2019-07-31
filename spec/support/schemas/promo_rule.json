@@ -1,0 +1,120 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "id",
+    "title",
+    "description",
+    "starts_at",
+    "ends_at",
+    "amount",
+    "type",
+    "target",
+    "created_at_foreign",
+    "updated_at_foreign"
+  ],
+  "properties": {
+    "id": {
+      "$id": "#/properties/id",
+      "type": "string",
+      "title": "The Id Schema",
+      "default": "",
+      "examples": [
+        "aab3238922bcc25a6f606eb525ffdc56"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "title": {
+      "$id": "#/properties/title",
+      "type": "string",
+      "title": "The Title Schema",
+      "default": "",
+      "examples": [
+        "new_promo"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "description": {
+      "$id": "#/properties/description",
+      "type": "string",
+      "title": "The Description Schema",
+      "default": "",
+      "examples": [
+        "promotion"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "starts_at": {
+      "$id": "#/properties/starts_at",
+      "type": "string",
+      "title": "The Starts_at Schema",
+      "default": "",
+      "examples": [
+        "20190701T000000"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "ends_at": {
+      "$id": "#/properties/ends_at",
+      "type": "string",
+      "title": "The Ends_at Schema",
+      "default": "",
+      "examples": [
+        "20190731T000000"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "amount": {
+      "$id": "#/properties/amount",
+      "type": "number",
+      "title": "The Amount Schema",
+      "default": 0.0,
+      "examples": [
+        0.5
+      ]
+    },
+    "type": {
+      "$id": "#/properties/type",
+      "type": "string",
+      "title": "The Type Schema",
+      "default": "",
+      "examples": [
+        "percentage"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "target": {
+      "$id": "#/properties/target",
+      "type": "string",
+      "title": "The Target Schema",
+      "default": "",
+      "examples": [
+        "total"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "created_at_foreign": {
+      "$id": "#/properties/created_at_foreign",
+      "type": "string",
+      "title": "The Created_at_foreign Schema",
+      "default": "",
+      "examples": [
+        "20190729T100112"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "updated_at_foreign": {
+      "$id": "#/properties/updated_at_foreign",
+      "type": "string",
+      "title": "The Updated_at_foreign Schema",
+      "default": "",
+      "examples": [
+        "20190730T095704"
+      ],
+      "pattern": "^(.*)$"
+    }
+  }
+}

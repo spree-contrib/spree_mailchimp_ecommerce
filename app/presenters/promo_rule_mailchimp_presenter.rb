@@ -39,33 +39,33 @@ module SpreeMailchimpEcommerce
       end
 
       def amount
-        if %w[total per_item].include? target
-          preferences = promotion.actions.first.calculator.preferences
-          preferences[:amount] || preferences[:percent] || preferences[:flat_percent]
-        end
+        return unless %w[total per_item].include?(target)
+
+        preferences = promotion.actions.first.calculator.preferences
+        preferences[:amount] || preferences[:percent] || preferences[:flat_percent]
       end
 
       def type
-        if %w[total per_item].include? target
-          case promotion.actions.first.calculator.type
-          when "Spree::Calculator::FlatRate"
-            "fixed"
-          when "Spree::Calculator::PercentOnLineItem", "Spree::Calculator::FlatPercentItemTotal"
-            "percentage"
-          end
+        return unless %w[total per_item].include?(target)
+
+        case promotion.actions.first.calculator.type
+        when "Spree::Calculator::FlatRate"
+          "fixed"
+        when "Spree::Calculator::PercentOnLineItem", "Spree::Calculator::FlatPercentItemTotal"
+          "percentage"
         end
       end
 
       def target
-        if available?
-          case promotion.actions.first.type
-          when "Spree::Promotion::Actions::FreeShipping"
-            "shipping"
-          when "Spree::Promotion::Actions::CreateAdjustment"
-            "total"
-          when "Spree::Promotion::Actions::CreateItemAdjustments"
-            "per_item"
-          end
+        return unless available?
+
+        case promotion.actions.first.type
+        when "Spree::Promotion::Actions::FreeShipping"
+          "shipping"
+        when "Spree::Promotion::Actions::CreateAdjustment"
+          "total"
+        when "Spree::Promotion::Actions::CreateItemAdjustments"
+          "per_item"
         end
       end
 

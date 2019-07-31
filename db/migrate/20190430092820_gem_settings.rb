@@ -6,7 +6,6 @@ class GemSettings < ActiveRecord::Migration[5.2]
       t.string :mailchimp_list_id
       t.string :mailchimp_store_name
       t.string :cart_url
-      t.boolean :active
     end
   end
 end

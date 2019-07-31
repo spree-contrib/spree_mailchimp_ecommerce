@@ -11,7 +11,7 @@ module SpreeMailchimpEcommerce
   end
 
   class Configuration
-    ATTR_LIST = [:mailchimp_api_key, :mailchimp_store_id, :mailchimp_list_id, :mailchimp_store_name, :cart_url, :active?]
+    ATTR_LIST = [:mailchimp_api_key, :mailchimp_store_id, :mailchimp_list_id, :mailchimp_store_name, :cart_url]
 
     ATTR_LIST.each do |a|
       define_method a do

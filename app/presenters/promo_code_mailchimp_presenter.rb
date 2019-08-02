@@ -24,7 +24,7 @@ module SpreeMailchimpEcommerce
       private
 
       def redemption_url
-        "http://#{Rails.application.routes.default_url_options[:host]}/#{promotion.path}"
+        "#{Rails.application.routes.url_helpers.spree_url}#{promotion.path}"
       end
     end
   end

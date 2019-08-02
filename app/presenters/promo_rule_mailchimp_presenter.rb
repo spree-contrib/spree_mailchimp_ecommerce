@@ -42,7 +42,7 @@ module SpreeMailchimpEcommerce
         return unless %w[total per_item].include?(target)
 
         preferences = promotion.actions.first.calculator.preferences
-        preferences[:amount] || preferences[:percent] || preferences[:flat_percent]
+        preferences[:amount] || (preferences[:percent] || preferences[:flat_percent]) / 100
       end
 
       def type

@@ -9,7 +9,13 @@
     "customer",
     "currency_code",
     "order_total",
-    "lines"
+    "lines",
+    "processed_at_foreign",
+    "discount_total",
+    "tax_total",
+    "shipping_total",
+    "shipping_address",
+    "billing_address"
   ],
   "properties": {
     "id": {
@@ -18,7 +24,7 @@
       "title": "The Id Schema",
       "default": "",
       "examples": [
-        "38217323"
+        "R763409986"
       ],
       "pattern": "^(.*)$"
     },
@@ -41,7 +47,7 @@
           "title": "The Id Schema",
           "default": "",
           "examples": [
-            "bef3c6e0d3b86a587cca64bc4f01d4e2"
+            "7868df0b1bf756e6c75b3552e6d05bcf"
           ],
           "pattern": "^(.*)$"
         },
@@ -51,7 +57,7 @@
           "title": "The Email_address Schema",
           "default": "",
           "examples": [
-            "joanna.poziemska+admin@sparksolutions.co"
+            "ray@sprks.eu"
           ],
           "pattern": "^(.*)$"
         },
@@ -61,7 +67,7 @@
           "title": "The Opt_in_status Schema",
           "default": false,
           "examples": [
-            true
+            false
           ]
         },
         "first_name": {
@@ -70,7 +76,7 @@
           "title": "The First_name Schema",
           "default": "",
           "examples": [
-            "Joanna"
+            "Ray"
           ],
           "pattern": "^(.*)$"
         },
@@ -80,7 +86,7 @@
           "title": "The Last_name Schema",
           "default": "",
           "examples": [
-            "Poziemska"
+            "P"
           ],
           "pattern": "^(.*)$"
         },
@@ -105,7 +111,7 @@
               "title": "The Address1 Schema",
               "default": "",
               "examples": [
-                "7000 Schirra Ct"
+                "Belsize"
               ],
               "pattern": "^(.*)$"
             },
@@ -115,7 +121,7 @@
               "title": "The Address2 Schema",
               "default": "",
               "examples": [
-                ""
+                "Manor Road"
               ],
               "pattern": "^(.*)$"
             },
@@ -125,7 +131,7 @@
               "title": "The City Schema",
               "default": "",
               "examples": [
-                "Bakersfield"
+                "Woking"
               ],
               "pattern": "^(.*)$"
             },
@@ -135,7 +141,7 @@
               "title": "The Province Schema",
               "default": "",
               "examples": [
-                "California"
+                "Aberdeenshire"
               ],
               "pattern": "^(.*)$"
             },
@@ -145,7 +151,7 @@
               "title": "The Province_code Schema",
               "default": "",
               "examples": [
-                "CA"
+                "ABD"
               ],
               "pattern": "^(.*)$"
             },
@@ -155,7 +161,7 @@
               "title": "The Postal_code Schema",
               "default": "",
               "examples": [
-                "93313"
+                "GU21 4RY"
               ],
               "pattern": "^(.*)$"
             },
@@ -165,7 +171,7 @@
               "title": "The Country Schema",
               "default": "",
               "examples": [
-                "United States"
+                "United Kingdom"
               ],
               "pattern": "^(.*)$"
             },
@@ -175,7 +181,7 @@
               "title": "The Country_code Schema",
               "default": "",
               "examples": [
-                "US"
+                "GB"
               ],
               "pattern": "^(.*)$"
             }
@@ -199,7 +205,7 @@
       "title": "The Order_total Schema",
       "default": "",
       "examples": [
-        "550.89"
+        "24.19"
       ],
       "pattern": "^(.*)$"
     },
@@ -225,7 +231,7 @@
             "title": "The Id Schema",
             "default": "",
             "examples": [
-              "7549f902c4f97c4c6d07027e222a0e52"
+              "c929f2210333206f417e3862f431776d"
             ],
             "pattern": "^(.*)$"
           },
@@ -235,7 +241,7 @@
             "title": "The Product_id Schema",
             "default": "",
             "examples": [
-              "23b702c4c421ddb2d023fee968c0d839"
+              "c4ca4238a0b923820dcc509a6f75849b"
             ],
             "pattern": "^(.*)$"
           },
@@ -245,7 +251,7 @@
             "title": "The Product_variant_id Schema",
             "default": "",
             "examples": [
-              "37b9b0d7b92532b647d369f85e3798d5"
+              "fb62f83cef23ad1e708fc3425ed3e284"
             ],
             "pattern": "^(.*)$"
           },
@@ -264,10 +270,266 @@
             "title": "The Price Schema",
             "default": "",
             "examples": [
-              "495.0"
+              "15.99"
             ],
             "pattern": "^(.*)$"
           }
+        }
+      }
+    },
+    "processed_at_foreign": {
+      "$id": "#/properties/processed_at_foreign",
+      "type": "string",
+      "title": "The Processed_at_foreign Schema",
+      "default": "",
+      "examples": [
+        "20190805T143614"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "discount_total": {
+      "$id": "#/properties/discount_total",
+      "type": "string",
+      "title": "The Discount_total Schema",
+      "default": "",
+      "examples": [
+        "-0.0"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "tax_total": {
+      "$id": "#/properties/tax_total",
+      "type": "string",
+      "title": "The Tax_total Schema",
+      "default": "",
+      "examples": [
+        "3.2"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "shipping_total": {
+      "$id": "#/properties/shipping_total",
+      "type": "string",
+      "title": "The Shipping_total Schema",
+      "default": "",
+      "examples": [
+        "5.0"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "shipping_address": {
+      "$id": "#/properties/shipping_address",
+      "type": "object",
+      "title": "The Shipping_address Schema",
+      "required": [
+        "address1",
+        "address2",
+        "city",
+        "province",
+        "province_code",
+        "postal_code",
+        "country",
+        "country_code",
+        "name"
+      ],
+      "properties": {
+        "address1": {
+          "$id": "#/properties/shipping_address/properties/address1",
+          "type": "string",
+          "title": "The Address1 Schema",
+          "default": "",
+          "examples": [
+            "Carner"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "address2": {
+          "$id": "#/properties/shipping_address/properties/address2",
+          "type": "string",
+          "title": "The Address2 Schema",
+          "default": "",
+          "examples": [
+            ""
+          ],
+          "pattern": "^(.*)$"
+        },
+        "city": {
+          "$id": "#/properties/shipping_address/properties/city",
+          "type": "string",
+          "title": "The City Schema",
+          "default": "",
+          "examples": [
+            "London"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "province": {
+          "$id": "#/properties/shipping_address/properties/province",
+          "type": "string",
+          "title": "The Province Schema",
+          "default": "",
+          "examples": [
+            "Aberdeenshire"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "province_code": {
+          "$id": "#/properties/shipping_address/properties/province_code",
+          "type": "string",
+          "title": "The Province_code Schema",
+          "default": "",
+          "examples": [
+            "ABD"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "postal_code": {
+          "$id": "#/properties/shipping_address/properties/postal_code",
+          "type": "string",
+          "title": "The Postal_code Schema",
+          "default": "",
+          "examples": [
+            "GU21 4RY"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "country": {
+          "$id": "#/properties/shipping_address/properties/country",
+          "type": "string",
+          "title": "The Country Schema",
+          "default": "",
+          "examples": [
+            "United Kingdom"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "country_code": {
+          "$id": "#/properties/shipping_address/properties/country_code",
+          "type": "string",
+          "title": "The Country_code Schema",
+          "default": "",
+          "examples": [
+            "GB"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "name": {
+          "$id": "#/properties/shipping_address/properties/name",
+          "type": "string",
+          "title": "The Name Schema",
+          "default": "",
+          "examples": [
+            "Ray2 P2"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    },
+    "billing_address": {
+      "$id": "#/properties/billing_address",
+      "type": "object",
+      "title": "The Billing_address Schema",
+      "required": [
+        "address1",
+        "address2",
+        "city",
+        "province",
+        "province_code",
+        "postal_code",
+        "country",
+        "country_code",
+        "name"
+      ],
+      "properties": {
+        "address1": {
+          "$id": "#/properties/billing_address/properties/address1",
+          "type": "string",
+          "title": "The Address1 Schema",
+          "default": "",
+          "examples": [
+            "Belsize"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "address2": {
+          "$id": "#/properties/billing_address/properties/address2",
+          "type": "string",
+          "title": "The Address2 Schema",
+          "default": "",
+          "examples": [
+            "Manor Road"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "city": {
+          "$id": "#/properties/billing_address/properties/city",
+          "type": "string",
+          "title": "The City Schema",
+          "default": "",
+          "examples": [
+            "Woking"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "province": {
+          "$id": "#/properties/billing_address/properties/province",
+          "type": "string",
+          "title": "The Province Schema",
+          "default": "",
+          "examples": [
+            "Aberdeenshire"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "province_code": {
+          "$id": "#/properties/billing_address/properties/province_code",
+          "type": "string",
+          "title": "The Province_code Schema",
+          "default": "",
+          "examples": [
+            "ABD"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "postal_code": {
+          "$id": "#/properties/billing_address/properties/postal_code",
+          "type": "string",
+          "title": "The Postal_code Schema",
+          "default": "",
+          "examples": [
+            "GU21 4RY"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "country": {
+          "$id": "#/properties/billing_address/properties/country",
+          "type": "string",
+          "title": "The Country Schema",
+          "default": "",
+          "examples": [
+            "United Kingdom"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "country_code": {
+          "$id": "#/properties/billing_address/properties/country_code",
+          "type": "string",
+          "title": "The Country_code Schema",
+          "default": "",
+          "examples": [
+            "GB"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "name": {
+          "$id": "#/properties/billing_address/properties/name",
+          "type": "string",
+          "title": "The Name Schema",
+          "default": "",
+          "examples": [
+            "Ray P"
+          ],
+          "pattern": "^(.*)$"
         }
       }
     }

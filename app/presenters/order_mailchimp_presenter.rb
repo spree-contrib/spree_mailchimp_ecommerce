@@ -18,7 +18,9 @@ module SpreeMailchimpEcommerce
             processed_at_foreign: order.completed_at.strftime("%Y%m%dT%H%M%S"),
             discount_total: - order.promo_total || 0.0,
             tax_total: order.additional_tax_total || 0.0,
-            shipping_total: order.shipment_total || 0.0
+            shipping_total: order.shipment_total || 0.0,
+            shipping_address: order_address(order.shipping_address),
+            billing_address: order_address(order.billing_address)
           }.as_json
         )
       end
@@ -41,15 +43,19 @@ module SpreeMailchimpEcommerce
             last_name: order.bill_address&.last_name || "",
             email_address: order.email || "",
             opt_in_status: false,
-            address: address
+            address: address(order.shipping_address)
           }
         end
       end
 
-      def address
-        return {} unless order.shipping_address
+      def address(address)
+        return {} unless address
 
-        AddressMailchimpPresenter.new(order.shipping_address).json
+        AddressMailchimpPresenter.new(address).json
+      end
+
+      def order_address(address)
+        address(address).merge({ name: "#{address.firstname} #{address.last_name}" }.as_json)
       end
     end
   end

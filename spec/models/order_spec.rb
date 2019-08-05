@@ -34,7 +34,8 @@ describe Spree::Order, type: :model do
   end
 
   describe "mailchimp order" do
-    subject { create(:order, state: "confirm") }
+    let(:address) {create(:address)}
+    subject { create(:order, state: "confirm", shipping_address: address) }
     it "schedules mailchimp Order Invoice notification on paid order complete" do
       subject.next
       expect(SpreeMailchimpEcommerce::CreateOrderJob).to have_been_enqueued.with(subject.mailchimp_order)

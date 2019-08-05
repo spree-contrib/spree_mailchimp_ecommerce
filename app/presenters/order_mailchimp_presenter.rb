@@ -13,7 +13,14 @@ module SpreeMailchimpEcommerce
       end
 
       def json
-        order_json.merge(campaign_id).merge(processed_at)
+        order_json.merge(campaign_id).merge(
+          {
+            processed_at_foreign: order.completed_at.strftime("%Y%m%dT%H%M%S"),
+            discount_total: - order.promo_total || 0.0,
+            tax_total: order.additional_tax_total || 0.0,
+            shipping_total: order.shipment_total || 0.0
+          }.as_json
+        )
       end
 
       private
@@ -43,10 +50,6 @@ module SpreeMailchimpEcommerce
         return {} unless order.shipping_address
 
         AddressMailchimpPresenter.new(order.shipping_address).json
-      end
-
-      def processed_at
-        { processed_at_foreign: order.completed_at.strftime("%Y%m%dT%H%M%S") }.as_json
       end
     end
   end

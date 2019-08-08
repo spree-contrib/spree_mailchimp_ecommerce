@@ -28,8 +28,8 @@ module Spree
       end
 
       def delete_mailchimp_promotion
-        ::SpreeMailchimpEcommerce::DeletePromoCodeJob.perform_later(self.mailchimp_promo_rule, self.mailchimp_promo_code)
-        ::SpreeMailchimpEcommerce::DeletePromoRuleJob.perform_later(self.mailchimp_promo_rule)
+        ::SpreeMailchimpEcommerce::DeletePromoCodeJob.perform_later(mailchimp_promo_rule, mailchimp_promo_code)
+        ::SpreeMailchimpEcommerce::DeletePromoRuleJob.perform_later(mailchimp_promo_rule)
       end
     end
   end

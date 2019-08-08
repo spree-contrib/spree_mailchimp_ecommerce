@@ -14,7 +14,7 @@ module SpreeMailchimpEcommerce
         {
           id: Digest::MD5.hexdigest(promotion.id.to_s),
           code: promotion.code || "",
-          redemption_url:  redemption_url,
+          redemption_url: redemption_url,
           usage_count: promotion.credits_count,
           created_at_foreign: promotion.created_at.strftime("%Y%m%dT%H%M%S") || "",
           updated_at_foreign: promotion.updated_at.strftime("%Y%m%dT%H%M%S") || ""

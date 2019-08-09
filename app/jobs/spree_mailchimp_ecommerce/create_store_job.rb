@@ -20,6 +20,11 @@ module SpreeMailchimpEcommerce
       ::Spree::Order.complete.find_each do |order|
         ::SpreeMailchimpEcommerce::CreateOrderJob.perform_later(order)
       end
+
+      ::Spree::Promotion.find_each do |promotion|
+        ::SpreeMailchimpEcommerce::CreatePromoRuleJob.perform_later(promotion)
+        ::SpreeMailchimpEcommerce::CreatePromoCodeJob.perform_later(promotion)
+      end
     end
   end
 end

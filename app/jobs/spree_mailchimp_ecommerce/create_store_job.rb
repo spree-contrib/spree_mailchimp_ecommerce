@@ -23,8 +23,8 @@ module SpreeMailchimpEcommerce
       end
 
       ::Spree::Promotion.find_each do |promotion|
-        ::SpreeMailchimpEcommerce::CreatePromoRuleJob.perform_later(promotion)
-        ::SpreeMailchimpEcommerce::CreatePromoCodeJob.perform_later(promotion)
+        ::SpreeMailchimpEcommerce::CreatePromoRuleJob.perform_now(promotion)
+        ::SpreeMailchimpEcommerce::CreatePromoCodeJob.perform_now(promotion)
       end
 
       gibbon_store.update(body: { is_syncing: false })

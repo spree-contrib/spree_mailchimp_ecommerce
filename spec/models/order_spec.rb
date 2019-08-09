@@ -34,7 +34,7 @@ describe Spree::Order, type: :model do
   end
 
   describe "mailchimp order" do
-    let(:address) {create(:address)}
+    let(:address) { create(:address) }
     subject { create(:order, state: "confirm", shipping_address: address) }
     it "schedules mailchimp Order Invoice notification on paid order complete" do
       subject.next

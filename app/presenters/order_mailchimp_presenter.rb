@@ -43,19 +43,19 @@ module SpreeMailchimpEcommerce
             last_name: order.bill_address&.last_name || "",
             email_address: order.email || "",
             opt_in_status: false,
-            address: address(order.shipping_address)
+            address: customer_address(order.shipping_address)
           }
         end
       end
 
-      def address(address)
+      def customer_address(address)
         return {} unless address
 
         AddressMailchimpPresenter.new(address).json
       end
 
       def order_address(address)
-        address(address).merge({ name: "#{address.firstname} #{address.last_name}" }.as_json)
+        customer_address(address).merge({ name: "#{address.firstname} #{address.last_name}" }.as_json)
       end
     end
   end

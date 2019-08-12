@@ -2,8 +2,8 @@
 
 module SpreeMailchimpEcommerce
   class CreateOrderCartJob < ApplicationJob
-    def perform(cart)
-      gibbon_store.carts.create(body: cart)
+    def perform(mailchimp_cart)
+      gibbon_store.carts.create(body: mailchimp_cart)
     end
   end
 end

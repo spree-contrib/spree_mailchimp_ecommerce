@@ -2,8 +2,8 @@
 
 module SpreeMailchimpEcommerce
   class CreateOrderJob < ApplicationJob
-    def perform(order)
-      gibbon_store.orders.create(body: order)
+    def perform(mailchimp_order)
+      gibbon_store.orders.create(body: mailchimp_order)
     end
   end
 end

@@ -9,6 +9,13 @@ describe Spree::User, type: :model do
 
       expect(SpreeMailchimpEcommerce::CreateUserJob).to have_been_enqueued.with(subject.mailchimp_user)
     end
+
+    it "schedules mailchimp notification on user update" do
+      subject.save!
+      subject.update(email: "new@mail.com")
+
+      expect(SpreeMailchimpEcommerce::UpdateUserJob).to have_been_enqueued.with(subject.mailchimp_user)
+    end
   end
 
   describe ".mailchimp_user" do

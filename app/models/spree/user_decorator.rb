@@ -22,9 +22,9 @@ module Spree
 
       def update_mailchimp_user
         ignored_keys = %w[sign_in_count current_sign_in_at last_sign_in_at current_sign_in_ip updated_at]
-        return true if (changes.keys - ignored_keys).empty?
+        return true if (previous_changes.keys - ignored_keys).empty?
 
-        ::SpreeMailchimpEcommerce::UpdateUserJob.perform_later(id)
+        ::SpreeMailchimpEcommerce::UpdateUserJob.perform_later(mailchimp_user)
       end
     end
   end

@@ -2,10 +2,10 @@
 
 module SpreeMailchimpEcommerce
   class UpdatePromoCodeJob < ApplicationJob
-    def perform(promotion)
-      gibbon_store.promo_rules(promotion.mailchimp_promo_rule["id"]).
-        promo_codes(promotion.mailchimp_promo_code["id"]).
-        update(body: promotion.mailchimp_promo_code)
+    def perform(mailchimp_promo_rule, mailchimp_promo_code)
+      gibbon_store.promo_rules(mailchimp_promo_rule["id"]).
+        promo_codes(mailchimp_promo_code["id"]).
+        update(body: mailchimp_promo_code)
     end
   end
 end

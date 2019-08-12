@@ -27,6 +27,7 @@ describe Spree::Product, type: :model do
 
   describe ".mailchimp_product" do
     it "returns valid schema" do
+      binding.pry
       expect(subject.mailchimp_product).to match_json_schema("product")
     end
   end

@@ -5,13 +5,8 @@ module SpreeMailchimpEcommerce
       run "bundle exec rake railties:install:migrations FROM=spree_mailchimp_ecommerce"
     end
 
-    def run_migrations
-      run_migrations = options[:auto_run_migrations] || ["", "y", "Y"].include?(ask("Would you like to run the migrations now? [Y/n]"))
-      if run_migrations
-        run "bundle exec rake db:migrate"
-      else
-        puts "Skipping rake db:migrate, don't forget to run it!"
-      end
+    def create_initializer_file
+      create_file "config/initializers/spree_mailchimp_ecommerce.rb", content
     end
 
     def inject_a_script
@@ -19,5 +14,13 @@ module SpreeMailchimpEcommerce
         "<%= MailchimpHelper.mailchimp_snippet %>"
       end
     end
+
+    private
+
+    # rubocop:disable Metrics/LineLength
+    def content
+      "SpreeMailchimpEcommerce.configure do |config|\n  config.mailchimp_api_key = ''\n  config.mailchimp_store_id = ''\n  config.mailchimp_list_id = ''\n  config.mailchimp_store_name = ''\n config.cart_url = '' \n end"
+    end
+    # rubocop:enable Metrics/LineLength
   end
 end

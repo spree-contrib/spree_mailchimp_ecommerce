@@ -9,7 +9,6 @@ RSpec::Core::RakeTask.new
 task :default do
   if Dir["spec/dummy"].empty?
     Rake::Task[:test_app].invoke
-    Rails::Generators.invoke("spree_mailchimp_ecommerce:install", ["--auto_run_migrations SOMETHING"])
     Dir.chdir("../../")
   end
   Rake::Task[:spec].invoke

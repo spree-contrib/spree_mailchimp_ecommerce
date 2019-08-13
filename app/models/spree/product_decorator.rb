@@ -28,15 +28,15 @@ module Spree
       end
 
       def create_mailchimp_product
-        ::SpreeMailchimpEcommerce::CreateProductJob.perform_later(id)
+        ::SpreeMailchimpEcommerce::CreateProductJob.perform_later(mailchimp_product)
       end
 
       def update_mailchimp_product
-        ::SpreeMailchimpEcommerce::UpdateProductJob.perform_later(id)
+        ::SpreeMailchimpEcommerce::UpdateProductJob.perform_later(mailchimp_product)
       end
 
       def delete_mailchimp_product
-        ::SpreeMailchimpEcommerce::DeleteProductJob.perform_later(self)
+        ::SpreeMailchimpEcommerce::DeleteProductJob.perform_later(mailchimp_product)
       end
     end
   end

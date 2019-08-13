@@ -5,15 +5,15 @@ describe Spree::Promotion, type: :model do
 
   describe "mailchimp" do
     it "schedules mailchimp notification on promotion create" do
-      expect(SpreeMailchimpEcommerce::CreatePromoRuleJob).to have_been_enqueued.with(subject)
-      expect(SpreeMailchimpEcommerce::CreatePromoCodeJob).to have_been_enqueued.with(subject)
+      expect(SpreeMailchimpEcommerce::CreatePromoRuleJob).to have_been_enqueued.with(subject.mailchimp_promo_rule)
+      expect(SpreeMailchimpEcommerce::CreatePromoCodeJob).to have_been_enqueued.with(subject.mailchimp_promo_rule, subject.mailchimp_promo_code)
     end
 
     it "schedules mailchimp notification on promotion update" do
       subject.update!(name: "new promotion")
 
-      expect(SpreeMailchimpEcommerce::UpdatePromoRuleJob).to have_been_enqueued.with(subject)
-      expect(SpreeMailchimpEcommerce::UpdatePromoCodeJob).to have_been_enqueued.with(subject)
+      expect(SpreeMailchimpEcommerce::UpdatePromoRuleJob).to have_been_enqueued.with(subject.mailchimp_promo_rule)
+      expect(SpreeMailchimpEcommerce::UpdatePromoCodeJob).to have_been_enqueued.with(subject.mailchimp_promo_rule, subject.mailchimp_promo_code)
     end
 
     it "schedules mailchimp notification on product delete" do

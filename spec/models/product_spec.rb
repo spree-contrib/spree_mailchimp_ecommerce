@@ -7,21 +7,21 @@ describe Spree::Product, type: :model do
     it "schedules mailchimp notification on product create" do
       subject.save!
 
-      expect(SpreeMailchimpEcommerce::CreateProductJob).to have_been_enqueued.with(subject.id)
+      expect(SpreeMailchimpEcommerce::CreateProductJob).to have_been_enqueued.with(subject.mailchimp_product)
     end
 
     it "schedules mailchimp notification on product update" do
       subject.save!
       subject.update!(name: "new product")
 
-      expect(SpreeMailchimpEcommerce::UpdateProductJob).to have_been_enqueued.with(subject.id)
+      expect(SpreeMailchimpEcommerce::UpdateProductJob).to have_been_enqueued.with(subject.mailchimp_product)
     end
 
     it "schedules mailchimp notification on product delete" do
       subject.save!
       subject.destroy
 
-      expect(SpreeMailchimpEcommerce::DeleteProductJob).to have_been_enqueued.with(subject)
+      expect(SpreeMailchimpEcommerce::DeleteProductJob).to have_been_enqueued.with(subject.mailchimp_product)
     end
   end
 

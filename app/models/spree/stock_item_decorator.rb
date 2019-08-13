@@ -8,7 +8,7 @@ module Spree
       private
 
       def update_product
-        return unless count_on_hand_previously_changed?
+        return unless count_on_hand_previously_changed? || count_on_hand_changed?
 
         ::SpreeMailchimpEcommerce::UpdateProductJob.perform_later(product.mailchimp_product)
       end

@@ -29,5 +29,10 @@ describe Spree::Promotion, type: :model do
       expect(subject.mailchimp_promo_code).to match_json_schema("promo_code")
       expect(subject.mailchimp_promo_rule).to match_json_schema("promo_rule")
     end
+
+    it "doesn't send unnecessary requests to db" do
+      expect { subject.mailchimp_promo_code }.not_to exceed_query_limit(1)
+      expect { subject.mailchimp_promo_rule }.not_to exceed_query_limit(1)
+    end
   end
 end

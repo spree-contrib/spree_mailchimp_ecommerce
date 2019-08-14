@@ -22,5 +22,11 @@ describe Spree::User, type: :model do
     it "returns valid schema" do
       expect(subject.mailchimp_user).to match_json_schema("user")
     end
+
+    it "doesn't send unnecessary requests to db" do
+      subject.save!
+
+      expect { subject.mailchimp_user }.not_to exceed_query_limit(1)
+    end
   end
 end

@@ -12,12 +12,20 @@ describe Spree::Order, type: :model do
         it "returns valid schema" do
           expect(subject.mailchimp_order).to match_json_schema("order")
         end
+
+        it "doesn't send unnecessary requests to db" do
+          expect { subject.mailchimp_order }.not_to exceed_query_limit(1)
+        end
       end
 
       describe ".mailchimp_cart" do
         subject { create(:order_with_line_items, user: user) }
         it "returns valid schema" do
           expect(subject.mailchimp_cart).to match_json_schema("cart")
+        end
+
+        it "doesn't send unnecessary requests to db" do
+          expect { subject.mailchimp_cart }.not_to exceed_query_limit(1)
         end
       end
     end

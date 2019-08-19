@@ -33,7 +33,7 @@ describe Spree::Product, type: :model do
     it "doesn't send unnecessary requests to db" do
       subject.save!
 
-      expect { subject.mailchimp_product }.not_to exceed_query_limit(1)
+      expect { subject.mailchimp_product }.not_to exceed_query_limit(3)
     end
   end
 end

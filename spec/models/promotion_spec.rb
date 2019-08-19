@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe Spree::Promotion, type: :model do
-  subject { create(:promotion) }
+  let!(:subject) { create(:promotion) }
 
   describe "mailchimp" do
     it "schedules mailchimp notification on promotion create" do
@@ -31,8 +31,8 @@ describe Spree::Promotion, type: :model do
     end
 
     it "doesn't send unnecessary requests to db" do
-      expect { subject.mailchimp_promo_code }.not_to exceed_query_limit(1)
-      expect { subject.mailchimp_promo_rule }.not_to exceed_query_limit(1)
+      expect { subject.reload.mailchimp_promo_code }.not_to exceed_query_limit(3)
+      expect { subject.reload.mailchimp_promo_rule }.not_to exceed_query_limit(5)
     end
   end
 end

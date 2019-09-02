@@ -24,6 +24,7 @@ feature "Order notification", :js do
     click_on order.number.to_s
     expect(current_path).to eq("/admin/orders/#{order.number}/edit")
     click_on "Ship"
+    sleep(3)
     expect(current_path).to eq("/admin/orders/#{order.number}/edit")
     expect(SpreeMailchimpEcommerce::UpdateOrderJob).to have_been_enqueued.exactly(:once)
   end

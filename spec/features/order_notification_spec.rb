@@ -2,7 +2,7 @@ require "spec_helper"
 
 feature "Order notification", :js do
   let(:admin_user) { create(:admin_user) }
-  let(:order) { create(:completed_order_with_totals) }
+  let!(:order) { create(:completed_order_with_totals) }
   let(:reimbursement) { create(:reimbursement) }
   let(:payment) { create(:payment, amount: order.total, order: order, state: "completed") }
   let(:refund_reason) { create(:default_refund_reason) }

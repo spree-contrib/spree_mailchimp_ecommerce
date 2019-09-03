@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'spree', git: 'https://github.com/spree/spree', branch: 'master'
+gem 'spree'
 
 gem "deface"
 gem "gibbon", "~> 3.2.0"
@@ -13,7 +13,7 @@ gem "highline"
 gem "pry"
 gem "rails-controller-testing"
 gem "rubocop-rspec", require: false
-gem "spree_auth_devise", github: "spree/spree_auth_devise", branch: "master"
+gem "spree_auth_devise"
 gem "bullet"
 gem 'rspec-sqlimit'
 

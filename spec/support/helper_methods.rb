@@ -47,9 +47,7 @@ module HelperMethods
     fill_in "card_code", with: "123"
     find("#card_expiry").send_keys 12
     find("#card_expiry").send_keys 20
-    until find("#card_number").value == "4111 1111 1111 1111"
-      find("#card_number").send_keys 1_111_111_111_111_111
-    end
+    find("#card_number").send_keys 1_111_111_111_111_111 until find("#card_number").value == "4111 1111 1111 1111"
     click_on "Save and Continue"
   end
 end

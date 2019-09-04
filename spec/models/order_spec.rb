@@ -41,13 +41,13 @@ describe Spree::Order, type: :model do
     end
   end
 
-  describe 'StockItem' do
-    subject { create(:order_with_line_items, state: 'confirm')}
+  describe "StockItem" do
+    subject { create(:order_with_line_items, state: "confirm") }
     before do
       subject.variants.first.stock_items.first.update_attribute(:count_on_hand, 10)
       create(:payment, order: subject)
     end
-    it 'schedules mailchimp product updating on complete order' do
+    it "schedules mailchimp product updating on complete order" do
       subject.next
       expect(SpreeMailchimpEcommerce::UpdateProductJob).to have_been_enqueued.with(subject.products.first.mailchimp_product)
     end

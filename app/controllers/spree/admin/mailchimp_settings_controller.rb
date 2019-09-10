@@ -9,13 +9,19 @@ module Spree
       def create
         @mailchimp_setting = MailchimpSetting.new(check_params)
         @mailchimp_setting.mailchimp_store_id = @mailchimp_setting.create_store_id
+        @mailchimp_setting.cart_url = "#{::Rails.application.routes.url_helpers.spree_url}cart"
         if @mailchimp_setting.valid?
-          unless model_class.first
+          if model_class.first
+            @mailchimp_setting.validate_only_one_store
+            flash[:error] = @mailchimp_setting.errors.full_messages.to_sentence
+            redirect_to edit_admin_mailchimp_setting_path(model_class.first.id)
+          else
             begin
               ::SpreeMailchimpEcommerce::CreateStoreJob.perform_now(@mailchimp_setting)
               if @mailchimp_setting.save
-                redirect_to edit_admin_mailchimp_setting_path(model_class.first.id)
                 ::SpreeMailchimpEcommerce::UploadStoreContentJob.perform_later
+                @mailchimp_setting.update(mailchimp_account_name: @mailchimp_setting.accout_name)
+                redirect_to edit_admin_mailchimp_setting_path(model_class.first.id)
               else
                 render :new
               end
@@ -23,13 +29,9 @@ module Spree
               flash.now[:error] = e.detail
               render :new
             end
-          else
-            @mailchimp_setting.validate_only_one_store
-            flash[:error] = @mailchimp_setting.errors.full_messages.to_sentence
-            redirect_to edit_admin_mailchimp_setting_path(model_class.first.id)
           end
         else
-          flash[:error] = @mailchimp_setting.errors.full_messages.to_sentence
+          flash.now[:error] = @mailchimp_setting.errors.full_messages.to_sentence
           render :new
         end
       end
@@ -39,7 +41,7 @@ module Spree
           ::SpreeMailchimpEcommerce::UpdateStoreJob.perform_later(@mailchimp_setting)
           redirect_to edit_admin_mailchimp_setting_path(@mailchimp_setting)
         else
-          flash.now[:alert] = @dish.errors.full_messages.to_sentence
+          flash[:alert] = @dish.errors.full_messages.to_sentence
           render :edit
         end
         @mailchimp_setting = MailchimpSetting.find(params[:id])

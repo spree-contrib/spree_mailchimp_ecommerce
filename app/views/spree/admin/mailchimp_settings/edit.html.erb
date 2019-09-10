@@ -1,8 +1,22 @@
 <div class="row">
-  <div class="col-md-6">
-    <%= @mailchimp_setting.mailchimp_list_id %>
+  <div class="col-md-8">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th><%= Spree.t(:mailchimp_account_name) %></th>
+          <th><%= Spree.t(:mailchimp_list_id) %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @mailchimp_setting.mailchimp_account_name %></td>
+          <td><%= @mailchimp_setting.mailchimp_list_id %></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
+
 <%= form_for [:admin, @mailchimp_setting] do |f| %>
   <div data-hook="">
     <div class="row">
@@ -11,13 +25,14 @@
           <%= f.label :mailchimp_store_name, :mailchimp_store_name %>
           <%= f.text_field :mailchimp_store_name, class: 'form-control' %>
         </div>
-      </div
+      </div>
     </div>
   </div>
   <%= render "spree/admin/shared/edit_resource_links" %>
 <% end %>
+
 <div class="row">
-  <div class="col-md-6">
-    <%= button_link_to 'Remove the store', admin_mailchimp_setting_path, method: :delete  %>
+  <div class="col-md-6" style="margin-top:2em;">
+    <%= button_link_to Spree.t(:remove_store), admin_mailchimp_setting_path, method: :delete , class: "btn btn-danger" %>
   </div>
 </div>

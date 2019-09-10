@@ -8,26 +8,42 @@ module Spree
 
       def create
         @mailchimp_setting = MailchimpSetting.new(check_params)
-        begin
-          ::SpreeMailchimpEcommerce::CreateStoreJob.perform_now(@mailchimp_setting)
-          if @mailchimp_setting.save
-            redirect_to edit_admin_mailchimp_setting_path(model_class.first.id)
+        @mailchimp_setting.mailchimp_store_id = @mailchimp_setting.create_store_id
+        if @mailchimp_setting.valid?
+          unless model_class.first
+            begin
+              ::SpreeMailchimpEcommerce::CreateStoreJob.perform_now(@mailchimp_setting)
+              if @mailchimp_setting.save
+                redirect_to edit_admin_mailchimp_setting_path(model_class.first.id)
+                ::SpreeMailchimpEcommerce::UploadStoreContentJob.perform_later
+              else
+                render :new
+              end
+            rescue Gibbon::MailChimpError => e
+              flash.now[:error] = e.detail
+              render :new
+            end
           else
-            render :new
+            @mailchimp_setting.validate_only_one_store
+            flash[:error] = @mailchimp_setting.errors.full_messages.to_sentence
+            redirect_to edit_admin_mailchimp_setting_path(model_class.first.id)
           end
-        rescue Gibbon::MailChimpError => e
-
-          #errors = []
-          #e.body["errors"].each do |error|
-            #errors << "for #{error["field"].blank? ? "all" : error["field"]}: #{error["message"]}"
-          #end
-          flash.now[:error] = e.body
-          #errors.join
+        else
+          flash[:error] = @mailchimp_setting.errors.full_messages.to_sentence
           render :new
         end
       end
 
-
+      def update
+        if @mailchimp_setting.update(check_params)
+          ::SpreeMailchimpEcommerce::UpdateStoreJob.perform_later(@mailchimp_setting)
+          redirect_to edit_admin_mailchimp_setting_path(@mailchimp_setting)
+        else
+          flash.now[:alert] = @dish.errors.full_messages.to_sentence
+          render :edit
+        end
+        @mailchimp_setting = MailchimpSetting.find(params[:id])
+      end
 
       def destroy
         @mailchimp_setting = MailchimpSetting.find(params[:id])
@@ -36,17 +52,14 @@ module Spree
         redirect_to new_admin_mailchimp_setting_path
       end
 
-      def setup_store
-        ::SpreeMailchimpEcommerce::CreateStoreJob.perform_now
-        redirect_to edit_admin_mailchimp_setting_path(model_class.last.id), notice: "Your store is going to be setup shortly."
-      end
+      private
 
       def model_class
         @model_class ||= ::MailchimpSetting
       end
 
       def check_params
-        params.require(:mailchimp_setting).permit(:mailchimp_api_key, :mailchimp_store_id, :mailchimp_list_id, :mailchimp_store_name)
+        params.require(:mailchimp_setting).permit(:mailchimp_api_key, :mailchimp_list_id, :mailchimp_store_name)
       end
     end
   end

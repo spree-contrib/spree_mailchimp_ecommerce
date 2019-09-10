@@ -1,3 +1,23 @@
-<%= render 'form', resource: @mailchimp_setting %>
-<br>
-<%= button_link_to 'Setup your store', admin_mailchimp_setting_setup_store_path(@mailchimp_setting), method: :post %>
+<div class="row">
+  <div class="col-md-6">
+    <%= @mailchimp_setting.mailchimp_list_id %>
+  </div>
+</div>
+<%= form_for [:admin, @mailchimp_setting] do |f| %>
+  <div data-hook="">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :mailchimp_store_name, :mailchimp_store_name %>
+          <%= f.text_field :mailchimp_store_name, class: 'form-control' %>
+        </div>
+      </div
+    </div>
+  </div>
+  <%= render "spree/admin/shared/edit_resource_links" %>
+<% end %>
+<div class="row">
+  <div class="col-md-6">
+    <%= button_link_to 'Remove the store', admin_mailchimp_setting_path, method: :delete  %>
+  </div>
+</div>

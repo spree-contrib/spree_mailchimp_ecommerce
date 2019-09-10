@@ -1,1 +1,30 @@
-<%= render 'form', resource: @mailchimp_setting %>
+
+<%= form_for [:admin, @mailchimp_setting] do |f| %>
+  <div data-hook="">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :mailchimp_api_key, :mailchimp_api_key %>
+          <%= f.text_field :mailchimp_api_key, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :mailchimp_list_id, :mailchimp_list_id %>
+          <%= f.text_field :mailchimp_list_id, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :mailchimp_store_name, :mailchimp_store_name %>
+          <%= f.text_field :mailchimp_store_name, class: 'form-control' %>
+        </div>
+      </div
+    </div>
+  </div>
+  <%= render "spree/admin/shared/new_resource_links" %>
+<% end %>

@@ -8,7 +8,7 @@ module SpreeMailchimpEcommerce
                                   name: mailchimp_setting.mailchimp_store_name,
                                   currency_code: ::Spree::Store.default.default_currency || ::Spree::Config[:currency],
                                   domain: ::Rails.application.routes.url_helpers.spree_url,
-                                  is_syncing: true
+                                  is_syncing: false
                                 })
     end
   end

@@ -18,7 +18,7 @@ module SpreeMailchimpEcommerce
         ::SpreeMailchimpEcommerce::CreatePromoCodeJob.perform_now(promotion.mailchimp_promo_rule, promotion.mailchimp_promo_code)
       end
 
-      gibbon_store.update(body: { is_syncing: false })
+      gibbon_store.update(body: { is_syncing: true })
     end
   end
 end

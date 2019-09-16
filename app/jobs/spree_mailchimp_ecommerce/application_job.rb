@@ -1,8 +1,7 @@
 module SpreeMailchimpEcommerce
   class ApplicationJob < ActiveJob::Base
     around_perform do |job, block|
-      block.call if ready_for_mailchimp?
-      block.call if job.class == SpreeMailchimpEcommerce::CreateStoreJob
+      block.call if ready_for_mailchimp? || job.class == SpreeMailchimpEcommerce::CreateStoreJob
     end
 
     private

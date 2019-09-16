@@ -1,6 +1,8 @@
 module SpreeMailchimpEcommerce
   class UploadStoreContentJob < ApplicationJob
     def perform(*_args)
+      gibbon_store.update(body: { is_syncing: true })
+
       ::Spree::Product.find_each do |product|
         ::SpreeMailchimpEcommerce::CreateProductJob.perform_now(product.mailchimp_product)
       end
@@ -18,7 +20,7 @@ module SpreeMailchimpEcommerce
         ::SpreeMailchimpEcommerce::CreatePromoCodeJob.perform_now(promotion.mailchimp_promo_rule, promotion.mailchimp_promo_code)
       end
 
-      gibbon_store.update(body: { is_syncing: true })
+      gibbon_store.update(body: { is_syncing: false })
     end
   end
 end

@@ -9,6 +9,7 @@ module SpreeMailchimpEcommerce
                                   currency_code: ::Spree::Store.default.default_currency || ::Spree::Config[:currency],
                                   domain: ::Rails.application.routes.url_helpers.spree_url
                                 })
+      MailchimpSetting.last.update(state: 'created')
     end
   end
 end

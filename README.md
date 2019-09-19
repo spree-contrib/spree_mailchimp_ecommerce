@@ -19,6 +19,7 @@ This extension lets you connect your Spree Commerce store with your Mailchimp ac
   * acquire new subscriber emails through a **pop-up form** triggered according to your preferences,
   * **segment your subscribers** based on their purchase activity or predicted audience demographics for tailored email campaigns,
   * drag and drop **product recommendation** blocks or **promo code** blocks into your email campaigns,
+* print and mail actual [Postcards](https://mailchimp.com/features/postcards/) (with promo codes) to engage your customers off-line,
 * enjoy **tracking revenue** gained this way in your Mailchimp dashboard.
 
 ## Before You Start

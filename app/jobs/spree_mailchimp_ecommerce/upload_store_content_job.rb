@@ -22,9 +22,9 @@ module SpreeMailchimpEcommerce
         end
       rescue Gibbon::MailChimpError => e
         Rails.logger.error("[MAILCHIMP] Error while syncing process: #{e}")
-      ensure
-        gibbon_store.update(body: { is_syncing: false })
       end
+    ensure
+      gibbon_store.update(body: { is_syncing: false })
     end
   end
 end

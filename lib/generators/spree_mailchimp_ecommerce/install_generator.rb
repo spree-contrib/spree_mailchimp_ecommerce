@@ -15,6 +15,8 @@ module SpreeMailchimpEcommerce
     end
 
     def inject_a_script
+      return unless ::Spree::Core::Engine.frontend_available?
+
       inject_into_file "app/views/spree/shared/_head.html.erb", after: "<%= yield :head %>\n" do
         "<%= MailchimpHelper.mailchimp_snippet %>"
       end

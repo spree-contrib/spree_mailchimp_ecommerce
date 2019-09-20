@@ -23,7 +23,7 @@ This extension lets you connect your Spree Commerce store with your Mailchimp ac
 * enjoy **tracking revenue** gained this way in your Mailchimp dashboard.
 
 ## Before You Start
-* Your Spree version has to be at least 3.3. The extension may not work to its full extent for older Spree versions but you may [request](https://spreecommerce.org/contact/) its customizations.
+* Your Spree version has to be at least 3.3. The extension may not work to its full extent for older Spree versions but you may [request](https://spreecommerce.org/contact/?utm_source=github-mailchimp-ext) its customizations.
 * We recommend you use this extension on a staging environment first and test it there before installing it on production. 
 * After your Spree Commerce sync is complete, you will have access to Mailchimp’s E-Commerce features. The sync may take from less than an hour, up to around 12 hours, depending on your site’s database size.
 * The extension syncs the customer's first name, last name, email address, and orders.
@@ -62,10 +62,10 @@ If you find yourself in a situation which requires you to deactivate Mailchimp o
  
 ## Troubleshooting
 **My store won't sync with Mailchimp.**
-If you're experiencing issues with the data sync, and have already tried to remove and reinstall the extension, there are a few other possible causes. Request [tech support](https://spreecommerce.org/contact/) to find out more.
+If you're experiencing issues with the data sync, and have already tried to remove and reinstall the extension, there are a few other possible causes. Request [tech support](https://spreecommerce.org/contact/?utm_source=github-mailchimp-ext) to find out more.
  
 **Your Spree setup doesn't meet the minimum requirements.**
-This extension supports only Spree versions above 3.3. If your Spree version is older you may [request](https://spreecommerce.org/contact/) customization of your Spree platfrom. We highly recommend using the newest Spree and extension versions for the best results.
+This extension supports only Spree versions above 3.3. If your Spree version is older you may [request](https://spreecommerce.org/contact/?utm_source=github-mailchimp-ext) customization of your Spree platfrom. We highly recommend using the newest Spree and extension versions for the best results.
  
 **You're experiencing conflicts with other extensions/gems.**
 You may need to turn off all other extensions/gems except for the Spree Mailchimp E-Commerce extension, in order to find, if the extension itself is syncing correctly.
@@ -80,10 +80,10 @@ Spree by default sends out transactional emails internally. In order to properly
 Have you recently removed and reinstalled Spree Mailchimp E-Commerce extension in order to resolve an issue with your connection? If you see a duplicate connection afterward, you may have deleted the extension without deactivating it, first. Repeat the process by disconnecting first and make sure not to skip any steps.
 
 **Pop-up image is not properly showing up.**
-In order for the Pop-up image to appear correctly, remember to Clear the Cache in *Spree Admin Panel > General Settings*, after updating the image in the Mailchimp dashboard. If that does not resolve the issue, please contact [tech support](https://spreecommerce.org/contact/).
+In order for the Pop-up image to appear correctly, remember to Clear the Cache in *Spree Admin Panel > General Settings*, after updating the image in the Mailchimp dashboard. If that does not resolve the issue, please contact [tech support](https://spreecommerce.org/contact/?utm_source=github-mailchimp-ext).
  
 **I need to talk to support.**
-If you've tried our troubleshooting suggestions, but still have trouble with your sync, contact [Mailchimp Support](https://mailchimp.com/contact/) or [Spree Commerce](https://spreecommerce.org/contact/) support. It's helpful to include your Spree Commerce version, along with screenshots of your Mailchimp settings and Spree Mailchimp E-Commerce settings.
+If you've tried our troubleshooting suggestions, but still have trouble with your sync, contact [Mailchimp Support](https://mailchimp.com/contact/) or [Spree Commerce](https://spreecommerce.org/contact/?utm_source=github-mailchimp-ext) support. It's helpful to include your Spree Commerce version, along with screenshots of your Mailchimp settings and Spree Mailchimp E-Commerce settings.
  
 ## Installation
 1. Add this line to your application's Gemfile:
@@ -137,7 +137,7 @@ You can redifine it in your `Product` model decorator
 
 For tech support or with customization requests feel free to:
 * join **#spree-mailchimp** slack channel: [slack.spreecommerce.org](http://slack.spreecommerce.org/)
-* reach out using [spree contact form](https://spreecommerce.org/contact/)
+* reach out using [spree contact form](https://spreecommerce.org/contact/?utm_source=github-mailchimp-ext)
 
 ## License
 
@@ -151,9 +151,9 @@ and may be redistributed under the terms specified in the
 ## About Spark Solutions
 [![Spark Solutions](http://sparksolutions.co/wp-content/uploads/2015/01/logo-ss-tr-221x100.png)][spark]
 
-Spree Mailchimp E-Commerce is maintained by [Spark Solutions Sp. z o.o.](http://sparksolutions.co?utm_source=github)
+Spree Mailchimp E-Commerce is maintained by [Spark Solutions Sp. z o.o.](http://sparksolutions.co??utm_source=github-mailchimp-ext)
 
 We are passionate about open source software.
 We are also [available for hire][spark].
 
-[spark]:http://sparksolutions.co?utm_source=github
+[spark]:http://sparksolutions.co?utm_source=github-mailchimp-ext

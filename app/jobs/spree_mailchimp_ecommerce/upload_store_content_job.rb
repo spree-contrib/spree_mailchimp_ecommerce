@@ -1,6 +1,7 @@
 module SpreeMailchimpEcommerce
   class UploadStoreContentJob < ApplicationJob
     def perform(*_args)
+      begin
       gibbon_store.update(body: { is_syncing: true })
 
       ::Spree::Product.find_each do |product|
@@ -21,6 +22,9 @@ module SpreeMailchimpEcommerce
       end
 
       gibbon_store.update(body: { is_syncing: false })
+      rescue Gibbon::MailChimpError => e
+        Rails.logger.error("[MAILCHIMP] Error while syncing process: #{e}")
+      end
     end
   end
 end

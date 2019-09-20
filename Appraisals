@@ -11,6 +11,7 @@ end
 appraise 'spree-3-7' do
   gem 'spree', '~> 3.7.0'
   gem 'spree_auth_devise', '~> 3.5'
+  gem 'sass-rails'
 end
 
 appraise 'spree-4-0' do

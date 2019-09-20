@@ -133,6 +133,12 @@ By default it defined as
 
 You can redifine it in your `Product` model decorator
 
+## Support and customization requests
+
+For tech support or with customization requests feel free to:
+* join **#spree-mailchimp** slack channel: [slack.spreecommerce.org](http://slack.spreecommerce.org/)
+* reach out using [spree contact form](https://spreecommerce.org/contact/)
+
 ## License
 
 Spree Mailchimp E-Commerce is copyright © 2018-2019

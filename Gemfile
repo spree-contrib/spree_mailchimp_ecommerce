@@ -5,16 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem "spree"
-
-gem "bullet"
-gem "deface"
-gem "gibbon", "~> 3.2.0"
-gem "highline"
-gem "pry"
-gem "rails-controller-testing"
-gem "rspec-sqlimit"
-gem "rubocop-rspec", require: false
-gem "spree_auth_devise"
+gem 'spree', github: 'spree/spree', branch: 'master'
+gem 'spree_auth_devise', github: 'spree/spree_auth_devise', branch: 'master'
+gem 'rspec-sqlimit', git: 'https://github.com/nepalez/rspec-sqlimit', ref: '0c62feb61710c93f20f086a427a7a14784e5ca0d'
 
 gemspec

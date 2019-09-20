@@ -8,11 +8,11 @@ module Spree
       end
 
       def mailchimp_promo_rule
-        ::SpreeMailchimpEcommerce::Presenters::PromoRuleMailchimpPresenter.new(self).json
+        ::SpreeMailchimpEcommerce::PromoRuleMailchimpPresenter.new(self).json
       end
 
       def mailchimp_promo_code
-        ::SpreeMailchimpEcommerce::Presenters::PromoCodeMailchimpPresenter.new(self).json
+        ::SpreeMailchimpEcommerce::PromoCodeMailchimpPresenter.new(self).json
       end
 
       private

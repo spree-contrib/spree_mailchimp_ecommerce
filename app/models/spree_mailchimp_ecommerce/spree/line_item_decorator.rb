@@ -14,7 +14,7 @@ module Spree
       end
 
       def mailchimp_line_item
-        ::SpreeMailchimpEcommerce::Presenters::LineMailchimpPresenter.new(self).json
+        ::SpreeMailchimpEcommerce::LineMailchimpPresenter.new(self).json
       end
 
       private

@@ -122,17 +122,6 @@ By default, Spree doesn't provide `firstname` and `lastname` methods for the Use
 
 Feel free to define `firstname` and `lastname` in your `User` model decorator.
 
-Also, based on a Spree and Rails version, you can have different method to retrieve image url. 
-By default it defined as 
-
-```ruby
-  def mailchimp_image_url
-    images.first&.attachment&.url
-  end
-``` 
-
-You can redifine it in your `Product` model decorator
-
 ## Support and customization requests
 
 For tech support or with customization requests feel free to:

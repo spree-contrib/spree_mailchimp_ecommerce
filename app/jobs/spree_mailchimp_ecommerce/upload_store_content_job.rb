@@ -4,6 +4,8 @@ module SpreeMailchimpEcommerce
       begin
         gibbon_store.update(body: { is_syncing: true })
 
+
+        MailchimpSetting.last.update(state: 'syncing')
         ::Spree::Product.find_each do |product|
           ::SpreeMailchimpEcommerce::CreateProductJob.perform_now(product.mailchimp_product)
         end
@@ -25,6 +27,8 @@ module SpreeMailchimpEcommerce
       end
     ensure
       gibbon_store.update(body: { is_syncing: false })
+
+      MailchimpSetting.last.update(state: 'ready')
     end
   end
 end

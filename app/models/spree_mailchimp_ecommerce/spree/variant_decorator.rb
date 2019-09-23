@@ -2,7 +2,7 @@ module Spree
   module SpreeMailchimpEcommerce
     module VariantDecorator
       def mailchimp_variant
-        ::SpreeMailchimpEcommerce::Presenters::VariantMailchimpPresenter.new(self).json
+        ::SpreeMailchimpEcommerce::VariantMailchimpPresenter.new(self).json
       end
     end
   end

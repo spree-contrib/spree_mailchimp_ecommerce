@@ -14,11 +14,11 @@ module Spree
       end
 
       def mailchimp_cart
-        ::SpreeMailchimpEcommerce::Presenters::CartMailchimpPresenter.new(self).json
+        ::SpreeMailchimpEcommerce::CartMailchimpPresenter.new(self).json
       end
 
       def mailchimp_order
-        ::SpreeMailchimpEcommerce::Presenters::OrderMailchimpPresenter.new(self).json.merge(@notification || {})
+        ::SpreeMailchimpEcommerce::OrderMailchimpPresenter.new(self).json.merge(@notification || {})
       end
 
       def update_mailchimp_cart

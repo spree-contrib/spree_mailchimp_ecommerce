@@ -1,4 +1,4 @@
-class GemSettings < ActiveRecord::Migration[4.2]
+class GemSettings < SpreeExtension::Migration[4.2]
   def change
     create_table :mailchimp_settings do |t|
       t.string :mailchimp_api_key

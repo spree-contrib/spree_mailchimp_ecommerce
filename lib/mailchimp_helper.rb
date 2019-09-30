@@ -15,6 +15,7 @@ module MailchimpHelper
             ecommerce.stores(mailchimp_store_id).retrieve.body["connected_site"]["site_script"]["fragment"]
         end
       rescue Gibbon::MailChimpError => e
+        Rails.logger.error("[MAILCHIMP] error on retrieving snippet #{e}")
         ""
       end
     end

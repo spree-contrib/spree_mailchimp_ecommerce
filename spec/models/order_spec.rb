@@ -11,7 +11,6 @@ describe Spree::Order, type: :model do
         let(:promotion) { create(:promotion) }
         let!(:subject) { create(:completed_order_with_totals, user: user, shipments: [shipment], promotions: [promotion]) }
         it "returns valid schema" do
-          puts subject.mailchimp_order
           expect(subject.mailchimp_order).to match_json_schema("order")
         end
 

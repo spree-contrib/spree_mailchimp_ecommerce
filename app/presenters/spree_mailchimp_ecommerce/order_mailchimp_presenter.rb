@@ -12,7 +12,7 @@ module SpreeMailchimpEcommerce
     end
 
     def json
-      order_json.merge(campaign_id).merge(
+      order_json.merge(campaign_id).merge(promotions).merge(
         {
           processed_at_foreign: order.completed_at.strftime("%Y%m%dT%H%M%S"),
           discount_total: - order.promo_total || 0.0,
@@ -30,6 +30,24 @@ module SpreeMailchimpEcommerce
       return {} unless order.mailchimp_campaign_id
 
       { campaign_id: order.mailchimp_campaign_id }.as_json
+    end
+
+    def promotions
+      return {} unless promotions_list.any?
+
+      promos = promotions_list.map do |p|
+        rule = PromoRuleMailchimpPresenter.new(p).json
+        {
+          code: p.code,
+          amount_disconunted: rule['amount'],
+          type: rule['type']
+        }
+      end
+      { promos: promos }
+    end
+
+    def promotions_list
+      order.all_adjustments.eligible.nonzero.promotion.map(&:source).map(&:promotion).uniq
     end
 
     def user

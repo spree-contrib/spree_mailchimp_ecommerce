@@ -54,7 +54,7 @@ module SpreeMailchimpEcommerce
     end
 
     def order_address(address)
-      customer_address(address).merge({ name: "#{address.firstname} #{address.last_name}" }.as_json)
+      customer_address(address).merge({ name: "#{address&.firstname} #{address&.last_name}" }.as_json)
     end
   end
 end

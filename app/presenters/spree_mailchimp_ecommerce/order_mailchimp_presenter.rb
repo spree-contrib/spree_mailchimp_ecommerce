@@ -33,9 +33,9 @@ module SpreeMailchimpEcommerce
     end
 
     def promotions
-      return {} unless order.promotions.any?
+      return {} unless promotions_list.any?
 
-      promos = order.promotions.map do |p|
+      promos = promotions_li.map do |p|
         rule = PromoRuleMailchimpPresenter.new(p).json
         {
           code: p.code,
@@ -44,6 +44,10 @@ module SpreeMailchimpEcommerce
         }
       end
       { promos: promos }
+    end
+
+    def promotions_list
+      order.all_adjustments.eligible.nonzero.promotion.map(&:source).map(&:promotion).uniq
     end
 
     def user

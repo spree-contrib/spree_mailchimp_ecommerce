@@ -35,7 +35,7 @@ module SpreeMailchimpEcommerce
     def promotions
       return {} unless promotions_list.any?
 
-      promos = promotions_li.map do |p|
+      promos = promotions_list.map do |p|
         rule = PromoRuleMailchimpPresenter.new(p).json
         {
           code: p.code,

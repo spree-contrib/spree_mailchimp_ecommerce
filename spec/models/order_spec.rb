@@ -8,13 +8,14 @@ describe Spree::Order, type: :model do
       let (:user) { create(:user_with_addresses) }
       describe ".mailchimp_order" do
         let(:shipment) { create(:shipment) }
-        let!(:subject) { create(:completed_order_with_totals, user: user, shipments: [shipment]) }
+        let(:promotion) { create(:promotion) }
+        let!(:subject) { create(:completed_order_with_totals, user: user, shipments: [shipment], promotions: [promotion]) }
         it "returns valid schema" do
           expect(subject.mailchimp_order).to match_json_schema("order")
         end
 
         it "doesn't send unnecessary requests to db" do
-          expect { subject.reload.mailchimp_order }.not_to exceed_query_limit(20)
+          expect { subject.reload.mailchimp_order }.not_to exceed_query_limit(26)
         end
       end
 

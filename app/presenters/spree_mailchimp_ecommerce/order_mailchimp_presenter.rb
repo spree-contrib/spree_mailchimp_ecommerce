@@ -39,7 +39,7 @@ module SpreeMailchimpEcommerce
         rule = PromoRuleMailchimpPresenter.new(p).json
         {
           code: p.code,
-          amount_disconunted: rule['amount'],
+          amount_discounted: rule['amount'],
           type: rule['type']
         }
       end

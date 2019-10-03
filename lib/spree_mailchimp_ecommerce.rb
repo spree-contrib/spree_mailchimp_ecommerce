@@ -2,6 +2,7 @@ require "spree_core"
 require "spree_extension"
 require "spree_mailchimp_ecommerce/engine"
 require "gibbon"
+require "spree_mailchimp_ecommerce/gibbon_decorator"
 
 module SpreeMailchimpEcommerce
   class << self

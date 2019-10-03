@@ -297,7 +297,7 @@
         "title": "The Items Schema",
         "required": [
           "code",
-          "amount_disconunted",
+          "amount_discounted",
           "type"
         ],
         "properties": {

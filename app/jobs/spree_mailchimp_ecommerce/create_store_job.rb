@@ -7,7 +7,8 @@ module SpreeMailchimpEcommerce
                                   list_id: mailchimp_setting.mailchimp_list_id,
                                   name: mailchimp_setting.mailchimp_store_name,
                                   currency_code: ::Spree::Store.default.default_currency || ::Spree::Config[:currency],
-                                  domain: ::Rails.application.routes.url_helpers.spree_url
+                                  domain: ::Rails.application.routes.url_helpers.spree_url,
+                                  email_address: mailchimp_setting.mailchimp_store_email
                                 })
       MailchimpSetting.last.update(state: 'created')
     end

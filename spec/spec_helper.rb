@@ -1,6 +1,6 @@
 # Configure Rails Environment
 ENV["RAILS_ENV"] = "test"
-ENV["BASE_URL"] = 'test.local'
+
 require "simplecov"
 require "simplecov-console"
 SimpleCov.formatter = SimpleCov::Formatter::Console
@@ -72,4 +72,5 @@ RSpec.configure do |config|
   config.order = "random"
 
   Rails.application.routes.default_url_options[:host] = "test.com"
+  ::Spree::Core::Engine.routes.default_url_options[:host] = "test.com"
 end

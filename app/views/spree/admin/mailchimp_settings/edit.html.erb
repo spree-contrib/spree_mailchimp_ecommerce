@@ -28,6 +28,14 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :mailchimp_store_email, :mailchimp_store_email %>
+          <%= f.text_field :mailchimp_store_email, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
   </div>
   <%= render "spree/admin/shared/edit_resource_links" %>
 <% end %>

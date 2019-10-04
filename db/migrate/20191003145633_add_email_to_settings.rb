@@ -1,4 +1,4 @@
-class AddEmailToSettings < ActiveRecord::Migration[6.0]
+class AddEmailToSettings < SpreeExtension::Migration[4.2]
   def change
     add_column :mailchimp_settings, :mailchimp_store_email, :string
   end

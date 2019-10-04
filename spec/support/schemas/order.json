@@ -15,7 +15,8 @@
     "tax_total",
     "shipping_total",
     "shipping_address",
-    "billing_address"
+    "billing_address",
+    "order_url"
   ],
   "properties": {
     "id": {
@@ -24,7 +25,7 @@
       "title": "The Id Schema",
       "default": "",
       "examples": [
-        "R193107916"
+        "R729657086"
       ],
       "pattern": "^(.*)$"
     },
@@ -47,7 +48,7 @@
           "title": "The Id Schema",
           "default": "",
           "examples": [
-            "113c4aded7bb35cffb4bff6ce450849f"
+            "506b862a86a037c1bf4842c2d3e935de"
           ],
           "pattern": "^(.*)$"
         },
@@ -57,7 +58,7 @@
           "title": "The Email_address Schema",
           "default": "",
           "examples": [
-            "example@spree.com"
+            "leeanne@millerlakin.biz"
           ],
           "pattern": "^(.*)$"
         },
@@ -76,7 +77,7 @@
           "title": "The First_name Schema",
           "default": "",
           "examples": [
-            "asd"
+            "John"
           ],
           "pattern": "^(.*)$"
         },
@@ -86,7 +87,7 @@
           "title": "The Last_name Schema",
           "default": "",
           "examples": [
-            "asd"
+            "Doe"
           ],
           "pattern": "^(.*)$"
         },
@@ -111,7 +112,7 @@
               "title": "The Address1 Schema",
               "default": "",
               "examples": [
-                "1 central park west"
+                "10 Lovely Street"
               ],
               "pattern": "^(.*)$"
             },
@@ -121,7 +122,7 @@
               "title": "The Address2 Schema",
               "default": "",
               "examples": [
-                ""
+                "Northwest"
               ],
               "pattern": "^(.*)$"
             },
@@ -131,7 +132,7 @@
               "title": "The City Schema",
               "default": "",
               "examples": [
-                "new york"
+                "Herndon"
               ],
               "pattern": "^(.*)$"
             },
@@ -141,7 +142,7 @@
               "title": "The Province Schema",
               "default": "",
               "examples": [
-                "New York"
+                "STATE_NAME_12"
               ],
               "pattern": "^(.*)$"
             },
@@ -151,7 +152,7 @@
               "title": "The Province_code Schema",
               "default": "",
               "examples": [
-                "NY"
+                "STATE_ABBR_12"
               ],
               "pattern": "^(.*)$"
             },
@@ -161,7 +162,7 @@
               "title": "The Postal_code Schema",
               "default": "",
               "examples": [
-                "10023"
+                "35005"
               ],
               "pattern": "^(.*)$"
             },
@@ -171,7 +172,7 @@
               "title": "The Country Schema",
               "default": "",
               "examples": [
-                "United States"
+                "NAME_6"
               ],
               "pattern": "^(.*)$"
             },
@@ -181,7 +182,7 @@
               "title": "The Country_code Schema",
               "default": "",
               "examples": [
-                "US"
+                "I6"
               ],
               "pattern": "^(.*)$"
             }
@@ -205,7 +206,7 @@
       "title": "The Order_total Schema",
       "default": "",
       "examples": [
-        "40.67"
+        "210.0"
       ],
       "pattern": "^(.*)$"
     },
@@ -231,7 +232,7 @@
             "title": "The Id Schema",
             "default": "",
             "examples": [
-              "fb3ea77a2b3f8e7cb0e4e6699568d43d"
+              "c20ad4d76fe97759aa27a0c99bff6710"
             ],
             "pattern": "^(.*)$"
           },
@@ -241,7 +242,7 @@
             "title": "The Product_id Schema",
             "default": "",
             "examples": [
-              "c81e728d9d4c2f636f067f89cc14862c"
+              "c4ca4238a0b923820dcc509a6f75849b"
             ],
             "pattern": "^(.*)$"
           },
@@ -251,7 +252,7 @@
             "title": "The Product_variant_id Schema",
             "default": "",
             "examples": [
-              "156c9d427727a14eeafb2999f0d0f5a8"
+              "249bfcf60552acf849292aa7066ba4a5"
             ],
             "pattern": "^(.*)$"
           },
@@ -270,63 +271,7 @@
             "title": "The Price Schema",
             "default": "",
             "examples": [
-              "22.99"
-            ],
-            "pattern": "^(.*)$"
-          }
-        }
-      }
-    },
-    "campaign_id": {
-      "$id": "#/properties/campaign_id",
-      "type": "string",
-      "title": "The Campaign_id Schema",
-      "default": "",
-      "examples": [
-        "978f0be16e"
-      ],
-      "pattern": "^(.*)$"
-    },
-    "promos": {
-      "$id": "#/properties/promos",
-      "type": "array",
-      "title": "The Promos Schema",
-      "items": {
-        "$id": "#/properties/promos/items",
-        "type": "object",
-        "title": "The Items Schema",
-        "required": [
-          "code",
-          "amount_discounted",
-          "type"
-        ],
-        "properties": {
-          "code": {
-            "$id": "#/properties/promos/items/properties/code",
-            "type": "string",
-            "title": "The Code Schema",
-            "default": "",
-            "examples": [
-              "testing"
-            ],
-            "pattern": "^(.*)$"
-          },
-          "amount_disconunted": {
-            "$id": "#/properties/promos/items/properties/amount_disconunted",
-            "type": "number",
-            "title": "The Amount_disconunted Schema",
-            "default": 0.0,
-            "examples": [
-              0.22
-            ]
-          },
-          "type": {
-            "$id": "#/properties/promos/items/properties/type",
-            "type": "string",
-            "title": "The Type Schema",
-            "default": "",
-            "examples": [
-              "percentage"
+              "10.0"
             ],
             "pattern": "^(.*)$"
           }
@@ -339,7 +284,7 @@
       "title": "The Processed_at_foreign Schema",
       "default": "",
       "examples": [
-        "20191001T095849"
+        "20191004T114828"
       ],
       "pattern": "^(.*)$"
     },
@@ -349,7 +294,7 @@
       "title": "The Discount_total Schema",
       "default": "",
       "examples": [
-        "9.46"
+        "-0.0"
       ],
       "pattern": "^(.*)$"
     },
@@ -359,7 +304,7 @@
       "title": "The Tax_total Schema",
       "default": "",
       "examples": [
-        "2.15"
+        "0.0"
       ],
       "pattern": "^(.*)$"
     },
@@ -369,7 +314,7 @@
       "title": "The Shipping_total Schema",
       "default": "",
       "examples": [
-        "5.0"
+        "200.0"
       ],
       "pattern": "^(.*)$"
     },
@@ -395,7 +340,7 @@
           "title": "The Address1 Schema",
           "default": "",
           "examples": [
-            "1 central park west"
+            "10 Lovely Street"
           ],
           "pattern": "^(.*)$"
         },
@@ -405,7 +350,7 @@
           "title": "The Address2 Schema",
           "default": "",
           "examples": [
-            ""
+            "Northwest"
           ],
           "pattern": "^(.*)$"
         },
@@ -415,7 +360,7 @@
           "title": "The City Schema",
           "default": "",
           "examples": [
-            "new york"
+            "Herndon"
           ],
           "pattern": "^(.*)$"
         },
@@ -425,7 +370,7 @@
           "title": "The Province Schema",
           "default": "",
           "examples": [
-            "New York"
+            "STATE_NAME_15"
           ],
           "pattern": "^(.*)$"
         },
@@ -435,7 +380,7 @@
           "title": "The Province_code Schema",
           "default": "",
           "examples": [
-            "NY"
+            "STATE_ABBR_15"
           ],
           "pattern": "^(.*)$"
         },
@@ -445,7 +390,7 @@
           "title": "The Postal_code Schema",
           "default": "",
           "examples": [
-            "10023"
+            "35005"
           ],
           "pattern": "^(.*)$"
         },
@@ -455,7 +400,7 @@
           "title": "The Country Schema",
           "default": "",
           "examples": [
-            "United States"
+            "NAME_6"
           ],
           "pattern": "^(.*)$"
         },
@@ -465,7 +410,7 @@
           "title": "The Country_code Schema",
           "default": "",
           "examples": [
-            "US"
+            "I6"
           ],
           "pattern": "^(.*)$"
         },
@@ -475,7 +420,7 @@
           "title": "The Name Schema",
           "default": "",
           "examples": [
-            "asd asd"
+            "John Doe"
           ],
           "pattern": "^(.*)$"
         }
@@ -503,7 +448,7 @@
           "title": "The Address1 Schema",
           "default": "",
           "examples": [
-            "1 central park west"
+            "10 Lovely Street"
           ],
           "pattern": "^(.*)$"
         },
@@ -513,7 +458,7 @@
           "title": "The Address2 Schema",
           "default": "",
           "examples": [
-            ""
+            "Northwest"
           ],
           "pattern": "^(.*)$"
         },
@@ -523,7 +468,7 @@
           "title": "The City Schema",
           "default": "",
           "examples": [
-            "new york"
+            "Herndon"
           ],
           "pattern": "^(.*)$"
         },
@@ -533,7 +478,7 @@
           "title": "The Province Schema",
           "default": "",
           "examples": [
-            "New York"
+            "STATE_NAME_14"
           ],
           "pattern": "^(.*)$"
         },
@@ -543,7 +488,7 @@
           "title": "The Province_code Schema",
           "default": "",
           "examples": [
-            "NY"
+            "STATE_ABBR_14"
           ],
           "pattern": "^(.*)$"
         },
@@ -553,7 +498,7 @@
           "title": "The Postal_code Schema",
           "default": "",
           "examples": [
-            "10023"
+            "35005"
           ],
           "pattern": "^(.*)$"
         },
@@ -563,7 +508,7 @@
           "title": "The Country Schema",
           "default": "",
           "examples": [
-            "United States"
+            "NAME_6"
           ],
           "pattern": "^(.*)$"
         },
@@ -573,7 +518,7 @@
           "title": "The Country_code Schema",
           "default": "",
           "examples": [
-            "US"
+            "I6"
           ],
           "pattern": "^(.*)$"
         },
@@ -583,11 +528,21 @@
           "title": "The Name Schema",
           "default": "",
           "examples": [
-            "asd asd"
+            "John Doe"
           ],
           "pattern": "^(.*)$"
         }
       }
+    },
+    "order_url": {
+      "$id": "#/properties/order_url",
+      "type": "string",
+      "title": "The Order_url Schema",
+      "default": "",
+      "examples": [
+        "http://test.com/orders/R729657086"
+      ],
+      "pattern": "^(.*)$"
     }
   }
 }

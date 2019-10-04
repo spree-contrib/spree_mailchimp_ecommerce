@@ -19,7 +19,8 @@ module SpreeMailchimpEcommerce
           tax_total: order.additional_tax_total || 0.0,
           shipping_total: order.shipment_total || 0.0,
           shipping_address: order_address(order.shipping_address),
-          billing_address: order_address(order.billing_address)
+          billing_address: order_address(order.billing_address),
+          order_url: "#{Rails.application.routes.url_helpers.spree_url}orders/#{order.number}"
         }.as_json
       )
     end

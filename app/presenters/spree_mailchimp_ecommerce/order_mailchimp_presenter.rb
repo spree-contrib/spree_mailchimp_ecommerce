@@ -20,7 +20,7 @@ module SpreeMailchimpEcommerce
           shipping_total: order.shipment_total || 0.0,
           shipping_address: order_address(order.shipping_address),
           billing_address: order_address(order.billing_address),
-          order_url: "#{Rails.application.routes.url_helpers.spree_url}orders/#{order.number}"
+          order_url: ::Spree::Core::Engine.routes.url_helpers.order_url(order)
         }.as_json
       )
     end

@@ -27,3 +27,5 @@ module SpreeMailchimpEcommerce
     end
   end
 end
+
+::Spree::Core::Engine.routes.default_url_options[:host] = ENV['BASE_URL']

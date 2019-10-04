@@ -1,6 +1,6 @@
 # Configure Rails Environment
 ENV["RAILS_ENV"] = "test"
-
+ENV["BASE_URL"] = 'test.local'
 require "simplecov"
 require "simplecov-console"
 SimpleCov.formatter = SimpleCov::Formatter::Console

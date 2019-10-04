@@ -71,4 +71,5 @@ RSpec.configure do |config|
   config.order = "random"
 
   Rails.application.routes.default_url_options[:host] = "test.com"
+  ::Spree::Core::Engine.routes.default_url_options[:host] = "test.com"
 end

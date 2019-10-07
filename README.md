@@ -39,6 +39,8 @@ To start using the extension, follow these steps:
   - MAILCHIMP_API_KEY - enter your Mailchimp API Key which you can find in your Mailchimp account in *Extras > API Keys* menu. Generate your API Key there and and copy & paste it into this field.
   - MAILCHIMP_LIST_ID - enter your Audience ID which can be found on the *Audience* settings page.
   - MAILCHIMP_STORE_NAME - enter your store or brand name (useful when connecting multiple stores to a single Mailchimp account).
+  - MAILCHIMP_STORE_EMAIL - enter the email you wish to be seen as the store contact email in Campaign footer
+  
 - Click on the **Create** button underneath the form. The button will indicate the sync status transitioning between values: 
   - Inactive,
   - Created, 

@@ -10,11 +10,11 @@ module Spree
       private
 
       def update_mailchimp_product
-        ::SpreeMailchimpEcommerce::UpdateProductJob.perform_later(find_product_id)
+        ::SpreeMailchimpEcommerce::UpdateProductJob.perform_later(find_product.mailchimp_product)
       end
 
-      def find_product_id
-        Spree::Variant.unscoped.find(viewable_id).product_id
+      def find_product
+        Spree::Variant.unscoped.find(viewable_id).product
       end
     end
   end

@@ -1,5 +1,5 @@
-module Spree
-  module SpreeMailchimpEcommerce
+module SpreeMailchimpEcommerce
+  module Spree
     module StockItemDecorator
       def self.prepended(base)
         base.after_save :update_product
@@ -15,4 +15,4 @@ module Spree
     end
   end
 end
-Spree::StockItem.prepend(Spree::SpreeMailchimpEcommerce::StockItemDecorator)
+Spree::StockItem.prepend(SpreeMailchimpEcommerce::Spree::StockItemDecorator)

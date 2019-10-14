@@ -1,5 +1,5 @@
-module Spree
-  module SpreeMailchimpEcommerce
+module SpreeMailchimpEcommerce
+  module Spree
     module LineItemDecorator
       def self.prepended(base)
         base.after_update :update_mailchimp_cart
@@ -29,4 +29,4 @@ module Spree
     end
   end
 end
-Spree::LineItem.prepend(Spree::SpreeMailchimpEcommerce::LineItemDecorator)
+Spree::LineItem.prepend(SpreeMailchimpEcommerce::Spree::LineItemDecorator)

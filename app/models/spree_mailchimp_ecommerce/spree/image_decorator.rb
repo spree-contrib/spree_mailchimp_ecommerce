@@ -1,5 +1,5 @@
-module Spree
-  module SpreeMailchimpEcommerce
+module SpreeMailchimpEcommerce
+  module Spree
     module ImageDecorator
       def self.prepended(base)
         base.after_create :update_mailchimp_product
@@ -19,4 +19,4 @@ module Spree
     end
   end
 end
-Spree::Image.prepend(Spree::SpreeMailchimpEcommerce::ImageDecorator)
+Spree::Image.prepend(SpreeMailchimpEcommerce::Spree::ImageDecorator)

@@ -1,5 +1,5 @@
-module Spree
-  module SpreeMailchimpEcommerce
+module SpreeMailchimpEcommerce
+  module Spree
     module RefundDecorator
       def self.prepended(base)
         base.after_save :add_refund_notification
@@ -13,4 +13,4 @@ module Spree
     end
   end
 end
-Spree::Refund.prepend(Spree::SpreeMailchimpEcommerce::RefundDecorator)
+Spree::Refund.prepend(SpreeMailchimpEcommerce::Spree::RefundDecorator)

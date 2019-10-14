@@ -14,7 +14,7 @@ module SpreeMailchimpEcommerce
       end
 
       def find_product_id
-        Spree::Variant.unscoped.find(viewable_id).product_id
+        ::Spree::Variant.unscoped.find(viewable_id).product_id
       end
     end
   end

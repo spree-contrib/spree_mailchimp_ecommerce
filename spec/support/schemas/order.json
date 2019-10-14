@@ -15,7 +15,8 @@
     "tax_total",
     "shipping_total",
     "shipping_address",
-    "billing_address"
+    "billing_address",
+    "order_url"
   ],
   "properties": {
     "id": {
@@ -584,6 +585,16 @@
           "default": "",
           "examples": [
             "asd asd"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "order_url": {
+          "$id": "#/properties/order_url",
+          "type": "string",
+          "title": "The Order_url Schema",
+          "default": "",
+          "examples": [
+            "http://test.com/orders/R729657086"
           ],
           "pattern": "^(.*)$"
         }

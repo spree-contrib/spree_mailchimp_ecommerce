@@ -24,7 +24,7 @@ module SpreeMailchimpEcommerce
       end
 
       def delete_line_item
-        ::SpreeMailchimpEcommerce::DeleteLineItemJob.perform_later(self)
+        ::SpreeMailchimpEcommerce::DeleteLineItemJob.perform_later(id, order_id, order.number)
       end
     end
   end

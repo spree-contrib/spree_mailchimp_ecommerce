@@ -1,5 +1,5 @@
-module Spree
-  module SpreeMailchimpEcommerce
+module SpreeMailchimpEcommerce
+  module Spree
     module OrderDecorator
       def self.prepended(base)
         base.before_update :create_mailchimp_cart, if: proc { email_changed? }
@@ -86,4 +86,4 @@ module Spree
     end
   end
 end
-Spree::Order.prepend(Spree::SpreeMailchimpEcommerce::OrderDecorator)
+Spree::Order.prepend(SpreeMailchimpEcommerce::Spree::OrderDecorator)

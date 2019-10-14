@@ -1,5 +1,5 @@
-module Spree
-  module SpreeMailchimpEcommerce
+module SpreeMailchimpEcommerce
+  module Spree
     module ShipmentDecorator
       def self.prepended(base)
         base.state_machine.after_transition to: :shipped, do: :add_ship_notification, if: :order_shipped?
@@ -17,4 +17,4 @@ module Spree
     end
   end
 end
-Spree::Shipment.prepend(Spree::SpreeMailchimpEcommerce::ShipmentDecorator)
+Spree::Shipment.prepend(SpreeMailchimpEcommerce::Spree::ShipmentDecorator)

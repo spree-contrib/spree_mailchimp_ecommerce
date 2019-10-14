@@ -1,5 +1,5 @@
-module Spree
-  module SpreeMailchimpEcommerce
+module SpreeMailchimpEcommerce
+  module Spree
     module UserDecorator
       def self.prepended(base)
         base.after_create :create_mailchimp_user
@@ -29,4 +29,4 @@ module Spree
     end
   end
 end
-Spree::User.prepend(Spree::SpreeMailchimpEcommerce::UserDecorator)
+Spree::User.prepend(SpreeMailchimpEcommerce::Spree::UserDecorator)

@@ -1,5 +1,5 @@
-module Spree
-  module SpreeMailchimpEcommerce
+module SpreeMailchimpEcommerce
+  module Spree
     module ProductDecorator
       def self.prepended(base)
         base.after_create :create_mailchimp_product
@@ -41,4 +41,4 @@ module Spree
     end
   end
 end
-Spree::Product.prepend(Spree::SpreeMailchimpEcommerce::ProductDecorator)
+Spree::Product.prepend(SpreeMailchimpEcommerce::Spree::ProductDecorator)

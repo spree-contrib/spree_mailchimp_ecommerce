@@ -8,3 +8,4 @@ module SpreeMailchimpEcommerce
   end
 end
 Spree::Variant.prepend(SpreeMailchimpEcommerce::Spree::VariantDecorator)
+

@@ -135,9 +135,7 @@ For tech support or with customization requests feel free to:
 Spree Mailchimp E-Commerce is copyright © 2018-2019
 [Spark Solutions Sp. z o.o.][spark]. It is free software,
 and may be redistributed under the terms specified in the
-[LICENCE](LICENSE) file.
-
-[LICENSE]: https://github.com/spree-contrib/spree_analytics_trackers/blob/master/LICENSE
+[LICENCE](MIT-LICENSE) file.
 
 ## About Spark Solutions
 [![Spark Solutions](http://sparksolutions.co/wp-content/uploads/2015/01/logo-ss-tr-221x100.png)][spark]

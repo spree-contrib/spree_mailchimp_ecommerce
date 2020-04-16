@@ -1,5 +1,5 @@
 # Spree Mailchimp E-Commerce
-[![Build Status](https://travis-ci.org/spark-solutions/spree_mailchimp_ecommerce.svg?branch=master)](https://travis-ci.org/spark-solutions/spree_mailchimp_ecommerce)
+[![Build Status](https://travis-ci.org/spree-contrib/spree_mailchimp_ecommerce.svg?branch=master)](https://travis-ci.org/spree-contrib/spree_mailchimp_ecommerce)
 [![Maintainability](https://api.codeclimate.com/v1/badges/4f78be32523b539f2788/maintainability)](https://codeclimate.com/github/spark-solutions/spree_mailchimp_ecommerce/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/4f78be32523b539f2788/test_coverage)](https://codeclimate.com/github/spark-solutions/spree_mailchimp_ecommerce/test_coverage)
 

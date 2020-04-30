@@ -21,20 +21,20 @@ module SpreeMailchimpEcommerce
         amount: amount.to_f,
         type: type || "fixed",
         target: target || "total",
-        created_at_foreign: promotion.created_at.strftime("%Y%m%dT%H%M%S"),
-        updated_at_foreign: promotion.updated_at.strftime("%Y%m%dT%H%M%S")
+        created_at_foreign: promotion.created_at.in_time_zone("UTC").iso8601,
+        updated_at_foreign: promotion.updated_at.in_time_zone("UTC").iso8601
       }.as_json
     end
 
     private
 
     def starts_at
-      promotion.starts_at ? promotion.starts_at.strftime("%Y%m%dT%H%M%S") : ""
+      promotion.starts_at ? promotion.starts_at.in_time_zone("UTC").iso8601 : ""
     end
 
     # with ends_at as "" the promo_code is unavaialbe but still exist
     def ends_at
-      available? && promotion.expires_at ? promotion.expires_at.strftime("%Y%m%dT%H%M%S") : ""
+      available? && promotion.expires_at ? promotion.expires_at.in_time_zone("UTC").iso8601 : ""
     end
 
     def amount

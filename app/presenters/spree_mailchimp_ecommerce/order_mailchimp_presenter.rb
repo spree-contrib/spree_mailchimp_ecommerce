@@ -14,7 +14,7 @@ module SpreeMailchimpEcommerce
     def json
       order_json.merge(campaign_id).merge(promotions).merge(
         {
-          processed_at_foreign: order.completed_at.strftime("%Y%m%dT%H%M%S"),
+          processed_at_foreign: order.completed_at.in_time_zone("UTC").iso8601,
           discount_total: - order.promo_total || 0.0,
           tax_total: order.additional_tax_total || 0.0,
           shipping_total: order.shipment_total || 0.0,

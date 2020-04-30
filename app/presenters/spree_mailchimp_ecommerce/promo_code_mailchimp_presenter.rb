@@ -15,8 +15,8 @@ module SpreeMailchimpEcommerce
         code: promotion.code || "",
         redemption_url: redemption_url,
         usage_count: promotion.credits_count,
-        created_at_foreign: promotion.created_at.strftime("%Y%m%dT%H%M%S") || "",
-        updated_at_foreign: promotion.updated_at.strftime("%Y%m%dT%H%M%S") || ""
+        created_at_foreign: promotion.created_at.in_time_zone("UTC").iso8601 || "",
+        updated_at_foreign: promotion.updated_at.in_time_zone("UTC").iso8601 || ""
       }.as_json
     end
 

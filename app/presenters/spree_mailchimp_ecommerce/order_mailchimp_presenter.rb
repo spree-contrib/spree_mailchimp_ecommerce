@@ -39,7 +39,7 @@ module SpreeMailchimpEcommerce
       promos = promotions_list.map do |p|
         rule = PromoRuleMailchimpPresenter.new(p).json
         {
-          code: p.code,
+          code: p.code || "",
           amount_discounted: rule['amount'],
           type: rule['type']
         }

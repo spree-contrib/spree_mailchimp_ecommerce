@@ -48,7 +48,7 @@ module SpreeMailchimpEcommerce
     end
 
     def promotions_list
-      order.all_adjustments.eligible.nonzero.promotion.map(&:source).map(&:promotion).uniq
+      order.all_adjustments.eligible.nonzero.promotion.map(&:source).compact.map(&:promotion).uniq
     end
 
     def user

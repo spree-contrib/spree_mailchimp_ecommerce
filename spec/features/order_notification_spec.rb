@@ -15,7 +15,7 @@ feature "Order notification", :js do
     click_on "Cancel"
     page.driver.browser.switch_to.alert.accept
     expect(current_path).to eq("/admin/orders/#{order.number}/edit")
-    expect(SpreeMailchimpEcommerce::UpdateOrderJob).to have_been_enqueued.exactly(:once)
+    expect(SpreeMailchimpEcommerce::UpsertOrderJob).to have_been_enqueued.exactly(:once)
   end
 
   scenario "Ship order" do
@@ -26,7 +26,7 @@ feature "Order notification", :js do
     click_on "Ship"
     sleep(3)
     expect(current_path).to eq("/admin/orders/#{order.number}/edit")
-    expect(SpreeMailchimpEcommerce::UpdateOrderJob).to have_been_enqueued.exactly(:once)
+    expect(SpreeMailchimpEcommerce::UpsertOrderJob).to have_been_enqueued.exactly(:once)
   end
 
   scenario "Refund by reimbursement" do
@@ -42,7 +42,7 @@ feature "Order notification", :js do
     expect(current_path).to eq("/admin/orders/#{order.number}/customer_returns/1/edit")
     find(".action-edit").click
     click_on "Reimburse"
-    expect(SpreeMailchimpEcommerce::UpdateOrderJob).to have_been_enqueued.exactly(:once)
+    expect(SpreeMailchimpEcommerce::UpsertOrderJob).to have_been_enqueued.exactly(:once)
   end
 
   scenario "Refund payment" do
@@ -58,6 +58,6 @@ feature "Order notification", :js do
     expect(current_path).to eq("/admin/orders/#{order.number}/payments/#{payment.number}/refunds/new")
     select refund_reason.name.to_s, from: "refund_refund_reason_id"
     click_on "Refund"
-    expect(SpreeMailchimpEcommerce::UpdateOrderJob).to have_been_enqueued.exactly(:once)
+    expect(SpreeMailchimpEcommerce::UpsertOrderJob).to have_been_enqueued.exactly(:once)
   end
 end

@@ -76,7 +76,7 @@ describe Spree::Order, type: :model do
       order = create(:completed_order_with_totals)
       order.cancel
 
-      expect(SpreeMailchimpEcommerce::UpdateOrderJob).to have_been_enqueued.with(order.mailchimp_order)
+      expect(SpreeMailchimpEcommerce::UpsertOrderJob).to have_been_enqueued.with(order.mailchimp_order)
       expect(order.mailchimp_order["financial_status"]).to eq("cancelled")
     end
 
@@ -84,7 +84,7 @@ describe Spree::Order, type: :model do
       order = create(:order_ready_to_ship)
       order.shipments.first.ship!
 
-      expect(SpreeMailchimpEcommerce::UpdateOrderJob).to have_been_enqueued.with(order.mailchimp_order)
+      expect(SpreeMailchimpEcommerce::UpsertOrderJob).to have_been_enqueued.with(order.mailchimp_order)
       expect(order.mailchimp_order["fulfillment_status"]).to eq("shipped")
     end
 
@@ -92,7 +92,7 @@ describe Spree::Order, type: :model do
       order = create(:shipped_order)
       create(:refund, payment: order.payments.first)
 
-      expect(SpreeMailchimpEcommerce::UpdateOrderJob).to have_been_enqueued.with(order.mailchimp_order)
+      expect(SpreeMailchimpEcommerce::UpsertOrderJob).to have_been_enqueued.with(order.mailchimp_order)
       expect(order.mailchimp_order["financial_status"]).to eq("refunded")
     end
   end

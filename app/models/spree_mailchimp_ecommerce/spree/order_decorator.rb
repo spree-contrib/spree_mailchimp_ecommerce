@@ -64,7 +64,7 @@ module SpreeMailchimpEcommerce
       end
 
       def update_mailchimp_order
-        ::SpreeMailchimpEcommerce::UpdateOrderJob.perform_later(mailchimp_order)
+        ::SpreeMailchimpEcommerce::UpsertOrderJob.perform_later(mailchimp_order)
       end
 
       def new_order_notification

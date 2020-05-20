@@ -12,7 +12,7 @@ module SpreeMailchimpEcommerce
     def json
       {
         id: Digest::MD5.hexdigest(promotion.id.to_s),
-        code: promotion.code || "",
+        code: promotion.code || "promotion:#{promotion.id}",
         redemption_url: redemption_url,
         usage_count: promotion.credits_count,
         created_at_foreign: promotion.created_at.in_time_zone("UTC").iso8601 || "",

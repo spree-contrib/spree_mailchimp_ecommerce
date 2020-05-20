@@ -22,6 +22,8 @@ module SpreeMailchimpEcommerce
       end
 
       def update_mailchimp_cart
+        return unless mailchimp_cart_created
+
         ::SpreeMailchimpEcommerce::UpdateOrderCartJob.perform_later(mailchimp_cart)
       end
 

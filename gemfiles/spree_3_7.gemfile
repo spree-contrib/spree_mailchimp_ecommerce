@@ -6,5 +6,6 @@ gem "spree", "~> 3.7.0"
 gem "spree_auth_devise", "~> 3.5"
 gem "rspec-sqlimit", git: "https://github.com/nepalez/rspec-sqlimit", ref: "0c62feb61710c93f20f086a427a7a14784e5ca0d"
 gem "sass-rails"
+gem "rails-controller-testing"
 
 gemspec path: "../"

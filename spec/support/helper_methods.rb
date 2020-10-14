@@ -1,9 +1,10 @@
 module HelperMethods
   def sign_up
+    click_on 'Sign Up'
     fill_in "spree_user_email", with: "spree@example.com"
     fill_in "spree_user_password", with: "Spree123"
     fill_in "spree_user_password_confirmation", with: "Spree123"
-    click_on "Create"
+    click_on "Sign Up"
   end
 
   def login
@@ -20,7 +21,7 @@ module HelperMethods
   end
 
   def add_product_to_cart
-    visit "/"
+    visit "/products"
     click_on "spree_product"
     click_on "Add To Cart"
     click_on "Checkout"

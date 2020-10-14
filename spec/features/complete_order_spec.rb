@@ -33,8 +33,17 @@ feature "Complete Order Spec", :js do
     expect(current_path).to eq("/checkout/confirm")
 
     click_on "Place Order"
-    expect(current_path).to eq("/orders/#{order_number}")
-    expect(page).to have_content('Order placed successfully')
+    if Spree.version.to_f >= 4.0 || Spree.version.to_f == 3.7
+      expect(current_path).to eq("/orders/#{order_number}")
+    elsif Spree.version.to_f < 4.0
+      expect(current_path).to eq('/checkout/update/confirm')
+    end
+
+    if Spree.version.to_f <= 4.0
+      expect(page).to have_content('Your order has been processed successfully')
+    else
+      expect(page).to have_content('Order placed successfully')
+    end
 
     expect(SpreeMailchimpEcommerce::DeleteCartJob).to have_been_enqueued.exactly(:once)
     expect(SpreeMailchimpEcommerce::CreateOrderJob).to have_been_enqueued.exactly(:once)

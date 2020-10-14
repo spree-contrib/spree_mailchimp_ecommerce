@@ -33,8 +33,7 @@ feature "Abandoned Cart", :js do
 
     add_product_to_cart
     expect(current_path).to eq("/checkout/registration")
-
-    click_on "Log in"
+    Spree.version.to_f <= 4.0 ? click_on('Login as Existing Customer') : click_on('Log in')
     login
     expect(current_path).to eq("/checkout/address")
 
@@ -66,13 +65,15 @@ feature "Abandoned Cart", :js do
     add_product_to_cart
     expect(current_path).to eq("/checkout/registration")
 
-    click_on "Sign Up"
-    expect(current_path).to eq("/signup")
+    if Spree.version.to_f > 4.0
+      click_on 'Sign Up'
+      expect(current_path).to eq('/signup')
+    end
 
     fill_in "spree_user_email", with: "spree@example.com"
     fill_in "spree_user_password", with: "Spree123"
     fill_in "spree_user_password_confirmation", with: "Spree123"
-    click_on "Sign Up"
+    Spree.version.to_f <= 4.0 ? click_on('Create') : click_on('Sign Up')
     expect(current_path).to eq("/checkout/address")
 
     fill_in_checkout_address

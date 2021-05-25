@@ -12,6 +12,11 @@ feature "Complete Order Spec", :js do
   before do
     variant.stock_items.first.update(count_on_hand: 10)
     allow(SpreeMailchimpEcommerce).to receive(:configuration).and_return(SpreeMailchimpEcommerce::Configuration.new)
+
+    if Spree.version.to_f >= 4.2
+      payment_method = Spree::PaymentMethod.first
+      payment_method.update!(stores: [Spree::Store.first])
+    end
   end
 
   after { Timecop.return }

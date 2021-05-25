@@ -33,7 +33,16 @@ feature "Abandoned Cart", :js do
 
     add_product_to_cart
     expect(current_path).to eq("/checkout/registration")
-    Spree.version.to_f <= 4.0 ? click_on('Login as Existing Customer') : click_on('Log in')
+
+    spree_version = Spree.version.to_f
+    if spree_version <= 4.0
+      click_on('Login as Existing Customer')
+    elsif spree_version <= 4.1
+      click_on('Log in')
+    else
+      click_on('Login')
+    end
+
     login
     expect(current_path).to eq("/checkout/address")
 

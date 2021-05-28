@@ -10,14 +10,18 @@ module HelperMethods
   def login
     fill_in "spree_user_email", with: "spree@example.com"
     fill_in "spree_user_password", with: "Spree123"
-    Spree.version.to_f <= 4.0 ? click_on('Login') : click_on("Log in")
+
+    spree_version = Spree.version.to_f
+    spree_version <= 4.0 || spree_version >= 4.2 ? click_on('Login') : click_on("Log in")
   end
 
   def login_as_admin
     visit "/admin"
     fill_in "spree_user_email", with: admin_user.email
     fill_in "spree_user_password", with: admin_user.password
-    Spree.version.to_f <= 4.0 ? click_on('Login') : click_on('Log in')
+
+    spree_version = Spree.version.to_f
+    spree_version <= 4.0 || spree_version >= 4.2 ? click_on('Login') : click_on('Log in')
   end
 
   def add_product_to_cart

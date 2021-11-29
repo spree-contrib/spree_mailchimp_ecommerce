@@ -18,6 +18,6 @@ class MailchimpSetting < ActiveRecord::Base
   private
 
   def mailchimp_list_id_cannot_be_updated
-    errors.add(:mailchimp_list_id, Spree.t(:can_not_be_updated)) if mailchimp_list_id_changed?
+    errors.add(:mailchimp_list_id, Spree.t(:can_not_be_updated)) if mailchimp_list_id_changed? && state == 'ready'
   end
 end

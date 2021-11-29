@@ -14,11 +14,25 @@ describe MailchimpSetting, type: :model do
       expect(subject.destroyed?).to be true
     end
 
-    it 'does not allow to update mailchimp_list_id' do
-      subject.update(mailchimp_list_id: FFaker::Internet.password)
+    context 'when mailchimp is synchronised' do
+      before { subject.update(state: 'ready') }
 
-      expect(subject.valid?).to be false
-      expect(subject.errors.to_h[:mailchimp_list_id]).to eq Spree.t(:can_not_be_updated)
+      it 'does not allow to update mailchimp_list_id' do
+        subject.update(mailchimp_list_id: FFaker::Internet.password)
+
+        expect(subject.valid?).to be false
+        expect(subject.errors.to_h[:mailchimp_list_id]).to eq Spree.t(:can_not_be_updated)
+      end
+    end
+
+    context 'when mailchimp is not synchronised' do
+      let(:new_list_id) { FFaker::Internet.password }
+
+      it 'allows to update mailchimp_list_id' do
+        subject.update(mailchimp_list_id: new_list_id)
+
+        expect(subject.reload.mailchimp_list_id).to eq new_list_id
+      end
     end
   end
 end

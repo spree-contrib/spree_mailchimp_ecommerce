@@ -11,7 +11,7 @@ module SpreeMailchimpEcommerce
     def json
       {
         id: Digest::MD5.hexdigest(user.email.downcase),
-        email_address: user.email || "",
+        email_address: user.email || '',
         opt_in_status: false,
         first_name: firstname,
         last_name: lastname,
@@ -21,11 +21,11 @@ module SpreeMailchimpEcommerce
     private
 
     def firstname
-      user.try(:firstname) || user&.bill_address&.firstname || "unknown firstname"
+      user.try(:firstname) || user.try(:first_name) || user&.bill_address&.firstname || 'unknown firstname'
     end
 
     def lastname
-      user.try(:lastname) || user&.bill_address&.lastname || "unknown lastname"
+      user.try(:lastname) || user.try(:last_name) || user&.bill_address&.lastname || 'unknown lastname'
     end
 
     def address

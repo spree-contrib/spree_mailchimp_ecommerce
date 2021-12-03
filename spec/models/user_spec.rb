@@ -3,18 +3,42 @@ require "spec_helper"
 describe Spree::User, type: :model do
   subject { build(:user_with_addresses) }
 
-  describe "mailchimp" do
+  describe 'after_create' do
     it "schedules mailchimp notification on user create" do
       subject.save!
 
       expect(SpreeMailchimpEcommerce::CreateUserJob).to have_been_enqueued.with(subject.mailchimp_user)
     end
+  end
 
-    it "schedules mailchimp notification on user update" do
-      subject.save!
-      subject.update(email: "new@mail.com")
+  describe 'after_update' do
+    before { subject.save }
 
-      expect(SpreeMailchimpEcommerce::UpdateUserJob).to have_been_enqueued.with(subject.mailchimp_user)
+    context 'when some of MAILCHIMP_ATTRIBUTES is updated' do
+      context 'when email is changed' do
+        before { subject.update(email: FFaker::Internet.email) }
+
+        it 'enqueues SpreeMailchimpEcommerce::UpdateUserJob' do
+          binding.pry
+          expect(SpreeMailchimpEcommerce::UpdateUserJob).to have_been_enqueued.with(subject.mailchimp_user)
+        end
+      end
+
+      context 'when bill address is changed' do
+        let(:new_address) { create(:address) }
+
+        before { subject.update(bill_address: new_address) }
+
+        it 'enqueues SpreeMailchimpEcommerce::UpdateUserJob' do
+          expect(SpreeMailchimpEcommerce::UpdateUserJob).to have_been_enqueued.with(subject.mailchimp_user)
+        end
+      end
+    end
+
+    context 'when some other attribute is updated' do
+      it 'does not enqueue SpreeMailchimpEcommerce::UpdateUserJob' do
+        expect { subject.update(current_sign_in_ip: FFaker::Internet.ip_v4_address) }.not_to change(ActiveJob::Base.queue_adapter.enqueued_jobs, :size)
+      end
     end
   end
 

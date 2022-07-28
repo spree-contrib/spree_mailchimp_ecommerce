@@ -49,7 +49,7 @@ module Spree
       end
 
       def permitted_params
-        params.require(:mailchimp_setting).permit(:mailchimp_api_key, :mailchimp_list_id, :mailchimp_store_name, :mailchimp_store_email)
+        params.require(:mailchimp_setting).permit(:mailchimp_api_key, :mailchimp_list_id, :mailchimp_store_name, :mailchimp_store_email, :cart_url)
       end
 
       def mailchimp_setting_attributes

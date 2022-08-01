@@ -1,4 +1,4 @@
-<%= form_for [:admin, @mailchimp_setting] do |f| %>
+<%= form_for [:admin, @mailchimp_setting], data: { turbo: false }  do |f| %>
   <div data-hook="">
     <div class="row">
       <div class="col-md-6">
@@ -29,6 +29,14 @@
         <div class="form-group">
           <%= f.label :mailchimp_store_email, :mailchimp_store_email %>
           <%= f.text_field :mailchimp_store_email, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :cart_url, :cart_url %>
+          <%= f.text_field :cart_url, class: 'form-control' %>
         </div>
       </div>
     </div>

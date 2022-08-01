@@ -13,9 +13,9 @@ module Spree
             ::SpreeMailchimpEcommerce::CreateStoreJob.perform_now(@mailchimp_setting)
             ::SpreeMailchimpEcommerce::UploadStoreContentJob.perform_later
             @mailchimp_setting.update(mailchimp_account_name: @mailchimp_setting.accout_name)
-            redirect_to edit_admin_mailchimp_setting_path(model_class.first.id)
+            redirect_to edit_admin_mailchimp_setting_path(@mailchimp_setting)
           rescue Gibbon::MailChimpError => e
-            flash.now[:error] = e.detail
+            flash.now[:error] = e.message
             render :new
           end
         else
@@ -30,7 +30,7 @@ module Spree
           @mailchimp_setting.update(permitted_params)
           ::SpreeMailchimpEcommerce::UpdateStoreJob.perform_later(@mailchimp_setting)
         end
-        redirect_to edit_admin_mailchimp_setting_path
+        redirect_to edit_admin_mailchimp_setting_path(@mailchimp_setting)
       end
 
       def destroy
@@ -55,7 +55,15 @@ module Spree
       def mailchimp_setting_attributes
         @mailchimp_setting = MailchimpSetting.new(permitted_params)
         @mailchimp_setting.mailchimp_store_id = @mailchimp_setting.create_store_id
-        @mailchimp_setting.cart_url = "#{::Rails.application.routes.url_helpers.spree_url}cart"
+        @mailchimp_setting.cart_url = permitted_params[:cart_url].presence || base_url
+      end
+
+      def base_url
+        if Spree::Store.default&.url
+          "https://#{::Spree::Store.default.url}/cart"
+        else
+          "#{::Rails.application.routes.url_helpers.spree_url}cart"
+        end
       end
     end
   end
